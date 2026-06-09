@@ -1,0 +1,45 @@
+/* ==========================================
+   THEME TOGGLE
+========================================== */
+
+.theme-toggle {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 4px;
+
+  border-radius: 20px;
+
+  border: 1px solid
+    var(--color-border);
+
+  background:
+    var(--color-surface);
+}
+
+.theme-toggle__option {
+  min-width: 70px;
+
+  padding: 6px 12px;
+
+  border-radius: 16px;
+
+  font-size: 14px;
+
+  transition:
+    all var(--transition-fast);
+}
+
+.theme-toggle__option.active {
+  background:
+    var(--color-text-primary);
+
+  color:
+    var(--color-bg);
+}
+
+.theme-toggle__option:not(.active):hover {
+  color:
+    var(--color-accent);
+}

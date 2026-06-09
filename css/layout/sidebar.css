@@ -1,0 +1,77 @@
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.sidebar {
+  position: sticky;
+
+  top: 80px;
+
+  align-self: start;
+
+  padding-top: 40px;
+}
+
+/* ==========================================
+   NAV
+========================================== */
+
+.sidebar__nav {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.sidebar__link {
+  position: relative;
+
+  display: inline-block;
+
+  padding: 8px 0;
+
+  font-size: var(--fs-nav);
+
+  color:
+    var(--color-text-secondary);
+
+  transition:
+    all var(--transition-fast);
+}
+
+.sidebar__link:hover {
+  color:
+    var(--color-text-primary);
+}
+
+.sidebar__link.active {
+  color:
+    var(--color-accent);
+
+  font-weight: 600;
+}
+
+.sidebar__link.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 2px;
+
+  width: 100%;
+
+  height: 2px;
+
+  background:
+    var(--color-accent);
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+.mobile-nav {
+  display: none;
+}

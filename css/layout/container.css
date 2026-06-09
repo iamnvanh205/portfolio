@@ -1,0 +1,57 @@
+/* ==========================================
+   PAGE WRAPPER
+========================================== */
+
+.page {
+  min-height: 100vh;
+}
+
+/* ==========================================
+   MAIN LAYOUT
+========================================== */
+
+.main-layout {
+  display: grid;
+
+  grid-template-columns:
+    var(--sidebar-width)
+    1fr;
+
+  gap: 40px;
+
+  width: min(
+    100% - 48px,
+    var(--container-max-width)
+  );
+
+  margin-inline: auto;
+}
+
+/* ==========================================
+   CONTENT AREA
+========================================== */
+
+.content {
+  min-width: 0;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1200px) {
+
+  :root {
+    --sidebar-width: 140px;
+    --container-max-width: 860px;
+  }
+
+}
+
+@media (max-width: 900px) {
+
+  .main-layout {
+    display: block;
+  }
+
+}
