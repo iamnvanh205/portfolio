@@ -7,23 +7,15 @@
 }
 
 /* ==========================================
-   MAIN LAYOUT
+   MAIN LAYOUT — sidebar + content
 ========================================== */
 
 .main-layout {
   display: grid;
-
-  grid-template-columns:
-    var(--sidebar-width)
-    1fr;
-
+  grid-template-columns: var(--sidebar-width) 1fr;
   gap: 40px;
 
-  width: min(
-    100% - 48px,
-    var(--container-max-width)
-  );
-
+  width: min(100% - 48px, var(--container-max-width));
   margin-inline: auto;
 }
 
@@ -32,7 +24,7 @@
 ========================================== */
 
 .content {
-  min-width: 0;
+  min-width: 0; /* prevent grid blowout */
 }
 
 /* ==========================================
@@ -42,7 +34,7 @@
 @media (max-width: 1200px) {
 
   :root {
-    --sidebar-width: 140px;
+    --sidebar-width:       140px;
     --container-max-width: 860px;
   }
 

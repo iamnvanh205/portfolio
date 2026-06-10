@@ -18,11 +18,8 @@
 .section__divider {
   width: 100%;
   height: 1px;
-
   margin-top: 16px;
-
-  background:
-    var(--color-border-subtle);
+  background: var(--color-border-subtle);
 }
 
 /* ==========================================
@@ -32,13 +29,11 @@
 .about__content {
   display: flex;
   flex-direction: column;
-
   gap: 16px;
 }
 
 .about__content p {
-  color:
-    var(--color-text-secondary);
+  color: var(--color-text-secondary);
 }
 
 /* ==========================================
@@ -59,9 +54,7 @@
 
 .skills-group__items {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 10px;
 }
 
@@ -71,16 +64,12 @@
 
 .projects-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
 .projects-view-all {
   text-align: center;
-
   margin-top: 24px;
 }
 
@@ -89,60 +78,57 @@
 ========================================== */
 
 .contact-card {
-  background:
-    var(--color-surface);
-
-  border: 1px solid
-    var(--color-border);
-
-  border-radius:
-    var(--radius-lg);
-
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   padding: 40px;
-
-  box-shadow:
-    var(--shadow-card);
+  box-shadow: var(--shadow-card);
 }
 
 .contact-layout {
   display: grid;
-
-  grid-template-columns:
-    55% 45%;
-
+  grid-template-columns: 55% 45%;
   gap: 32px;
 }
 
 .contact-links {
   padding-left: 32px;
-
-  border-left:
-    1px solid
-    var(--color-border-subtle);
+  border-left: 1px solid var(--color-border-subtle);
 
   display: flex;
   flex-direction: column;
-
   gap: 16px;
 }
 
 .contact-link {
   display: flex;
-
   align-items: center;
-
   gap: 10px;
 
-  color:
-    var(--color-text-secondary);
+  font-size: var(--fs-body-small);
+  color: var(--color-text-secondary);
 
-  transition:
-    color var(--transition-fast);
+  transition: color var(--transition-fast);
 }
 
-.contact-link:hover {
-  color:
-    var(--color-accent);
+.contact-link:not(.contact-link--static):hover {
+  color: var(--color-accent);
+}
+
+/* Static contact-link (non-clickable, e.g. location) */
+.contact-link--static {
+  cursor: default;
+  color: var(--color-text-secondary);
+}
+
+.contact-link svg {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.contact-link:not(.contact-link--static):hover svg {
+  color: var(--color-accent);
 }
 
 /* ==========================================
@@ -157,19 +143,6 @@
 
   .mobile-nav {
     display: flex;
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 100;
-
-    background:
-      var(--color-bg);
-
-    border-bottom:
-      1px solid
-      var(--color-border-subtle);
   }
 
 }
@@ -182,7 +155,6 @@
 
   .hero__container {
     grid-template-columns: 1fr;
-
     text-align: center;
   }
 
@@ -192,7 +164,6 @@
 
   .hero__header {
     flex-direction: column;
-
     align-items: center;
   }
 
@@ -214,11 +185,7 @@
 
   .contact-links {
     border-left: none;
-
-    border-top:
-      1px solid
-      var(--color-border-subtle);
-
+    border-top: 1px solid var(--color-border-subtle);
     padding-left: 0;
     padding-top: 24px;
   }

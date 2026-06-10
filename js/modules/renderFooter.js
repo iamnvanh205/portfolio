@@ -1,24 +1,17 @@
-export function renderFooter(
-  container
-) {
+export function renderFooter(container) {
 
-  const year =
-    new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   container.innerHTML = `
 
-    <div
-      class="footer__container">
+    <div class="footer__container">
 
-      <p
-        class="footer__text">
-
-        © ${year} Nguyen Van Anh.
-        All rights reserved.
-
+      <p class="footer__text footer-text">
+        © ${year} Nguyen Van Anh. All rights reserved.
       </p>
 
     </div>
 
   `;
+
 }

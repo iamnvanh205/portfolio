@@ -4,42 +4,39 @@
 
 .theme-toggle {
   display: inline-flex;
-
   align-items: center;
-
   padding: 4px;
-
   border-radius: 20px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
 
-  border: 1px solid
-    var(--color-border);
-
-  background:
-    var(--color-surface);
+  flex-shrink: 0;
 }
 
 .theme-toggle__option {
-  min-width: 70px;
-
+  min-width: 60px;
   padding: 6px 12px;
-
   border-radius: 16px;
 
-  font-size: 14px;
+  font-size: var(--fs-btn);
+  font-weight: 500;
+  letter-spacing: .03em;
 
-  transition:
-    all var(--transition-fast);
+  color: var(--color-text-secondary);
+
+  transition: all var(--transition-fast);
 }
 
 .theme-toggle__option.active {
-  background:
-    var(--color-text-primary);
-
-  color:
-    var(--color-bg);
+  background: var(--color-text-primary);
+  color: var(--color-bg);
 }
 
 .theme-toggle__option:not(.active):hover {
-  color:
-    var(--color-accent);
+  color: var(--color-accent);
+}
+
+.theme-toggle__option:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }

@@ -4,15 +4,12 @@
 
 .floating-actions {
   position: fixed;
-
   right: 24px;
   top: 50%;
-
   transform: translateY(-50%);
 
   display: flex;
   flex-direction: column;
-
   gap: 10px;
 
   z-index: 1000;
@@ -28,27 +25,32 @@
 
   border-radius: 50%;
 
-  background:
-    var(--color-surface);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
 
-  border: 1px solid
-    var(--color-border);
+  color: var(--color-text-secondary);
 
-  box-shadow:
-    var(--shadow-card);
-
-  transition:
-    all var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .floating-action:hover {
   transform: translateY(-2px);
+  color: var(--color-accent);
+  box-shadow: var(--shadow-card-hover);
+}
 
-  color:
-    var(--color-accent);
+.floating-action:active {
+  transform: translateY(0);
+}
+
+.floating-action:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 .floating-action svg {
   width: 20px;
   height: 20px;
+  pointer-events: none;
 }

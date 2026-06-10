@@ -6,19 +6,15 @@
   position: relative;
 }
 
+/* Vertical line */
 .timeline::before {
   content: "";
-
   position: absolute;
-
   left: 5px;
   top: 0;
   bottom: 0;
-
   width: 2px;
-
-  background:
-    var(--color-border);
+  background: var(--color-border);
 }
 
 /* ==========================================
@@ -27,9 +23,7 @@
 
 .timeline-item {
   position: relative;
-
   padding-left: 34px;
-
   margin-bottom: 40px;
 }
 
@@ -43,22 +37,16 @@
 
 .timeline-item::before {
   content: "";
-
   position: absolute;
-
   left: 0;
   top: 5px;
-
   width: 12px;
   height: 12px;
-
   border-radius: 50%;
+  background: var(--color-accent);
 
-  background:
-    var(--color-accent);
-
-  border: 2px solid
-    var(--color-bg);
+  /* "floating" dot effect */
+  border: 2px solid var(--color-bg);
 }
 
 /* ==========================================
@@ -67,33 +55,22 @@
 
 .timeline-company {
   font-style: italic;
-
-  color:
-    var(--color-text-secondary);
-
+  color: var(--color-text-secondary);
   margin-top: 4px;
   margin-bottom: 14px;
 }
 
 .timeline-grid {
   display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
 
 .timeline-label {
   font-size: 11px;
-
   text-transform: uppercase;
-
   letter-spacing: .08em;
-
-  color:
-    var(--color-text-muted);
-
+  color: var(--color-text-muted);
   margin-bottom: 8px;
 }
 
@@ -103,7 +80,14 @@
   gap: 6px;
 }
 
+.timeline-list li {
+  font-size: var(--fs-body-small);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* Achievements: bold numbers/keywords in accent color */
 .timeline-achievement strong {
-  color:
-    var(--color-accent);
+  color: var(--color-accent);
+  font-weight: 700;
 }

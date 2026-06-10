@@ -1,102 +1,37 @@
 export const skills = {
   languages: [
-    {
-      name: "Java",
-      icon: "devicon-java-plain"
-    },
-    {
-      name: "JavaScript",
-      icon: "devicon-javascript-plain"
-    },
-    {
-      name: "SQL",
-      icon: "devicon-azuresqldatabase-plain"
-    }
+    { name: "Java",       icon: "devicon-java-plain" },
+    { name: "JavaScript", icon: "devicon-javascript-plain" },
+    { name: "SQL",        icon: "devicon-azuresqldatabase-plain" }
   ],
 
   frameworks: [
-    {
-      name: "Spring Boot",
-      icon: "devicon-spring-plain"
-    },
-    {
-      name: "Spring Security",
-      icon: "devicon-spring-plain"
-    },
-    {
-      name: "Hibernate",
-      icon: "devicon-hibernate-plain"
-    },
-
-    {
-      name: "JPA",
-      icon: "devicon-java-plain"
-    }
+    { name: "Spring Boot",     icon: "devicon-spring-plain" },
+    { name: "Spring Security", icon: "devicon-spring-plain" },
+    { name: "Hibernate",       icon: "devicon-hibernate-plain" },
+    { name: "JPA",             icon: "devicon-java-plain" }
   ],
 
   databases: [
-    {
-      name: "PostgreSQL",
-      icon: "devicon-postgresql-plain"
-    },
-
-    {
-      name: "MySQL",
-      icon: "devicon-mysql-plain"
-    },
-
-    {
-      name: "Redis",
-      icon: "devicon-redis-plain"
-    }
+    { name: "PostgreSQL", icon: "devicon-postgresql-plain" },
+    { name: "MySQL",      icon: "devicon-mysql-plain" },
+    { name: "Redis",      icon: "devicon-redis-plain" }
   ],
 
   devops: [
-    {
-      name: "Docker",
-      icon: "devicon-docker-plain"
-    },
-
-    {
-      name: "Git",
-      icon: "devicon-git-plain"
-    },
-
-    {
-      name: "GitHub Actions",
-      icon: "devicon-githubactions-plain"
-    },
-
-    {
-      name: "Linux",
-      icon: "devicon-linux-plain"
-    }
+    { name: "Docker",          icon: "devicon-docker-plain" },
+    { name: "Git",             icon: "devicon-git-plain" },
+    { name: "GitHub Actions",  icon: "devicon-githubactions-plain" },
+    { name: "Linux",           icon: "devicon-linux-plain" }
   ],
 
   architecture: [
-    {
-      name: "REST API"
-    },
-
-    {
-      name: "Microservices"
-    },
-
-    {
-      name: "JWT Authentication"
-    },
-
-    {
-      name: "RBAC"
-    },
-
-    {
-      name: "Clean Architecture"
-    },
-
-    {
-      name: "SOLID"
-    }
+    { name: "REST API" },
+    { name: "Microservices" },
+    { name: "JWT Authentication" },
+    { name: "RBAC" },
+    { name: "Clean Architecture" },
+    { name: "SOLID" }
   ],
 
   softSkills: [

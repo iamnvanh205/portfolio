@@ -29,19 +29,14 @@ export const profile = {
 
   contact: {
     email: "anhdevnguyen@gmail.com",
-
     phone: "+84 397 727 903",
-
     github: "https://github.com/anhdevnguyen",
-
     linkedin: "https://linkedin.com/in/anhdevnguyen",
-
-    location: "Thanh Xuan,Ha Noi, Vietnam"
+    location: "Thanh Xuan, Ha Noi, Vietnam"
   },
 
   cta: {
     cv: "./assets/documents/Nguyen-Van-Anh-CV.pdf",
-
     projectSectionId: "#projects"
   }
 };

@@ -3,35 +3,26 @@
 ========================================== */
 
 .hero {
-  background:
-    var(--color-bg-elevated);
+  background: var(--color-bg-elevated);
+  padding: var(--space-2xl) 0 48px;
+  border-bottom: 1px solid var(--color-border-subtle);
 
-  padding:
-    var(--space-2xl)
-    0
-    48px;
-
-  border-bottom:
-    1px solid
-    var(--color-border-subtle);
+  transition:
+    background-color var(--transition-medium),
+    border-color var(--transition-medium);
 }
 
-.hero__container {
-  width: min(
-    100% - 48px,
-    var(--container-max-width)
-  );
+/* ==========================================
+   CONTAINER
+========================================== */
 
+.hero__container {
+  width: min(100% - 48px, var(--container-max-width));
   margin-inline: auto;
 
   display: grid;
-
-  grid-template-columns:
-    140px
-    1fr;
-
+  grid-template-columns: 140px 1fr;
   gap: 32px;
-
   align-items: center;
 }
 
@@ -42,21 +33,15 @@
 .hero__avatar {
   width: 140px;
   height: 140px;
-
   border-radius: 50%;
-
   overflow: hidden;
-
-  border: 2px solid
-    var(--color-border);
-
+  border: 2px solid var(--color-border);
   flex-shrink: 0;
 }
 
 .hero__avatar img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
 }
 
@@ -70,18 +55,14 @@
 
 .hero__header {
   display: flex;
-
   justify-content: space-between;
-
   align-items: flex-start;
-
   gap: 24px;
 }
 
 .hero__title-group {
   display: flex;
   flex-direction: column;
-
   gap: 8px;
 }
 
@@ -91,43 +72,33 @@
 
 .hero__taglines {
   margin-top: 24px;
-
   display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
-  gap: 8px 32px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 32px;
 }
 
 .hero__tagline {
-  color:
-    var(--color-text-secondary);
-
   font-size: 15px;
   font-weight: 300;
   line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: var(--color-text-secondary);
 }
 
+/* Middot accent bullet */
 .hero__tagline::before {
   content: "·";
-
-  color:
-    var(--color-accent);
-
+  color: var(--color-accent);
   margin-right: 8px;
 }
 
 /* ==========================================
-   CTA
+   CTA BUTTONS
 ========================================== */
 
 .hero__actions {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 12px;
-
   margin-top: 28px;
 }

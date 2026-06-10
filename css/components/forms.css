@@ -1,25 +1,21 @@
 /* ==========================================
-   FORM
+   FORM LAYOUT
 ========================================== */
 
 .form-group {
   display: flex;
   flex-direction: column;
-
   gap: 6px;
 }
 
 .form-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
 /* ==========================================
-   INPUTS
+   INPUTS & TEXTAREA
 ========================================== */
 
 .input,
@@ -29,49 +25,86 @@
   padding: 10px 14px;
 
   border-radius: 6px;
-
-  border: 1px solid
-    var(--color-border);
+  border: 1px solid var(--color-border);
 
   background: var(--color-bg);
+  color: var(--color-text-primary);
 
-  color:
-    var(--color-text-primary);
+  font-size: 14px; /* --text-input */
+  line-height: 1.5;
 
-  transition:
-    all var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .input::placeholder,
 .textarea::placeholder {
-  color:
-    var(--color-text-muted);
+  color: var(--color-text-muted);
+}
+
+.input:hover,
+.textarea:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 50%, var(--color-border));
 }
 
 .input:focus,
 .textarea:focus {
   outline: none;
-
-  border-color:
-    var(--color-accent);
-
-  box-shadow:
-    0 0 0 3px
-    color-mix(
-      in srgb,
-      var(--color-accent) 20%,
-      transparent
-    );
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
 }
 
 .textarea {
   min-height: 120px;
-
   resize: vertical;
 }
 
 /* ==========================================
-   CONTACT FORM
+   ERROR STATE
+========================================== */
+
+.input--error {
+  border-color: #c0392b;
+}
+
+.input--error:focus {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.18);
+}
+
+.form-error {
+  font-size: var(--fs-body-small);
+  color: #c0392b;
+  margin-top: 2px;
+}
+
+/* ==========================================
+   BANNER (success / error)
+========================================== */
+
+.form-banner {
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+
+  font-size: var(--fs-body-small);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.form-banner--success {
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-accent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+.form-banner--error {
+  background: rgba(192, 57, 43, 0.1);
+  color: #c0392b;
+  border: 1px solid rgba(192, 57, 43, 0.3);
+}
+
+/* ==========================================
+   CONTACT FORM SUBMIT
 ========================================== */
 
 .contact-form__submit {

@@ -1,4 +1,4 @@
 User-agent: *
-Allow:
+Allow: /
 
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://anhdevnguyen.github.io/sitemap.xml

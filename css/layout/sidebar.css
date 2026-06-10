@@ -4,11 +4,8 @@
 
 .sidebar {
   position: sticky;
-
   top: 80px;
-
   align-self: start;
-
   padding-top: 40px;
 }
 
@@ -18,60 +15,46 @@
 
 .sidebar__nav {
   display: flex;
-
   flex-direction: column;
-
   gap: 4px;
 }
 
 .sidebar__link {
   position: relative;
-
   display: inline-block;
-
   padding: 8px 0;
 
   font-size: var(--fs-nav);
+  font-weight: 400;
+  letter-spacing: .04em;
 
-  color:
-    var(--color-text-secondary);
+  color: var(--color-text-secondary);
 
-  transition:
-    all var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .sidebar__link:hover {
-  color:
-    var(--color-text-primary);
+  color: var(--color-text-primary);
 }
 
 .sidebar__link.active {
-  color:
-    var(--color-accent);
-
+  color: var(--color-accent);
   font-weight: 600;
 }
 
+/* Underline indicator for active link */
 .sidebar__link.active::after {
   content: "";
-
   position: absolute;
-
   left: 0;
   bottom: 2px;
-
   width: 100%;
-
   height: 2px;
-
-  background:
-    var(--color-accent);
+  background: var(--color-accent);
 }
 
-/* ==========================================
-   MOBILE
-========================================== */
-
-.mobile-nav {
-  display: none;
+.sidebar__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }

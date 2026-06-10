@@ -1,42 +1,15 @@
 export const DOM = {
 
-  hero:
-    document.querySelector(
-      "#hero-container"
-    ),
+  hero:       document.querySelector("#hero-container"),
+  sidebar:    document.querySelector("#sidebar"),
+  mobileNav:  document.querySelector("#mobile-nav"),
 
-  sidebar:
-    document.querySelector(
-      "#sidebar"
-    ),
+  about:      document.querySelector("#about"),
+  skills:     document.querySelector("#skills"),
+  projects:   document.querySelector("#projects"),
+  experience: document.querySelector("#experience"),
+  contact:    document.querySelector("#contact"),
 
-  about:
-    document.querySelector(
-      "#about"
-    ),
+  footer:     document.querySelector("#footer")
 
-  skills:
-    document.querySelector(
-      "#skills"
-    ),
-
-  projects:
-    document.querySelector(
-      "#projects"
-    ),
-
-  experience:
-    document.querySelector(
-      "#experience"
-    ),
-
-  contact:
-    document.querySelector(
-      "#contact"
-    ),
-
-  footer:
-    document.querySelector(
-      "#footer"
-    )
 };

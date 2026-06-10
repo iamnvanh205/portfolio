@@ -1,18 +1,15 @@
-import { projects }
-from "../data/projects.js";
+import { projects } from "../data/projects.js";
 
-export function renderProjects(
-  container
-) {
+export function renderProjects(container) {
 
   container.innerHTML = `
 
     <div class="section__header">
 
-      <h2 class="section-title">
-
+      <h2
+        id="projects-heading"
+        class="section-title">
         Projects
-
       </h2>
 
       <div class="section__divider"></div>
@@ -22,104 +19,90 @@ export function renderProjects(
     <div class="projects-grid">
 
       ${projects
-        .map(project => `
+        .map(
+          (project) => `
 
-          <article
-            class="project-card">
+            <article
+              class="project-card"
+              aria-label="${project.title}">
 
-            <div
-              class="project-card__thumbnail">
+              <div class="project-card__thumbnail">
+                <img
+                  src="${project.thumbnail}"
+                  alt="${project.title} thumbnail"
+                  loading="lazy">
+              </div>
 
-              <img
-                src="${project.thumbnail}"
-                alt="${project.title}">
-            </div>
+              <div class="project-card__content">
 
-            <div
-              class="project-card__content">
+                <h3 class="project-card__title card-title">
+                  ${project.title}
+                </h3>
 
-              <h3
-                class="project-card__title card-title">
+                <p class="project-card__description body-small">
+                  ${project.description}
+                </p>
 
-                ${project.title}
+                <div class="project-card__tags">
+                  ${project.tags
+                    .map(
+                      (tag) => `<span class="tech-tag">${tag}</span>`
+                    )
+                    .join("")
+                  }
+                </div>
 
-              </h3>
+                <div class="project-card__actions">
 
-              <p
-                class="project-card__description body-small">
+                  ${project.demo
+                    ? `
+                      <a
+                        href="${project.demo}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-card">
+                        Demo
+                      </a>
+                    `
+                    : ""
+                  }
 
-                ${project.description}
+                  ${project.github
+                    ? `
+                      <a
+                        href="${project.github}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-card">
+                        GitHub
+                      </a>
+                    `
+                    : ""
+                  }
 
-              </p>
-
-              <div
-                class="project-card__tags">
-
-                ${project.tags
-                  .map(tag => `
-                    <span class="tech-tag">
-                      ${tag}
-                    </span>
-                  `)
-                  .join("")
-                }
+                </div>
 
               </div>
 
-              <div
-                class="project-card__actions">
+            </article>
 
-                ${
-                  project.demo
-                  ? `
-                    <a
-                      href="${project.demo}"
-                      target="_blank"
-                      class="btn btn-card">
-
-                      Demo
-                    </a>
-                  `
-                  : ""
-                }
-
-                ${
-                  project.github
-                  ? `
-                    <a
-                      href="${project.github}"
-                      target="_blank"
-                      class="btn btn-card">
-
-                      GitHub
-                    </a>
-                  `
-                  : ""
-                }
-
-              </div>
-
-            </div>
-
-          </article>
-
-        `)
+          `
+        )
         .join("")
       }
 
     </div>
 
-    <div
-      class="projects-view-all">
+    <div class="projects-view-all">
 
-      <button
-        class="btn-ghost">
-
+      <a
+        href="#"
+        class="btn-ghost btn-text">
         View all →
-
-      </button>
+      </a>
 
     </div>
 
   `;
+
 }

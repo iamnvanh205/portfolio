@@ -25,6 +25,11 @@
     name="author"
     content="Nguyen Van Anh">
 
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Nguyen Van Anh | Backend Engineer">
+  <meta property="og:description" content="Portfolio of Nguyen Van Anh - Backend Engineer specializing in Java, Spring Boot, PostgreSQL, and scalable backend systems.">
+  <meta property="og:type"        content="website">
+
   <link
     rel="manifest"
     href="./manifest.json">
@@ -32,6 +37,11 @@
   <link
     rel="icon"
     href="./assets/favicon/favicon.ico">
+
+  <!-- Devicons — icon cho skill chips -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
 
   <link
     rel="stylesheet"
@@ -50,18 +60,43 @@
     <button
       id="copy-link-btn"
       class="floating-action"
-      title="Copy Portfolio Link">
+      title="Copy Portfolio Link"
+      aria-label="Copy portfolio link">
 
-      🔗
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20" height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+      </svg>
 
     </button>
 
     <button
       id="scroll-top-btn"
       class="floating-action"
-      title="Back To Top">
+      title="Back to top"
+      aria-label="Scroll back to top">
 
-      ↑
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20" height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
 
     </button>
 
@@ -71,25 +106,38 @@
 
   <header
     id="hero"
-    class="hero">
+    class="hero"
+    role="banner">
 
     <div
-      id="hero-container">
+      id="hero-container"
+      class="hero__container">
 
     </div>
 
   </header>
 
+  <!-- MOBILE NAV (visible < 900px) -->
+
+  <nav
+    id="mobile-nav"
+    class="mobile-nav"
+    aria-label="Section navigation">
+
+  </nav>
+
   <!-- MAIN -->
 
   <main
-    class="main-layout">
+    class="main-layout"
+    role="main">
 
     <!-- SIDEBAR -->
 
     <aside
       id="sidebar"
-      class="sidebar">
+      class="sidebar"
+      aria-label="Section navigation">
 
     </aside>
 
@@ -100,31 +148,36 @@
 
       <section
         id="about"
-        class="section">
+        class="section"
+        aria-labelledby="about-heading">
 
       </section>
 
       <section
         id="skills"
-        class="section">
+        class="section"
+        aria-labelledby="skills-heading">
 
       </section>
 
       <section
         id="projects"
-        class="section">
+        class="section"
+        aria-labelledby="projects-heading">
 
       </section>
 
       <section
         id="experience"
-        class="section">
+        class="section"
+        aria-labelledby="experience-heading">
 
       </section>
 
       <section
         id="contact"
-        class="section">
+        class="section"
+        aria-labelledby="contact-heading">
 
       </section>
 
@@ -136,7 +189,8 @@
 
   <footer
     id="footer"
-    class="footer">
+    class="footer"
+    role="contentinfo">
 
   </footer>
 

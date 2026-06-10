@@ -8,37 +8,32 @@
   gap: 8px;
 
   padding: 10px 16px;
-
   min-height: 40px;
 
-  background:
-    var(--color-bg-section-alt);
-
-  border: 1px solid
-    var(--color-border);
-
+  background: var(--color-bg-section-alt);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
 
-  transition:
-    all var(--transition-fast);
+  font-size: var(--fs-body-small);
+  color: var(--color-text-primary);
+
+  transition: all var(--transition-fast);
 }
 
 .skill-chip:hover {
-  border-color:
-    var(--color-accent);
-
-  color:
-    var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .skill-chip i,
 .skill-chip svg {
   width: 18px;
   height: 18px;
+  flex-shrink: 0;
 }
 
 /* ==========================================
-   PROJECT TAG
+   PROJECT TAG (tech-tag)
 ========================================== */
 
 .tech-tag {
@@ -52,9 +47,6 @@
   font-size: 11px;
   font-weight: 500;
 
-  color:
-    var(--color-text-muted);
-
-  background:
-    var(--color-bg-section-alt);
+  color: var(--color-text-muted);
+  background: var(--color-bg-section-alt);
 }
