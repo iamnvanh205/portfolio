@@ -19,6 +19,7 @@ export function renderProjects(container) {
     <div class="projects-grid">
 
       ${projects
+        .filter((p) => p.featured)
         .map(
           (project) => `
 
@@ -96,9 +97,9 @@ export function renderProjects(container) {
     <div class="projects-view-all">
 
       <a
-        href="#"
+        href="./projects.html"
         class="btn-ghost btn-text">
-        View all →
+        View all projects →
       </a>
 
     </div>

@@ -15,33 +15,33 @@
 
   --color-surface:          #FFFFFF;
 
-  --color-border:           #D4D0C8;
-  --color-border-subtle:    #E2DFD8;
+  --color-border:           #C8C4BB;
+  --color-border-subtle:    #D8D5CE;
 
-  --color-text-primary:     #1A1A18;
-  --color-text-secondary:   #5A5751;
-  --color-text-muted:       #9A9790;
+  --color-text-primary:     #0F0F0D;   
+  --color-text-secondary:   #3D3A33;   
+  --color-text-muted:       #6B6760;   
 
-  --color-accent:           #2E5D4B;
-  --color-accent-hover:     #234838;
+  --color-accent:           #1E4D3B;   
+  --color-accent-hover:     #163829;
 
-  --color-btn-primary-bg:   #1A1A18;
+  --color-btn-primary-bg:   #0F0F0D;
   --color-btn-primary-text: #F5F4F0;
 
-  --color-btn-outline-border: #1A1A18;
-  --color-btn-outline-text:   #1A1A18;
+  --color-btn-outline-border: #0F0F0D;
+  --color-btn-outline-text:   #0F0F0D;
 
   --color-btn-card-bg:      #F5F4F0;
-  --color-btn-card-border:  #C8C5BC;
+  --color-btn-card-border:  #B8B4AB;
 
   /* SHADOWS */
 
   --shadow-card:
-    0 1px 3px rgba(0,0,0,.07),
-    0 4px 12px rgba(0,0,0,.05);
+    0 1px 3px rgba(0,0,0,.09),
+    0 4px 12px rgba(0,0,0,.07);
 
   --shadow-card-hover:
-    0 4px 16px rgba(0,0,0,.12);
+    0 4px 16px rgba(0,0,0,.14);
 
   /* TYPOGRAPHY */
 
@@ -111,30 +111,30 @@
 
   --color-surface:          #1E1D1B;
 
-  --color-border:           #38362F;
-  --color-border-subtle:    #2A2825;
+  --color-border:           #3A382F;
+  --color-border-subtle:    #2C2A26;
 
-  --color-text-primary:     #F0EDE6;
-  --color-text-secondary:   #A8A49C;
-  --color-text-muted:       #5C5952;
+  --color-text-primary:     #F5F2EB;   
+  --color-text-secondary:   #C8C3BA;   
+  --color-text-muted:       #8A8680;  
 
-  --color-accent:           #6BAF92;
-  --color-accent-hover:     #88C5AA;
+  --color-accent:           #7DC4A6;   
+  --color-accent-hover:     #98D4BB;
 
-  --color-btn-primary-bg:   #F0EDE6;
+  --color-btn-primary-bg:   #F5F2EB;
   --color-btn-primary-text: #111110;
 
-  --color-btn-outline-border: #F0EDE6;
-  --color-btn-outline-text:   #F0EDE6;
+  --color-btn-outline-border: #F5F2EB;
+  --color-btn-outline-text:   #F5F2EB;
 
   --color-btn-card-bg:      transparent;
-  --color-btn-card-border:  #38362F;
+  --color-btn-card-border:  #3A382F;
 
   --shadow-card:
-    0 1px 3px rgba(0,0,0,.40),
-    0 4px 12px rgba(0,0,0,.30);
+    0 1px 3px rgba(0,0,0,.45),
+    0 4px 12px rgba(0,0,0,.35);
 
   --shadow-card-hover:
-    0 4px 20px rgba(0,0,0,.50);
+    0 4px 20px rgba(0,0,0,.55);
 
 }
