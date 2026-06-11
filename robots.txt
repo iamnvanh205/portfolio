@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anhdevnguyen.github.io/sitemap.xml
+Sitemap: https://anhdevnguyen.github.io/portfolio/sitemap.xml
