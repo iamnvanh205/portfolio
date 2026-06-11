@@ -6,7 +6,7 @@ export const projects = [
     description:
       "Enterprise-level IT asset management platform supporting asset lifecycle management, role-based access control, auditing, and inventory tracking.",
     tags: ["Java", "Spring Boot", "PostgreSQL", "Docker", "Flyway", "JWT"],
-    github: "https://github.com/anhdevnguyen/it-asset-management",
+    github: "https://github.com/anhdevnguyen/itam",
     demo: "https://itam-demo.anhdevnguyen.io",
     featured: true
   },
@@ -18,7 +18,7 @@ export const projects = [
     description:
       "AI-powered internal documentation assistant enabling semantic search, knowledge retrieval, and context-aware responses for enterprise teams.",
     tags: ["Spring Boot", "OpenAI", "RAG", "PostgreSQL", "Vector Search"],
-    github: "https://github.com/anhdevnguyen/ai-docs-assistant",
+    github: "https://github.com/anhdevnguyen/ai-internal-docs-assistant",
     demo: "https://ai-docs-demo.anhdevnguyen.io",
     featured: true
   },
