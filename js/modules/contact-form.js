@@ -1,10 +1,28 @@
 /**
- * initContactForm
- * Handles contact form submission with client-side validation
- * and user feedback. No real backend — shows success/error state.
+ * contact-form.js
+ * Handles contact form submission via EmailJS.
+ *
+ * Setup:
+ *  1. Replace the three constants below with your EmailJS credentials.
+ *  2. Make sure the SDK is loaded in index.html (see comment at bottom).
  */
 
+/* ─── EmailJS credentials ────────────────────────────────────────────────── */
+
+const EMAILJS_PUBLIC_KEY  = "xIMYjjAdMQSmL2PTq";   // Account → General → Public Key
+const EMAILJS_SERVICE_ID  = "service_ntnak7n";   // Email Services → Service ID
+const EMAILJS_TEMPLATE_ID = "template_8wxg3j8";  // Email Templates → Template ID
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+
 export function initContactForm() {
+
+  // Initialise EmailJS once the module loads
+  if (typeof emailjs !== "undefined") {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  } else {
+    console.warn("EmailJS SDK not loaded. Add the script tag to index.html.");
+  }
 
   const form = document.querySelector("#contact-form");
 
@@ -19,7 +37,7 @@ export function initContactForm() {
     const messageInput = form.querySelector("#contact-message");
     const submitBtn    = form.querySelector("[type='submit']");
 
-    // --- Validation ---
+    // ── Validation ──────────────────────────────────────────────────────────
 
     let isValid = true;
 
@@ -45,19 +63,31 @@ export function initContactForm() {
 
     if (!isValid) return;
 
-    // --- Submit state ---
+    // ── Submit state ─────────────────────────────────────────────────────────
 
-    submitBtn.disabled     = true;
-    submitBtn.textContent  = "Sending…";
+    submitBtn.disabled    = true;
+    submitBtn.textContent = "Sending…";
+
+    // Template variables — must match {{placeholders}} in your EmailJS template
+    const templateParams = {
+      from_name : nameInput.value.trim(),
+      reply_to  : emailInput.value.trim(),
+      message   : messageInput.value.trim()
+    };
 
     try {
 
-      // Simulate async send (replace with real endpoint if needed)
-      await simulateSend();
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
 
       showFormSuccess(form, submitBtn);
 
-    } catch {
+    } catch (error) {
+
+      console.error("EmailJS error:", error);
 
       submitBtn.disabled    = false;
       submitBtn.textContent = "Send Message";
@@ -70,7 +100,7 @@ export function initContactForm() {
 
 }
 
-/* ---- Helpers ---- */
+/* ── Helpers ────────────────────────────────────────────────────────────────── */
 
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -118,7 +148,6 @@ function showFormSuccess(form, submitBtn) {
 
   form.prepend(banner);
 
-  // Auto-remove after 6s
   setTimeout(() => {
     if (banner.parentElement) banner.remove();
   }, 6000);
@@ -140,6 +169,12 @@ function showFormError(form) {
 
 }
 
-function simulateSend() {
-  return new Promise((resolve) => setTimeout(resolve, 800));
-}
+/*
+ * ─── index.html — add this BEFORE your <script type="module"> tag ───────────
+ *
+ * <script
+ *   src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+ * </script>
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
