@@ -168,13 +168,3 @@ function showFormError(form) {
   }, 5000);
 
 }
-
-/*
- * ─── index.html — add this BEFORE your <script type="module"> tag ───────────
- *
- * <script
- *   src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
- * </script>
- *
- * ─────────────────────────────────────────────────────────────────────────────
- */
