@@ -7,7 +7,7 @@ export const projects = [
       "Enterprise-level IT asset management platform supporting asset lifecycle management, role-based access control, auditing, and inventory tracking.",
     tags: ["Java", "TypeScript", "Spring Boot", "PostgreSQL", "Docker", "Flyway", "JWT"],
     github: "https://github.com/anhdevnguyen/itam-system",
-    demo: "https://itam-system-678370qv8-vanhdev-s-projects.vercel.app/",
+    demo: "https://itam-system-olive.vercel.app/",
     featured: true
   },
 
