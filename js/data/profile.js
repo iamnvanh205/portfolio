@@ -14,17 +14,22 @@ export const profile = {
 
   about: [
     `I am a Backend Engineer passionate about building reliable,
-    scalable, and maintainable systems. My primary focus is designing
-    APIs, databases, and backend architectures that serve as the
-    foundation of modern digital products.`,
+    scalable, and maintainable systems. I focus on designing APIs,
+    databases, and backend architectures - the core foundation of
+    modern digital products - backed by hands-on experience with
+    authentication, authorization, and enterprise-scale data
+    management.`,
 
-    `I enjoy turning business requirements into well-structured
-    technical solutions. From authentication and authorization
-    systems to distributed services and DevOps pipelines, I am
-    continuously exploring ways to improve system quality.`,
+    `In the short term, my goal is to deepen my expertise in
+    microservices architecture - from designing inter-service
+    communication and managing distributed data, to deployment and
+    system monitoring - building a solid foundation for developing
+    highly scalable backend systems.`,
 
-    `My goal is not only to write working code but to create software
-    that remains understandable, extensible, and efficient as it grows.`
+    `In the long term, I aim to become a Tech Lead: someone who is
+    not only technically strong but also capable of shaping system
+    architecture, leading a team of engineers, and ensuring technical
+    quality throughout the product development process.`
   ],
 
   contact: {
