@@ -5,15 +5,15 @@ export const experience = [
     title: "Backend Engineer",
     company: "Personal Projects",
     responsibilities: [
-      "Designed and built the IT Asset Management System, an enterprise-style backend using Spring Boot and PostgreSQL.",
-      "Developed RESTful APIs for asset lifecycle management, auditing, and inventory tracking.",
-      "Implemented JWT-based authentication and role-based access control (RBAC).",
-      "Managed database schema versioning and migrations with Flyway, and containerized services with Docker."
+      "Independently designed and built multiple production-style backend systems using Java, Spring Boot, and PostgreSQL.",
+      "Developed RESTful APIs and system architectures for real-world problems, including asset lifecycle management and event ticketing with concurrency control.",
+      "Studied and applied backend architecture concepts in practice, including RBAC, data isolation, workflow design, and concurrency handling (locking, race condition prevention).",
+      "Set up end-to-end deployment pipelines with Docker, GitHub Actions, and cloud platforms (Render, Vercel, Neon)."
     ],
     achievements: [
-      "Shipped a production-ready IT Asset Management platform end-to-end.",
-      "Designed an RBAC-based security architecture covering multiple user roles.",
-      "Set up a Docker-based deployment workflow for consistent environments."
+      "Shipped multiple production-ready backend systems end-to-end, from database design to deployment.",
+      "Deepened understanding of system design through hands-on projects, including multi-tenant-ready architecture and high-concurrency booking flows.",
+      "Built a consistent, repeatable deployment workflow (Docker + CI/CD) applied across projects."
     ]
   },
 

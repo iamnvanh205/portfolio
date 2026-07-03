@@ -14,8 +14,7 @@ export const skills = {
   ],
 
   databases: [
-    { name: "PostgreSQL", icon: "devicon-postgresql-plain" },
-    { name: "MySQL",      icon: "devicon-mysql-plain" }
+    { name: "PostgreSQL", icon: "devicon-postgresql-plain" }
   ],
 
   devops: [
