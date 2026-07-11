@@ -1,6 +1,8 @@
-import { experience } from "../data/experience.js";
+import { getExperience, t } from "./lang.js";
 
 export function renderExperience(container) {
+
+  const experience = getExperience();
 
   container.innerHTML = `
 
@@ -9,7 +11,7 @@ export function renderExperience(container) {
       <h2
         id="experience-heading"
         class="section-title">
-        Experience
+        ${t("nav.experience")}
       </h2>
 
       <div class="section__divider"></div>
@@ -40,7 +42,7 @@ export function renderExperience(container) {
 
                 <div>
                   <div class="timeline-label">
-                    Responsibilities
+                    ${t("experience.responsibilities")}
                   </div>
                   <ul class="timeline-list body-small">
                     ${item.responsibilities
@@ -52,7 +54,7 @@ export function renderExperience(container) {
 
                 <div>
                   <div class="timeline-label">
-                    Achievements
+                    ${t("experience.achievements")}
                   </div>
                   <ul class="timeline-list body-small">
                     ${item.achievements

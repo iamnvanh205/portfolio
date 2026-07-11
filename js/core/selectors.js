@@ -1,8 +1,8 @@
 export const DOM = {
 
-  hero:       document.querySelector("#hero-container"),
-  sidebar:    document.querySelector("#sidebar"),
-  mobileNav:  document.querySelector("#mobile-nav"),
+  hero:      document.querySelector("#hero-container"),
+  sidebar:   document.querySelector("#sidebar"),
+  mobileNav: document.querySelector("#mobile-nav"),
 
   about:      document.querySelector("#about"),
   skills:     document.querySelector("#skills"),
@@ -10,6 +10,6 @@ export const DOM = {
   experience: document.querySelector("#experience"),
   contact:    document.querySelector("#contact"),
 
-  footer:     document.querySelector("#footer")
+  footer: document.querySelector("#footer")
 
 };

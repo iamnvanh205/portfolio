@@ -2,7 +2,8 @@
    THEME TOGGLE
 ========================================== */
 
-.theme-toggle {
+.theme-toggle,
+.lang-toggle {
   display: inline-flex;
   align-items: center;
   padding: 4px;
@@ -13,7 +14,8 @@
   flex-shrink: 0;
 }
 
-.theme-toggle__option {
+.theme-toggle__option,
+.lang-toggle__option {
   min-width: 60px;
   padding: 6px 12px;
   border-radius: 16px;
@@ -27,16 +29,21 @@
   transition: all var(--transition-fast);
 }
 
-.theme-toggle__option.active {
+.theme-toggle__option.active,
+.theme-toggle__option[aria-pressed="true"],
+.lang-toggle__option.active,
+.lang-toggle__option[aria-pressed="true"] {
   background: var(--color-text-primary);
   color: var(--color-bg);
 }
 
-.theme-toggle__option:not(.active):hover {
+.theme-toggle__option:not(.active):not([aria-pressed="true"]):hover,
+.lang-toggle__option:not(.active):not([aria-pressed="true"]):hover {
   color: var(--color-accent);
 }
 
-.theme-toggle__option:focus-visible {
+.theme-toggle__option:focus-visible,
+.lang-toggle__option:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }

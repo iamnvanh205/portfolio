@@ -1,6 +1,8 @@
-import { skills } from "../data/skills.js";
+import { getSkills, t } from "./lang.js";
 
 export function renderSkills(container) {
+
+  const skills = getSkills();
 
   const renderGroup = (title, list) => `
 
@@ -45,19 +47,19 @@ export function renderSkills(container) {
       <h2
         id="skills-heading"
         class="section-title">
-        Skills
+        ${t("nav.skills")}
       </h2>
 
       <div class="section__divider"></div>
 
     </div>
 
-    ${renderGroup("Programming Languages", skills.languages)}
-    ${renderGroup("Frameworks & Libraries", skills.frameworks)}
-    ${renderGroup("Databases",             skills.databases)}
-    ${renderGroup("Tools & DevOps",        skills.devops)}
-    ${renderGroup("Architecture",          skills.architecture)}
-    ${renderGroup("Soft Skills",           skills.softSkills)}
+    ${renderGroup(t("skills.languages"),    skills.languages)}
+    ${renderGroup(t("skills.frameworks"),   skills.frameworks)}
+    ${renderGroup(t("skills.databases"),    skills.databases)}
+    ${renderGroup(t("skills.devops"),       skills.devops)}
+    ${renderGroup(t("skills.architecture"), skills.architecture)}
+    ${renderGroup(t("skills.softSkills"),   skills.softSkills)}
 
   `;
 

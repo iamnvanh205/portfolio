@@ -1,3 +1,5 @@
+import { t } from "./lang.js";
+
 /**
  * contact-form.js
  * Handles contact form submission via EmailJS.
@@ -9,7 +11,7 @@
 
 /* ─── EmailJS credentials ────────────────────────────────────────────────── */
 
-const EMAILJS_PUBLIC_KEY  = "xIMYjjAdMQSmL2PTq";   // Account → General → Public Key
+const EMAILJS_PUBLIC_KEY  = "xIMYjjAdMQSmL2PTq"; // Account → General → Public Key
 const EMAILJS_SERVICE_ID  = "service_ntnak7n";   // Email Services → Service ID
 const EMAILJS_TEMPLATE_ID = "template_8wxg3j8";  // Email Templates → Template ID
 
@@ -44,20 +46,20 @@ export function initContactForm() {
     clearErrors(form);
 
     if (!nameInput.value.trim()) {
-      showError(nameInput, "Name is required.");
+      showError(nameInput, t("contact.nameRequired"));
       isValid = false;
     }
 
     if (!emailInput.value.trim()) {
-      showError(emailInput, "Email is required.");
+      showError(emailInput, t("contact.emailRequired"));
       isValid = false;
     } else if (!isValidEmail(emailInput.value.trim())) {
-      showError(emailInput, "Please enter a valid email address.");
+      showError(emailInput, t("contact.emailInvalid"));
       isValid = false;
     }
 
     if (!messageInput.value.trim()) {
-      showError(messageInput, "Message cannot be empty.");
+      showError(messageInput, t("contact.messageRequired"));
       isValid = false;
     }
 
@@ -66,13 +68,13 @@ export function initContactForm() {
     // ── Submit state ─────────────────────────────────────────────────────────
 
     submitBtn.disabled    = true;
-    submitBtn.textContent = "Sending…";
+    submitBtn.textContent = t("contact.sending");
 
     // Template variables — must match {{placeholders}} in your EmailJS template
     const templateParams = {
       from_name : nameInput.value.trim(),
-      reply_to  : emailInput.value.trim(),
-      message   : messageInput.value.trim()
+      reply_to :  emailInput.value.trim(),
+      message :   messageInput.value.trim()
     };
 
     try {
@@ -89,8 +91,8 @@ export function initContactForm() {
 
       console.error("EmailJS error:", error);
 
-      submitBtn.disabled    = false;
-      submitBtn.textContent = "Send Message";
+      submitBtn.disabled = false;
+      submitBtn.textContent = t("contact.send");
 
       showFormError(form);
 
@@ -111,7 +113,7 @@ function showError(input, message) {
   input.classList.add("input--error");
 
   const errorEl = document.createElement("span");
-  errorEl.className   = "form-error";
+  errorEl.className = "form-error";
   errorEl.textContent = message;
   errorEl.setAttribute("role", "alert");
 
@@ -138,12 +140,12 @@ function showFormSuccess(form, submitBtn) {
 
   form.reset();
 
-  submitBtn.disabled    = false;
-  submitBtn.textContent = "Send Message";
+  submitBtn.disabled = false;
+  submitBtn.textContent = t("contact.send");
 
   const banner = document.createElement("p");
-  banner.className   = "form-banner form-banner--success";
-  banner.textContent = "Message sent — I'll get back to you soon!";
+  banner.className = "form-banner form-banner--success";
+  banner.textContent = t("contact.success");
   banner.setAttribute("role", "status");
 
   form.prepend(banner);
@@ -157,8 +159,8 @@ function showFormSuccess(form, submitBtn) {
 function showFormError(form) {
 
   const banner = document.createElement("p");
-  banner.className   = "form-banner form-banner--error";
-  banner.textContent = "Something went wrong. Please try again.";
+  banner.className = "form-banner form-banner--error";
+  banner.textContent = t("contact.error");
   banner.setAttribute("role", "alert");
 
   form.prepend(banner);

@@ -1,30 +1,32 @@
 export const profile = {
   name: "Nguyen Van Anh",
 
-  title: "Backend Engineer",
+  title: "Backend Engineer Intern",
 
   avatar: "./assets/images/avatar/avatar.jpg",
 
   tagline: [
-    "Architecting the digital unseen.",
-    "Engineering scalable systems from scratch.",
-    "Building robust digital backbones.",
-    "Crafting the core of complex systems."
+    "Backend Engineer working with Java, Spring Boot & PostgreSQL.",
+    "I build APIs, design databases, and connect them together.",
+    "Learning backend architecture through hands-on projects.",
+    "End-to-end, from data structure to deployment."
   ],
 
   about: [
-    `I am a Backend Engineer passionate about building reliable,
-    scalable, and maintainable systems. I focus on designing APIs,
-    databases, and backend architectures - the core foundation of
-    modern digital products - backed by hands-on experience with
-    authentication, authorization, and enterprise-scale data
-    management.`,
+    `I'm a final-year Software Engineering student passionate about
+    backend development - API design, databases, and system
+    architecture. I've independently built and deployed two full
+    backend systems end-to-end, from database design and CI/CD to
+    solving real concurrency problems, to understand how production
+    systems actually work. I'm currently looking for a Backend
+    Engineer Intern position where I can apply what I've learned to
+    a real product and learn from an experienced engineering team.`,
 
-    `In the short term, my goal is to deepen my expertise in
+    `Over the next 1-3 years, my goal is to deepen my expertise in
     microservices architecture - from designing inter-service
     communication and managing distributed data, to deployment and
-    system monitoring - building a solid foundation for developing
-    highly scalable backend systems.`,
+    system monitoring - while gaining hands-on experience in a real
+    production environment alongside experienced engineers.`,
 
     `In the long term, I aim to become a Tech Lead: someone who is
     not only technically strong but also capable of shaping system
@@ -33,15 +35,15 @@ export const profile = {
   ],
 
   contact: {
-    email: "anhdevnguyen@gmail.com",
+    email: "iam.nvanh205@gmail.com",
     phone: "+84 397 727 903",
-    github: "https://github.com/anhdevnguyen",
-    linkedin: "https://linkedin.com/in/anhdevnguyen",
+    github: "https://github.com/iamnvanh205",
+    linkedin: "https://linkedin.com/in/iamnvanh205",
     location: "Thanh Xuan, Ha Noi, Vietnam"
   },
 
   cta: {
-    cv: "./assets/documents/Nguyen-Van-Anh-CV.pdf",
+    cv: "./assets/documents/NguyenVanAnh_CV.pdf",
     projectSectionId: "#projects"
   }
 };

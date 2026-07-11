@@ -8,11 +8,6 @@ export function initScrollSpy() {
 
   const sections = document.querySelectorAll("section[id]");
 
-  // All nav links (sidebar + mobile)
-  const allNavLinks = document.querySelectorAll(
-    ".sidebar__link, .mobile-nav__link"
-  );
-
   const OFFSET = 120; // px — accounts for sticky headers
 
   function onScroll() {
@@ -29,15 +24,17 @@ export function initScrollSpy() {
 
     });
 
-    allNavLinks.forEach((link) => {
+    document
+      .querySelectorAll(".sidebar__link, .mobile-nav__link")
+      .forEach((link) => {
 
-      link.classList.remove("active");
+        link.classList.remove("active");
 
-      if (link.getAttribute("href") === `#${current}`) {
-        link.classList.add("active");
-      }
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active");
+        }
 
-    });
+      });
 
   }
 

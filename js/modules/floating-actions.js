@@ -8,7 +8,7 @@
 export function initFloatingActions() {
 
   const scrollTopBtn = document.querySelector("#scroll-top-btn");
-  const copyBtn      = document.querySelector("#copy-link-btn");
+  const copyBtn = document.querySelector("#copy-link-btn");
 
   if (scrollTopBtn) {
     scrollTopBtn.addEventListener("click", () => {
@@ -45,7 +45,7 @@ function showToast(message, isError = false) {
   if (existing) existing.remove();
 
   const toast = document.createElement("div");
-  toast.className   = `toast${isError ? " toast--error" : ""}`;
+  toast.className = `toast${isError ? " toast--error" : ""}`;
   toast.textContent = message;
   toast.setAttribute("role", "status");
   toast.setAttribute("aria-live", "polite");

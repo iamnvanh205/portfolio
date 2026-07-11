@@ -1,3 +1,5 @@
+import { t } from "./lang.js";
+
 export function renderFooter(container) {
 
   const year = new Date().getFullYear();
@@ -7,7 +9,7 @@ export function renderFooter(container) {
     <div class="footer__container">
 
       <p class="footer__text footer-text">
-        © ${year} Nguyen Van Anh. All rights reserved.
+        © ${year} Nguyen Van Anh. ${t("footer")}
       </p>
 
     </div>

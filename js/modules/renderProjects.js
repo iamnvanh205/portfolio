@@ -1,6 +1,8 @@
-import { projects } from "../data/projects.js";
+import { getProjects, t } from "./lang.js";
 
 export function renderProjects(container) {
+
+  const projects = getProjects();
 
   container.innerHTML = `
 
@@ -9,7 +11,7 @@ export function renderProjects(container) {
       <h2
         id="projects-heading"
         class="section-title">
-        Projects
+        ${t("nav.projects")}
       </h2>
 
       <div class="section__divider"></div>
@@ -99,7 +101,7 @@ export function renderProjects(container) {
       <a
         href="./projects.html"
         class="btn-ghost btn-text">
-        View all projects →
+        ${t("viewAllProjects")}
       </a>
 
     </div>

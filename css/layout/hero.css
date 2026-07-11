@@ -66,6 +66,13 @@
   gap: 8px;
 }
 
+.hero__controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 /* ==========================================
    TAGLINES
 ========================================== */

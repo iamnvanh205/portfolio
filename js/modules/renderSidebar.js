@@ -1,12 +1,8 @@
-const menu = [
-  { id: "about",      label: "About" },
-  { id: "skills",     label: "Skills" },
-  { id: "projects",   label: "Projects" },
-  { id: "experience", label: "Experience" },
-  { id: "contact",    label: "Contact" }
-];
+import { t } from "./lang.js";
 
 export function renderSidebar(container) {
+
+  const menu = ["about", "skills", "projects", "experience", "contact"];
 
   container.innerHTML = `
 
@@ -16,9 +12,9 @@ export function renderSidebar(container) {
         .map(
           (item) => `
             <a
-              href="#${item.id}"
+              href="#${item}"
               class="sidebar__link nav-link-text">
-              ${item.label}
+              ${t(`nav.${item}`)}
             </a>
           `
         )

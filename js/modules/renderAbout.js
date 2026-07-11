@@ -1,6 +1,8 @@
-import { profile } from "../data/profile.js";
+import { getProfile, t } from "./lang.js";
 
 export function renderAbout(container) {
+
+  const profile = getProfile();
 
   container.innerHTML = `
 
@@ -9,7 +11,7 @@ export function renderAbout(container) {
       <h2
         id="about-heading"
         class="section-title">
-        About
+        ${t("nav.about")}
       </h2>
 
       <div class="section__divider"></div>

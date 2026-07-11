@@ -1,4 +1,4 @@
-import { profile } from "../data/profile.js";
+import { getProfile, t } from "./lang.js";
 
 /**
  * renderContact
@@ -7,6 +7,8 @@ import { profile } from "../data/profile.js";
  */
 export function renderContact(container) {
 
+  const profile = getProfile();
+
   container.innerHTML = `
 
     <div class="section__header">
@@ -14,7 +16,7 @@ export function renderContact(container) {
       <h2
         id="contact-heading"
         class="section-title">
-        Contact
+        ${t("nav.contact")}
       </h2>
 
       <div class="section__divider"></div>
@@ -38,14 +40,14 @@ export function renderContact(container) {
               <label
                 class="input-label"
                 for="contact-name">
-                Name
+                ${t("contact.name")}
               </label>
 
               <input
                 id="contact-name"
                 type="text"
                 class="input"
-                placeholder="Your name"
+                placeholder="${t("contact.namePlaceholder")}"
                 autocomplete="name">
 
             </div>
@@ -55,7 +57,7 @@ export function renderContact(container) {
               <label
                 class="input-label"
                 for="contact-email">
-                Email
+                ${t("contact.email")}
               </label>
 
               <input
@@ -76,20 +78,20 @@ export function renderContact(container) {
             <label
               class="input-label"
               for="contact-message">
-              Message
+              ${t("contact.message")}
             </label>
 
             <textarea
               id="contact-message"
               class="textarea"
-              placeholder="Write your message…"></textarea>
+              placeholder="${t("contact.messagePlaceholder")}"></textarea>
 
           </div>
 
           <button
             type="submit"
             class="btn btn-primary contact-form__submit">
-            Send Message
+            ${t("contact.send")}
           </button>
 
         </form>
@@ -118,7 +120,7 @@ export function renderContact(container) {
               <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
             </svg>
 
-            <span>github.com/anhdevnguyen</span>
+            <span>github.com/iamnvanh205</span>
 
           </a>
 
@@ -144,7 +146,7 @@ export function renderContact(container) {
               <circle cx="4" cy="4" r="2"/>
             </svg>
 
-            <span>linkedin.com/in/anhdevnguyen</span>
+            <span>linkedin.com/in/iamnvanh205</span>
 
           </a>
 

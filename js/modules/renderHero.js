@@ -1,6 +1,8 @@
-import { profile } from "../data/profile.js";
+import { getProfile, t } from "./lang.js";
 
 export function renderHero(container) {
+
+  const profile = getProfile();
 
   container.innerHTML = `
 
@@ -28,22 +30,47 @@ export function renderHero(container) {
 
         </div>
 
-        <div
-          class="theme-toggle"
-          role="group"
-          aria-label="Color theme">
+        <div class="hero__controls">
 
-          <button
-            class="theme-toggle__option btn-text"
-            data-theme-option="light">
-            Light
-          </button>
+          <div
+            class="theme-toggle"
+            role="group"
+            aria-label="${t("themeLabel")}">
 
-          <button
-            class="theme-toggle__option btn-text"
-            data-theme-option="dark">
-            Dark
-          </button>
+            <button
+              class="theme-toggle__option btn-text"
+              data-theme-option="light">
+              ${t("light")}
+            </button>
+
+            <button
+              class="theme-toggle__option btn-text"
+              data-theme-option="dark">
+              ${t("dark")}
+            </button>
+
+          </div>
+
+          <div
+            class="lang-toggle"
+            role="group"
+            aria-label="${t("languageLabel")}">
+
+            <button
+              class="lang-toggle__option btn-text active"
+              data-lang-option="en"
+              aria-pressed="true">
+              EN
+            </button>
+
+            <button
+              class="lang-toggle__option btn-text"
+              data-lang-option="vi"
+              aria-pressed="false">
+              VI
+            </button>
+
+          </div>
 
         </div>
 
@@ -69,14 +96,14 @@ export function renderHero(container) {
         <a
           href="${profile.cta.projectSectionId}"
           class="btn btn-outline btn-text">
-          View Projects
+          ${t("viewProjects")}
         </a>
 
         <a
           href="${profile.cta.cv}"
           download
           class="btn btn-primary btn-text">
-          Download CV
+          ${t("downloadCv")}
         </a>
 
       </div>

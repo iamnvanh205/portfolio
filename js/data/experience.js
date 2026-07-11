@@ -5,15 +5,15 @@ export const experience = [
     title: "Backend Engineer",
     company: "Personal Projects",
     responsibilities: [
-      "Independently designed and built multiple production-style backend systems using Java, Spring Boot, and PostgreSQL.",
-      "Developed RESTful APIs and system architectures for real-world problems, including asset lifecycle management and event ticketing with concurrency control.",
-      "Studied and applied backend architecture concepts in practice, including RBAC, data isolation, workflow design, and concurrency handling (locking, race condition prevention).",
-      "Set up end-to-end deployment pipelines with Docker, GitHub Actions, and cloud platforms (Render, Vercel, Neon)."
+      "Independently designed and built two full-stack backend systems (Java, Spring Boot, PostgreSQL) end-to-end: an IT Asset Management System and an Event Ticketing System.",
+      "Solved real concurrency problems, such as preventing ticket oversell under 50 competing concurrent requests using a reserve-then-confirm booking flow.",
+      "Implemented role-based access control across 4 roles per system, multi-step approval workflows, and QR-based verification for asset audits and event check-in.",
+      "Wrote unit and integration tests (Testcontainers) and set up CI/CD pipelines (Docker → GHCR → Render/Vercel)."
     ],
     achievements: [
-      "Shipped multiple production-ready backend systems end-to-end, from database design to deployment.",
-      "Deepened understanding of system design through hands-on projects, including multi-tenant-ready architecture and high-concurrency booking flows.",
-      "Built a consistent, repeatable deployment workflow (Docker + CI/CD) applied across projects."
+      "Shipped 2 production-style systems from database design to deployment, including 13 technical docs for the IT Asset Management System.",
+      "Built a reserve-then-confirm booking flow verified to handle 50 concurrent requests with zero overselling.",
+      "Established a repeatable CI/CD workflow (Docker + GitHub Actions) applied across both projects."
     ]
   },
 
@@ -21,12 +21,11 @@ export const experience = [
     id: 2,
     period: "2023 → 2027",
     title: "Student at Hanoi Open University",
-    company: "University Projects",
+    company: "Coursework Projects",
     responsibilities: [
-      "Led teams on multiple course projects, from requirement breakdown to module design.",
-      "Built full-stack academic systems including a charity volunteer platform (ASP.NET/C#) and a population management system (C#/SQL Server).",
-      "Developed an Android homestay management app using Java and SQLite.",
-      "Practiced software design principles such as modularization and event-driven design."
+      "Led teams on several course projects, from requirement breakdown to module design.",
+      "Built full-stack academic systems, including a charity volunteer platform (ASP.NET/C#) and a population management system (C#/SQL Server).",
+      "Developed an Android homestay management app using Java and SQLite."
     ],
     achievements: [
       "Coordinated 3+ team-based projects, splitting work across frontend, backend, and database design.",

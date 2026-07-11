@@ -4,15 +4,11 @@
  * Mirrors the sidebar links but displayed as a scrollable pill row.
  */
 
-const menu = [
-  { id: "about",      label: "About" },
-  { id: "skills",     label: "Skills" },
-  { id: "projects",   label: "Projects" },
-  { id: "experience", label: "Experience" },
-  { id: "contact",    label: "Contact" }
-];
+import { t } from "./lang.js";
 
 export function renderMobileNav(container) {
+
+  const menu = ["about", "skills", "projects", "experience", "contact"];
 
   container.innerHTML = `
 
@@ -22,10 +18,10 @@ export function renderMobileNav(container) {
         .map(
           item => `
             <a
-              href="#${item.id}"
+              href="#${item}"
               class="mobile-nav__link"
-              data-section="${item.id}">
-              ${item.label}
+              data-section="${item}">
+              ${t(`nav.${item}`)}
             </a>
           `
         )

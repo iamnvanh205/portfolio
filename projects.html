@@ -256,6 +256,24 @@
           </button>
         </div>
 
+        <div
+          class="lang-toggle"
+          role="group"
+          aria-label="Language">
+          <button
+            class="lang-toggle__option btn-text active"
+            data-lang-option="en"
+            aria-pressed="true">
+            EN
+          </button>
+          <button
+            class="lang-toggle__option btn-text"
+            data-lang-option="vi"
+            aria-pressed="false">
+            VI
+          </button>
+        </div>
+
       </div>
 
     </div>
@@ -308,10 +326,28 @@
 
   <script type="module">
 
-    import { projects }             from "./js/data/projects.js";
-    import { initTheme, toggleTheme } from "./js/modules/theme.js";
+    import { initTheme, toggleTheme, updateThemeButtons } from "./js/modules/theme.js";
+    import {
+      getProjects,
+      initLang,
+      localizeTag,
+      setLang,
+      t,
+      updateLangButtons
+    } from "./js/modules/lang.js";
+
+    const filterTags = [
+      "Spring Boot",
+      "Java",
+      "PostgreSQL",
+      "WebSocket",
+      "Redis",
+      "Kafka",
+      "University Projects"
+    ];
 
     /* ── Theme ── */
+    initLang();
     initTheme();
 
     document.addEventListener("click", (e) => {
@@ -319,23 +355,63 @@
       if (btn) toggleTheme(btn.dataset.themeOption);
     });
 
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-lang-option]");
+      if (!btn) return;
+
+      setLang(btn.dataset.langOption);
+      renderPage();
+    });
+
     /* ── Footer year ── */
     document.getElementById("footer-year").textContent = new Date().getFullYear();
 
     /* ── Render cards ── */
 
-    const grid   = document.getElementById("projects-grid");
-    const empty  = document.getElementById("projects-empty");
+    const grid = document.getElementById("projects-grid");
+    const empty = document.getElementById("projects-empty");
     const countEl = document.getElementById("project-count");
+    const filters = document.querySelector(".projects-filters");
+
+    function renderPage() {
+      const projects = getProjects();
+
+      document.title = `${t("projectsPage.title")} - Nguyen Van Anh`;
+      document.querySelector(".projects-topbar__back").lastChild.textContent = ` ${t("projectsPage.back")}`;
+      document.querySelector(".projects-heading").textContent = t("projectsPage.title");
+      document.querySelector(".projects-subheading").textContent = t("projectsPage.subtitle");
+      document.querySelector(".projects-filters").setAttribute("aria-label", t("projectsPage.filterLabel"));
+      document.querySelector("[data-theme-option='light']").textContent = t("light");
+      document.querySelector("[data-theme-option='dark']").textContent = t("dark");
+      document.querySelector("[data-theme-option='light']").parentElement.setAttribute("aria-label", t("themeLabel"));
+      document.querySelector("[data-lang-option='en']").parentElement.setAttribute("aria-label", t("languageLabel"));
+      document.getElementById("footer-year").textContent = new Date().getFullYear();
+      document.querySelector(".footer-text").lastChild.textContent = ` Nguyen Van Anh. ${t("footer")}`;
+      empty.textContent = t("projectsPage.empty");
+
+      filters.innerHTML = `
+        <button class="filter-btn active" data-tag="all">${t("projectsPage.all")}</button>
+        ${filterTags
+          .map((tag) => `<button class="filter-btn" data-tag="${localizeTag(tag)}">${localizeTag(tag)}</button>`)
+          .join("")}
+      `;
+
+      grid.querySelectorAll(".project-card").forEach((card) => card.remove());
+      projects.forEach((project) => grid.appendChild(renderCard(project)));
+
+      applyFilter("all");
+      updateThemeButtons();
+      updateLangButtons();
+    }
 
     function renderCard(project) {
       const article = document.createElement("article");
-      article.className   = "project-card";
+      article.className = "project-card";
       article.dataset.tags = JSON.stringify(project.tags);
       article.setAttribute("aria-label", project.title);
 
       const featuredBadge = project.featured
-        ? `<div class="project-card__badge">★ Featured</div>`
+        ? `<div class="project-card__badge">★ ${t("projectsPage.featured")}</div>`
         : "";
 
       const demoBtn = project.demo
@@ -370,13 +446,6 @@
       return article;
     }
 
-    // Insert empty state back into DOM before cards
-    projects.forEach(p => grid.appendChild(renderCard(p)));
-
-    /* ── Filter logic ── */
-
-    const filterBtns = document.querySelectorAll(".filter-btn");
-
     function applyFilter(tag) {
       let visible = 0;
 
@@ -387,23 +456,20 @@
         if (show) visible++;
       });
 
-      // Update count
-      countEl.textContent = `${visible} project${visible !== 1 ? "s" : ""}`;
-
-      // Show empty state if needed
+      countEl.textContent = `${visible} ${visible === 1 ? t("projectsPage.project") : t("projectsPage.projects")}`;
       empty.classList.toggle("visible", visible === 0);
     }
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        filterBtns.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        applyFilter(btn.dataset.tag);
-      });
+    filters.addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+
+      filters.querySelectorAll(".filter-btn").forEach((item) => item.classList.remove("active"));
+      btn.classList.add("active");
+      applyFilter(btn.dataset.tag);
     });
 
-    // Init count
-    countEl.textContent = `${projects.length} projects`;
+    renderPage();
 
   </script>
 

@@ -4,8 +4,8 @@ export const projects = [
     title: "IT Asset Management System",
     thumbnail: "./assets/images/projects/itam-system.png",
     description:
-      "Internal enterprise tool that digitizes the full IT asset lifecycle — purchase, assignment, maintenance, and disposal — replacing manual Excel-based tracking. Designed a multi-branch-ready architecture with two-level data isolation from day one, even though MVP runs on a single branch. Implemented a 3-step approval workflow (Employee → Manager → IT Staff), QR-based periodic audits via phone camera with automatic discrepancy reporting, and a full role-based access matrix across Admin, IT Staff, Manager, and Employee roles.",
-    tags: ["Java", "Spring Boot", "TypeScript", "React", "PostgreSQL", "JWT"],
+      "Internal enterprise tool that digitizes the full IT asset lifecycle — purchase, assignment, maintenance, and disposal — replacing manual Excel-based tracking. Designed a multi-branch-ready architecture with two-level data isolation from day one, even though MVP runs on a single branch. Implemented a 3-step approval workflow (Employee → Manager → IT Staff), QR-based periodic audits via phone camera with automatic discrepancy reporting, and a full role-based access matrix across Admin, IT Staff, Manager, and Employee roles. Wrote unit and integration tests (Testcontainers) run on every PR, and set up a full CI/CD pipeline (Docker → GHCR → Render/Vercel). Documented the system with 13 technical docs covering architecture, database design, API, and deployment.",
+    tags: ["Java", "Spring Boot", "TypeScript", "React", "PostgreSQL", "JWT", "Docker"],
     github: "https://github.com/anhdevnguyen/itam-system",
     demo: "https://itam-system-olive.vercel.app/",
     featured: true
@@ -16,8 +16,8 @@ export const projects = [
     title: "Event Ticketing System",
     thumbnail: "./assets/images/projects/event-ticketing.png",
     description:
-      "Personal backend-focused project centered on solving real-world concurrency control problems: preventing ticket oversell and duplicate check-ins under high-contention scenarios (50 concurrent requests competing for the last ticket). Designed the reserve-then-confirm booking flow with QR code generation, a real-time organizer dashboard via WebSocket/STOMP, and role-based access control across Admin, Organizer, Checkin Staff, and Customer roles. Built with Spring Boot, PostgreSQL, and JWT/OAuth2 authentication, deployed on Render, Vercel, and Neon.",
-    tags: ["Java", "Spring Boot", "React", "TypeScript", "PostgreSQL", "WebSocket", "JWT"],
+      "Personal backend-focused project centered on solving a real-world concurrency control problem: preventing ticket oversell and duplicate check-ins under high-contention scenarios (50 concurrent requests competing for the last ticket). Designed the reserve-then-confirm booking flow with QR code generation, a real-time organizer dashboard via WebSocket/STOMP, and role-based access control across Admin, Organizer, Checkin Staff, and Customer roles. Built with Spring Boot, PostgreSQL, and JWT/OAuth2 authentication, deployed on Render, Vercel, and Neon.",
+    tags: ["Java", "Spring Boot", "React", "TypeScript", "PostgreSQL", "WebSocket", "JWT", "OAuth2"],
     github: "https://github.com/anhdevnguyen/event-ticketing",
     demo: "#",
     featured: true
