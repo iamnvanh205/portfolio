@@ -142,7 +142,7 @@ const viProfile = {
     hoàn chỉnh từ đầu đến cuối - từ thiết kế cơ sở dữ liệu, CI/CD
     đến xử lý các bài toán concurrency thực tế - để hiểu cách các
     hệ thống production thực sự vận hành. Hiện tại tôi đang tìm
-    kiếm vị trí Backend Engineer Intern để áp dụng kiến thức đã học
+    kiếm vị trí thực tập sinh Backend Engineer để áp dụng kiến thức đã học
     vào sản phẩm thực tế và học hỏi từ đội ngũ kỹ sư giàu kinh
     nghiệm.`,
 
@@ -168,13 +168,12 @@ const viSoftSkills = [
   "Hợp tác nhóm",
   "Tài liệu kỹ thuật",
   "Tư duy thiết kế hệ thống",
-  "Phát triển Agile",
+  "Phát triển theo từng bước nhỏ",
   "Học hỏi liên tục"
 ];
 
 const viSkillNames = {
-  "JWT Authentication": "Xác thực JWT",
-  "Clean Architecture": "Kiến trúc sạch"
+  "Clean Architecture": "Clean Architecture",
 };
 
 const viTags = {

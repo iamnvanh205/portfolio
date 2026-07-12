@@ -27,7 +27,6 @@ export const skills = {
   architecture: [
     { name: "REST API" },
     { name: "Microservices" },
-    { name: "JWT Authentication" },
     { name: "Clean Architecture" },
     { name: "SOLID" }
   ],
