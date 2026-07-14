@@ -68,6 +68,12 @@
   gap: 24px;
 }
 
+.projects-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
 /* ==========================================
    CONTACT
 ========================================== */

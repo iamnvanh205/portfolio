@@ -1,8 +1,13 @@
 import { getProjects, t } from "./lang.js";
 
+let showAllProjects = false;
+
 export function renderProjects(container) {
 
   const projects = getProjects();
+  const visibleProjects = showAllProjects
+    ? projects
+    : projects.filter((project) => project.featured);
 
   container.innerHTML = `
 
@@ -20,7 +25,7 @@ export function renderProjects(container) {
 
     <div class="projects-grid">
 
-      ${projects
+      ${visibleProjects
         .map(
           (project) => `
 
@@ -101,6 +106,27 @@ export function renderProjects(container) {
 
     </div>
 
+    ${projects.length > visibleProjects.length || showAllProjects
+      ? `
+        <div class="projects-actions">
+          <button
+            type="button"
+            class="btn btn-ghost"
+            data-projects-toggle>
+            ${showAllProjects ? t("showFeaturedProjects") : t("viewAllProjects")}
+          </button>
+        </div>
+      `
+      : ""
+    }
+
   `;
+
+  container
+    .querySelector("[data-projects-toggle]")
+    ?.addEventListener("click", () => {
+      showAllProjects = !showAllProjects;
+      renderProjects(container);
+    });
 
 }

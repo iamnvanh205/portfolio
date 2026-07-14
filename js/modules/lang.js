@@ -16,7 +16,8 @@ const labels = {
     dark: "Dark",
     viewProjects: "View Projects",
     downloadCv: "Download CV",
-    viewAllProjects: "View all projects ->",
+    viewAllProjects: "View all projects",
+    showFeaturedProjects: "Show featured projects",
     nav: {
       about: "About",
       skills: "Skills",
@@ -76,7 +77,8 @@ const labels = {
     dark: "Tối",
     viewProjects: "Xem dự án",
     downloadCv: "Tải CV",
-    viewAllProjects: "Xem tất cả dự án ->",
+    viewAllProjects: "Xem tất cả dự án",
+    showFeaturedProjects: "Chỉ xem dự án nổi bật",
     nav: {
       about: "Giới thiệu",
       skills: "Kỹ năng",
