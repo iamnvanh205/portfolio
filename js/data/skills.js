@@ -31,6 +31,11 @@ export const skills = {
     { name: "SOLID" }
   ],
 
+  spokenLanguages: [
+    { name: "Vietnamese (Native)" },
+    { name: "English (Technical Reading)" }
+  ],
+
   softSkills: [
     "Problem Solving",
     "Team Collaboration",

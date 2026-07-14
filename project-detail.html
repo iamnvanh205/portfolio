@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Project Detail - Nguyen Van Anh</title>
+
+  <meta
+    name="description"
+    content="Project detail by Nguyen Van Anh - Backend Engineer specializing in Java, Spring Boot, and scalable systems.">
+
+  <link rel="icon" href="./assets/favicon/favicon.ico">
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+
+  <link rel="stylesheet" href="./css/main.css">
+
+</head>
+
+<body class="project-detail-page">
+
+  <div class="project-detail-topbar">
+    <div class="project-detail-topbar__inner page-container">
+
+      <a href="./index.html#projects" class="project-detail-back">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16" height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        <span>Back to Portfolio</span>
+      </a>
+
+      <div class="project-detail-controls">
+        <div
+          class="theme-toggle"
+          role="group"
+          aria-label="Color theme">
+          <button
+            class="theme-toggle__option btn-text"
+            data-theme-option="light">
+            Light
+          </button>
+          <button
+            class="theme-toggle__option btn-text"
+            data-theme-option="dark">
+            Dark
+          </button>
+        </div>
+
+        <div
+          class="lang-toggle"
+          role="group"
+          aria-label="Language">
+          <button
+            class="lang-toggle__option btn-text active"
+            data-lang-option="en"
+            aria-pressed="true">
+            EN
+          </button>
+          <button
+            class="lang-toggle__option btn-text"
+            data-lang-option="vi"
+            aria-pressed="false">
+            VI
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <main class="project-detail-main" role="main">
+    <div id="project-detail" class="page-container"></div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer__container page-container">
+      <p class="footer__text footer-text">
+        &copy; <span id="footer-year"></span> Nguyen Van Anh. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initTheme, toggleTheme, updateThemeButtons } from "./js/modules/theme.js";
+    import { getProjects, initLang, setLang, t, updateLangButtons } from "./js/modules/lang.js";
+
+    const detail = document.getElementById("project-detail");
+    const params = new URLSearchParams(window.location.search);
+
+    initLang();
+    initTheme();
+
+    document.getElementById("footer-year").textContent = new Date().getFullYear();
+
+    document.addEventListener("click", (event) => {
+      const btn = event.target.closest("[data-theme-option]");
+      if (btn) toggleTheme(btn.dataset.themeOption);
+    });
+
+    document.addEventListener("click", (event) => {
+      const btn = event.target.closest("[data-lang-option]");
+      if (!btn) return;
+
+      setLang(btn.dataset.langOption);
+      renderPage();
+    });
+
+    function renderPage() {
+      const project = getProjects().find((item) => item.id === params.get("id"));
+
+      document.querySelector("[data-theme-option='light']").textContent = t("light");
+      document.querySelector("[data-theme-option='dark']").textContent = t("dark");
+      document.querySelector("[data-theme-option='light']").parentElement.setAttribute("aria-label", t("themeLabel"));
+      document.querySelector("[data-lang-option='en']").parentElement.setAttribute("aria-label", t("languageLabel"));
+      document.querySelector(".footer-text").lastChild.textContent = ` Nguyen Van Anh. ${t("footer")}`;
+
+      if (!project) {
+        document.title = "Project not found - Nguyen Van Anh";
+        detail.innerHTML = `<p class="project-detail-empty">Project not found.</p>`;
+        updateThemeButtons();
+        updateLangButtons();
+        return;
+      }
+
+      document.title = `${project.title} - Nguyen Van Anh`;
+      detail.innerHTML = renderProject(project);
+      updateThemeButtons();
+      updateLangButtons();
+    }
+
+    function renderProject(project) {
+      const description = (project.description.match(/[^.!?]+[.!?]?/g) || [project.description])
+        .map((line) => `<li>${line.trim()}</li>`)
+        .join("");
+      const docs = project.docs
+        ? `<li>Technical documentation is available in the <a href="${project.docs}" target="_blank" rel="noopener noreferrer">GitHub docs</a>.</li>`
+        : "";
+
+      return `
+        <article class="project-detail-card" aria-label="${project.title}">
+          <header class="project-detail-card__header">
+            <h1 class="section-title">${project.title}</h1>
+            ${project.duration ? `<p class="project-detail-card__duration body-small">${project.duration}</p>` : ""}
+          </header>
+
+          <ul class="project-detail-card__description body-small">
+            ${description}
+            ${docs}
+          </ul>
+
+          <div class="project-detail-card__tags">
+            ${project.tags.map((tag) => `<span class="tech-tag">${tag}</span>`).join("")}
+          </div>
+
+          <div class="project-detail-card__actions">
+            ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Demo</a>` : ""}
+            ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub</a>` : ""}
+          </div>
+
+          <div class="project-detail-gallery" aria-label="Project screenshots">
+            ${(project.screenshots || Array(4).fill(""))
+              .slice(0, 4)
+              .map((src, i) => src
+                ? `<img class="project-detail-gallery__item" src="${src}" alt="${project.title} screenshot ${i + 1}" loading="lazy">`
+                : `<div class="project-detail-gallery__item" aria-hidden="true"></div>`
+              )
+              .join("")}
+          </div>
+        </article>
+      `;
+    }
+
+    renderPage();
+  </script>
+
+</body>
+</html>

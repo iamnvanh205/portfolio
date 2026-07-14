@@ -64,13 +64,8 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.projects-view-all {
-  text-align: center;
-  margin-top: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 /* ==========================================
@@ -175,10 +170,6 @@
     justify-content: center;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
   .contact-layout {
     grid-template-columns: 1fr;
   }
@@ -195,6 +186,22 @@
   }
 
   .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 1024px) {
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 767px) {
+
+  .projects-grid {
     grid-template-columns: 1fr;
   }
 

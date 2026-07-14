@@ -54,12 +54,13 @@ export function renderSkills(container) {
 
     </div>
 
-    ${renderGroup(t("skills.languages"),    skills.languages)}
-    ${renderGroup(t("skills.frameworks"),   skills.frameworks)}
-    ${renderGroup(t("skills.databases"),    skills.databases)}
-    ${renderGroup(t("skills.devops"),       skills.devops)}
-    ${renderGroup(t("skills.architecture"), skills.architecture)}
-    ${renderGroup(t("skills.softSkills"),   skills.softSkills)}
+    ${renderGroup(t("skills.languages"),       skills.languages)}
+    ${renderGroup(t("skills.frameworks"),      skills.frameworks)}
+    ${renderGroup(t("skills.databases"),       skills.databases)}
+    ${renderGroup(t("skills.devops"),          skills.devops)}
+    ${renderGroup(t("skills.architecture"),    skills.architecture)}
+    ${renderGroup(t("skills.spokenLanguages"), skills.spokenLanguages)}
+    ${renderGroup(t("skills.softSkills"),      skills.softSkills)}
 
   `;
 

@@ -31,8 +31,8 @@ function renderPage() {
 
   renderAbout(DOM.about);
   renderSkills(DOM.skills);
-  renderProjects(DOM.projects);
   renderExperience(DOM.experience);
+  renderProjects(DOM.projects);
   renderContact(DOM.contact);
 
   renderFooter(DOM.footer);

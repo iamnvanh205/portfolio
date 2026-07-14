@@ -8,7 +8,7 @@ import { t } from "./lang.js";
 
 export function renderMobileNav(container) {
 
-  const menu = ["about", "skills", "projects", "experience", "contact"];
+  const menu = ["about", "skills", "experience", "projects", "contact"];
 
   container.innerHTML = `
 

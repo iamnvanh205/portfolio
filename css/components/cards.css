@@ -24,7 +24,6 @@
 ========================================== */
 
 .project-card__thumbnail {
-  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--color-bg-section-alt);
 }

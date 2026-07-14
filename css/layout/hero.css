@@ -17,9 +17,6 @@
 ========================================== */
 
 .hero__container {
-  width: min(100% - 48px, var(--container-max-width));
-  margin-inline: auto;
-
   display: grid;
   grid-template-columns: 140px 1fr;
   gap: 32px;

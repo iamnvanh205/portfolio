@@ -9,6 +9,8 @@ export function initFloatingActions() {
 
   const scrollTopBtn = document.querySelector("#scroll-top-btn");
   const copyBtn = document.querySelector("#copy-link-btn");
+  const actions = document.querySelector(".floating-actions");
+  const footer = document.querySelector("#footer");
 
   if (scrollTopBtn) {
     scrollTopBtn.addEventListener("click", () => {
@@ -32,6 +34,18 @@ export function initFloatingActions() {
       }
 
     });
+  }
+
+  if (actions && footer) {
+    const placeAboveFooter = () => {
+      const gap = window.innerWidth >= 768 ? 32 : 24;
+      const overlap = Math.max(0, window.innerHeight - footer.getBoundingClientRect().top);
+      actions.style.setProperty("--floating-actions-bottom", `${overlap + gap}px`);
+    };
+
+    placeAboveFooter();
+    window.addEventListener("scroll", placeAboveFooter, { passive: true });
+    window.addEventListener("resize", placeAboveFooter);
   }
 
 }

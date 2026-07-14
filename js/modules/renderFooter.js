@@ -6,7 +6,7 @@ export function renderFooter(container) {
 
   container.innerHTML = `
 
-    <div class="footer__container">
+    <div class="footer__container page-container">
 
       <p class="footer__text footer-text">
         © ${year} Nguyen Van Anh. ${t("footer")}

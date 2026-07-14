@@ -21,7 +21,6 @@ export function renderProjects(container) {
     <div class="projects-grid">
 
       ${projects
-        .filter((p) => p.featured)
         .map(
           (project) => `
 
@@ -56,6 +55,12 @@ export function renderProjects(container) {
                 </div>
 
                 <div class="project-card__actions">
+
+                  <a
+                    href="./project-detail.html?id=${project.id}"
+                    class="btn btn-card">
+                    Details
+                  </a>
 
                   ${project.demo
                     ? `
@@ -93,16 +98,6 @@ export function renderProjects(container) {
         )
         .join("")
       }
-
-    </div>
-
-    <div class="projects-view-all">
-
-      <a
-        href="./projects.html"
-        class="btn-ghost btn-text">
-        ${t("viewAllProjects")}
-      </a>
 
     </div>
 

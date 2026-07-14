@@ -30,6 +30,7 @@ const labels = {
       databases: "Databases",
       devops: "Tools & DevOps",
       architecture: "Architecture",
+      spokenLanguages: "Spoken Languages",
       softSkills: "Soft Skills"
     },
     contact: {
@@ -89,6 +90,7 @@ const labels = {
       databases: "Cơ sở dữ liệu",
       devops: "Công cụ & DevOps",
       architecture: "Kiến trúc",
+      spokenLanguages: "Ngôn ngữ giao tiếp",
       softSkills: "Kỹ năng mềm"
     },
     contact: {
@@ -163,6 +165,11 @@ const viProfile = {
   }
 };
 
+const viSpokenLanguages = [
+  "Tiếng Việt (Bản ngữ)",
+  "Tiếng Anh (đọc hiểu tài liệu kỹ thuật)"
+];
+
 const viSoftSkills = [
   "Giải quyết vấn đề",
   "Hợp tác nhóm",
@@ -184,12 +191,12 @@ const viProjects = {
   "itam-system": {
     title: "Hệ thống quản lý tài sản CNTT",
     description:
-      "Công cụ nội bộ số hóa toàn bộ vòng đời tài sản CNTT - mua sắm, bàn giao, bảo trì và thanh lý - thay thế việc theo dõi thủ công bằng Excel. Thiết kế kiến trúc sẵn sàng cho nhiều chi nhánh với hai lớp cách ly dữ liệu ngay từ đầu, dù bản MVP chỉ chạy trên một chi nhánh. Triển khai quy trình phê duyệt 3 bước (Nhân viên → Quản lý → Nhân sự IT), kiểm kê định kỳ bằng QR qua camera điện thoại với báo cáo sai lệch tự động, và ma trận phân quyền đầy đủ cho 4 vai trò Admin, IT Staff, Manager, Employee. Viết unit test và integration test (Testcontainers) chạy trên mỗi PR, cùng pipeline CI/CD hoàn chỉnh (Docker → GHCR → Render/Vercel). Tài liệu hóa hệ thống với 13 tài liệu kỹ thuật về kiến trúc, thiết kế cơ sở dữ liệu, API và triển khai."
+      "Công cụ nội bộ số hóa toàn bộ vòng đời tài sản CNTT - mua sắm, bàn giao, bảo trì, kiểm kê và thanh lý - thay thế việc theo dõi thủ công bằng Excel. Thiết kế mô hình dữ liệu sẵn sàng cho nhiều chi nhánh với hai lớp cách ly dữ liệu ngay từ đầu, dù bản MVP chỉ chạy trên một chi nhánh. Triển khai quy trình phê duyệt 3 bước (Nhân viên → Quản lý → Nhân sự IT), kiểm kê định kỳ bằng QR qua camera điện thoại với phát hiện sai lệch tự động giữa dữ liệu quét và dữ liệu ghi nhận, cùng ma trận phân quyền đầy đủ cho 4 vai trò Admin, IT Staff, Manager, Employee. Bảo mật các REST endpoint bằng xác thực JWT, phân quyền RBAC qua @PreAuthorize, kiểm tra dữ liệu đầu vào và cấu hình CORS; áp dụng tách lớp Repository/Service (SOLID) để business logic độc lập với tầng lưu trữ. Viết 108 unit test và integration test (JUnit 5, Mockito, Testcontainers) đạt 53% độ phủ dòng lệnh, chạy trên mỗi PR cùng pipeline CI/CD hoàn chỉnh (Docker → GHCR → GitHub Actions tự động triển khai). Tài liệu hóa hệ thống với 13 tài liệu kỹ thuật về kiến trúc, thiết kế cơ sở dữ liệu, API, kiểm thử và triển khai."
   },
   "event-ticketing": {
     title: "Hệ thống bán vé sự kiện",
     description:
-      "Dự án cá nhân tập trung vào backend, giải quyết bài toán concurrency thực tế: ngăn bán vượt số vé và check-in trùng lặp trong tình huống tranh chấp cao (50 request đồng thời cạnh tranh vé cuối cùng). Thiết kế luồng đặt-chỗ-rồi-xác-nhận (reserve-then-confirm) kèm sinh mã QR, dashboard thời gian thực cho ban tổ chức qua WebSocket/STOMP, và phân quyền theo 4 vai trò Admin, Organizer, Checkin Staff, Customer. Xây dựng với Spring Boot, PostgreSQL, xác thực JWT/OAuth2, triển khai trên Render, Vercel và Neon."
+      "Dự án cá nhân tập trung vào backend, giải quyết bài toán concurrency thực tế: ngăn bán vượt số vé và check-in trùng lặp khi nhiều người dùng cùng tranh chấp một số lượng vé giới hạn. Thiết kế luồng đặt-chỗ-rồi-xác-nhận (reserve-then-confirm) dùng khóa pessimistic ở tầng database (SELECT FOR UPDATE) để tuần tự hóa các yêu cầu mua đồng thời trên chiếc vé cuối cùng, kiểm chứng bằng test concurrency với 50 request đồng thời cạnh tranh vé cuối - không bán vượt, không đặt trùng. Xây dựng dashboard thời gian thực cho ban tổ chức qua WebSocket/STOMP và luồng check-in bằng QR, cùng phân quyền theo 4 vai trò Admin, Organizer, Checkin Staff, Customer. Triển khai xác thực JWT qua OAuth2 với refresh token và đăng xuất bằng vô hiệu hóa token. Tự host toàn bộ hệ thống trên VPS bằng Docker Compose, Nginx reverse proxy và HTTPS, dùng chung pipeline CI/CD với hệ thống ITAM."
   },
   "thien-nguyen": {
     title: "Thiện Nguyện Việt - Nền tảng tình nguyện từ thiện",
@@ -210,19 +217,19 @@ const viProjects = {
 
 const viExperience = [
   {
-    period: "2026 → Hiện tại",
+    period: "05/2026 → Hiện tại",
     title: "Backend Engineer",
     company: "Dự án cá nhân",
     responsibilities: [
-      "Tự thiết kế và xây dựng hai hệ thống backend full-stack (Java, Spring Boot, PostgreSQL) hoàn chỉnh từ đầu đến cuối: hệ thống quản lý tài sản CNTT và hệ thống bán vé sự kiện.",
-      "Giải quyết các bài toán concurrency thực tế, như ngăn bán vượt số vé dưới 50 request đồng thời bằng luồng đặt-chỗ-rồi-xác-nhận (reserve-then-confirm).",
-      "Triển khai RBAC cho 4 vai trò trên mỗi hệ thống, quy trình phê duyệt nhiều bước, và xác thực bằng QR cho kiểm kê tài sản và check-in sự kiện.",
-      "Viết unit test và integration test (Testcontainers), thiết lập pipeline CI/CD (Docker → GHCR → Render/Vercel)."
+      "Tự thiết kế và xây dựng hai hệ thống backend full-stack (Java 21, Spring Boot, PostgreSQL) hoàn chỉnh từ đầu đến cuối: hệ thống quản lý tài sản CNTT (05-07/2026) và hệ thống bán vé sự kiện (07/2026 → hiện tại).",
+      "Giải quyết các bài toán concurrency thực tế, như ngăn bán vượt số vé dưới 50 request đồng thời bằng luồng đặt-chỗ-rồi-xác-nhận (reserve-then-confirm) kết hợp khóa pessimistic ở tầng database (SELECT FOR UPDATE).",
+      "Bảo mật REST endpoint bằng xác thực JWT và RBAC qua @PreAuthorize cho 4 vai trò trên mỗi hệ thống, quy trình phê duyệt nhiều bước, và xác thực bằng QR cho kiểm kê tài sản và check-in sự kiện.",
+      "Viết 108 unit test và integration test (JUnit 5, Mockito, Testcontainers) đạt 53% độ phủ dòng lệnh, thiết lập pipeline CI/CD (Docker → GHCR → GitHub Actions tự động triển khai)."
     ],
     achievements: [
       "Hoàn thiện 2 hệ thống theo hướng production, từ thiết kế cơ sở dữ liệu đến triển khai, bao gồm 13 tài liệu kỹ thuật cho hệ thống quản lý tài sản CNTT.",
-      "Xây dựng luồng đặt-chỗ-rồi-xác-nhận được kiểm chứng xử lý đúng 50 request đồng thời, không xảy ra bán vượt vé.",
-      "Thiết lập quy trình CI/CD nhất quán (Docker + GitHub Actions), áp dụng cho cả hai dự án."
+      "Xây dựng luồng đặt-chỗ-rồi-xác-nhận được kiểm chứng bằng test concurrency xử lý đúng 50 request đồng thời, không bán vượt vé, không đặt trùng.",
+      "Thiết lập quy trình CI/CD nhất quán (Docker + GitHub Actions), áp dụng cho cả hai dự án, bao gồm triển khai tự host trên VPS (Docker Compose, Nginx, HTTPS) cho hệ thống bán vé."
     ]
   },
   {
@@ -284,6 +291,10 @@ export function getSkills() {
     architecture: skills.architecture.map((item) => ({
       ...item,
       name: viSkillNames[item.name] || item.name
+    })),
+    spokenLanguages: skills.spokenLanguages.map((item, i) => ({
+      ...item,
+      name: viSpokenLanguages[i] || item.name
     })),
     softSkills: viSoftSkills
   };

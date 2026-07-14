@@ -5,14 +5,20 @@
 .floating-actions {
   position: fixed;
   right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: var(--floating-actions-bottom, 24px);
 
   display: flex;
   flex-direction: column;
   gap: 10px;
 
   z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .floating-actions {
+    right: 32px;
+    bottom: var(--floating-actions-bottom, 32px);
+  }
 }
 
 .floating-action {

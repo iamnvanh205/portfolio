@@ -6,6 +6,11 @@
   min-height: 100vh;
 }
 
+.page-container {
+  width: min(100% - clamp(24px, 5vw, 80px), var(--container-max-width));
+  margin-inline: auto;
+}
+
 /* ==========================================
    MAIN LAYOUT — sidebar + content
 ========================================== */
@@ -14,9 +19,6 @@
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
   gap: 40px;
-
-  width: min(100% - 48px, var(--container-max-width));
-  margin-inline: auto;
 }
 
 /* ==========================================
@@ -35,7 +37,6 @@
 
   :root {
     --sidebar-width:       140px;
-    --container-max-width: 860px;
   }
 
 }
