@@ -26,6 +26,7 @@ export const skills = {
 
   architecture: [
     { name: "REST API" },
+    { name: "Monolithic" },
     { name: "Microservices" },
     { name: "Clean Architecture" },
     { name: "SOLID" }

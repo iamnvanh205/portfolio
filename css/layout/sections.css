@@ -68,10 +68,20 @@
   gap: 24px;
 }
 
-.projects-actions {
+.projects-filters {
   display: flex;
-  justify-content: center;
-  margin-top: 24px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.projects-filters .btn {
+  width: auto;
+}
+
+.projects-filters .btn[aria-pressed="true"] {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 /* ==========================================

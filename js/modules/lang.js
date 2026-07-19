@@ -16,8 +16,6 @@ const labels = {
     dark: "Dark",
     viewProjects: "View Projects",
     downloadCv: "Download CV",
-    viewAllProjects: "View all projects",
-    showFeaturedProjects: "Show featured projects",
     nav: {
       about: "About",
       skills: "Skills",
@@ -77,8 +75,6 @@ const labels = {
     dark: "Tối",
     viewProjects: "Xem dự án",
     downloadCv: "Tải CV",
-    viewAllProjects: "Xem tất cả dự án",
-    showFeaturedProjects: "Chỉ xem dự án nổi bật",
     nav: {
       about: "Giới thiệu",
       skills: "Kỹ năng",
@@ -131,7 +127,7 @@ const labels = {
 
 const viProfile = {
   ...profile,
-  name: "Nguyễn VănAnh",
+  name: "Nguyễn Văn Anh",
   title: "Thực tập sinh Backend Engineer",
   tagline: [
     "Backend Engineer làm việc với Java, Spring Boot & PostgreSQL.",
@@ -181,24 +177,24 @@ const viSoftSkills = [
   "Học hỏi liên tục"
 ];
 
-const viSkillNames = {
-  "Clean Architecture": "Clean Architecture",
-};
+// Kiến trúc, framework, ngôn ngữ lập trình... giữ nguyên tiếng Anh (thuật ngữ IT chuẩn ngành).
+// Chỉ thêm vào đây nếu có tên cần dịch/hiệu chỉnh sang tiếng Việt.
+const viSkillNames = {};
 
 const viTags = {
-  "University Projects": "Dự án đại học"
+  "University Projects": "Đồ án môn học"
 };
 
 const viProjects = {
   "itam-system": {
     title: "Hệ thống quản lý tài sản CNTT",
     description:
-      "Công cụ nội bộ số hóa toàn bộ vòng đời tài sản CNTT - mua sắm, bàn giao, bảo trì, kiểm kê và thanh lý - thay thế việc theo dõi thủ công bằng Excel. Thiết kế mô hình dữ liệu sẵn sàng cho nhiều chi nhánh với hai lớp cách ly dữ liệu ngay từ đầu, dù bản MVP chỉ chạy trên một chi nhánh. Triển khai quy trình phê duyệt 3 bước (Nhân viên → Quản lý → Nhân sự IT), kiểm kê định kỳ bằng QR qua camera điện thoại với phát hiện sai lệch tự động giữa dữ liệu quét và dữ liệu ghi nhận, cùng ma trận phân quyền đầy đủ cho 4 vai trò Admin, IT Staff, Manager, Employee. Bảo mật các REST endpoint bằng xác thực JWT, phân quyền RBAC qua @PreAuthorize, kiểm tra dữ liệu đầu vào và cấu hình CORS; áp dụng tách lớp Repository/Service (SOLID) để business logic độc lập với tầng lưu trữ. Viết 108 unit test và integration test (JUnit 5, Mockito, Testcontainers) đạt 53% độ phủ dòng lệnh, chạy trên mỗi PR cùng pipeline CI/CD hoàn chỉnh (Docker → GHCR → GitHub Actions tự động triển khai). Tài liệu hóa hệ thống với 13 tài liệu kỹ thuật về kiến trúc, thiết kế cơ sở dữ liệu, API, kiểm thử và triển khai."
+      "Công cụ nội bộ số hóa toàn bộ vòng đời tài sản CNTT - mua sắm, bàn giao, bảo trì, kiểm kê và thanh lý - thay thế việc theo dõi thủ công bằng Excel. Thiết kế mô hình dữ liệu sẵn sàng cho nhiều chi nhánh với hai lớp cách ly dữ liệu ngay từ đầu, dù bản MVP chỉ chạy trên một chi nhánh. Triển khai quy trình phê duyệt 3 bước (Nhân viên → Quản lý → Nhân sự IT), kiểm kê định kỳ bằng QR qua camera điện thoại với phát hiện sai lệch tự động giữa dữ liệu quét và dữ liệu ghi nhận, cùng ma trận phân quyền đầy đủ cho 4 vai trò Admin, IT Staff, Manager, Employee. Bảo mật các REST endpoint bằng xác thực JWT, phân quyền RBAC qua @PreAuthorize, kiểm tra dữ liệu đầu vào và cấu hình CORS; áp dụng tách lớp Repository/Service (SOLID) để business logic độc lập với tầng lưu trữ. Viết 108 unit test và integration test (JUnit 5, Mockito, Testcontainers) đạt 53% line coverage, chạy trên mỗi PR cùng pipeline CI/CD hoàn chỉnh (Docker → GHCR → GitHub Actions tự động triển khai). Tài liệu hóa hệ thống với 13 tài liệu kỹ thuật về kiến trúc, thiết kế cơ sở dữ liệu, API, kiểm thử và triển khai."
   },
   "event-ticketing": {
     title: "Hệ thống bán vé sự kiện",
     description:
-      "Dự án cá nhân tập trung vào backend, giải quyết bài toán concurrency thực tế: ngăn bán vượt số vé và check-in trùng lặp khi nhiều người dùng cùng tranh chấp một số lượng vé giới hạn. Thiết kế luồng đặt-chỗ-rồi-xác-nhận (reserve-then-confirm) dùng khóa pessimistic ở tầng database (SELECT FOR UPDATE) để tuần tự hóa các yêu cầu mua đồng thời trên chiếc vé cuối cùng, kiểm chứng bằng test concurrency với 50 request đồng thời cạnh tranh vé cuối - không bán vượt, không đặt trùng. Xây dựng dashboard thời gian thực cho ban tổ chức qua WebSocket/STOMP và luồng check-in bằng QR, cùng phân quyền theo 4 vai trò Admin, Organizer, Checkin Staff, Customer. Triển khai xác thực JWT qua OAuth2 với refresh token và đăng xuất bằng vô hiệu hóa token. Tự host toàn bộ hệ thống trên VPS bằng Docker Compose, Nginx reverse proxy và HTTPS, dùng chung pipeline CI/CD với hệ thống ITAM."
+      "Xây dựng nền tảng bán vé sự kiện nhằm giải quyết một bài toán khó cụ thể: ngăn bán vượt số vé và check-in trùng lặp khi nhiều người dùng cùng tranh chấp một số lượng vé giới hạn. Thiết kế luồng đặt-chỗ-rồi-xác-nhận (reserve-then-confirm) dùng khóa pessimistic ở tầng database (SELECT FOR UPDATE) để tuần tự hóa các yêu cầu mua đồng thời trên chiếc vé cuối cùng, kiểm chứng độ chính xác bằng test concurrency với 50 request đồng thời cạnh tranh vé cuối - không bán vượt, không đặt trùng. Xây dựng dashboard thời gian thực cho ban tổ chức qua WebSocket/STOMP và luồng check-in bằng QR, cùng phân quyền theo 4 vai trò Admin, Organizer, Check-in Staff, Customer. Triển khai xác thực JWT qua OAuth2 với refresh token và đăng xuất bằng vô hiệu hóa token. Tự host toàn bộ hệ thống trên VPS bằng Docker Compose, Nginx reverse proxy và HTTPS, dùng chung pipeline CI/CD với hệ thống ITAM."
   },
   "thien-nguyen": {
     title: "Thiện Nguyện Việt - Nền tảng tình nguyện từ thiện",
@@ -219,6 +215,7 @@ const viProjects = {
 
 const viExperience = [
   {
+    id: 1,
     period: "05/2026 → Hiện tại",
     title: "Backend Engineer",
     company: "Dự án cá nhân",
@@ -226,7 +223,7 @@ const viExperience = [
       "Tự thiết kế và xây dựng hai hệ thống backend full-stack (Java 21, Spring Boot, PostgreSQL) hoàn chỉnh từ đầu đến cuối: hệ thống quản lý tài sản CNTT (05-07/2026) và hệ thống bán vé sự kiện (07/2026 → hiện tại).",
       "Giải quyết các bài toán concurrency thực tế, như ngăn bán vượt số vé dưới 50 request đồng thời bằng luồng đặt-chỗ-rồi-xác-nhận (reserve-then-confirm) kết hợp khóa pessimistic ở tầng database (SELECT FOR UPDATE).",
       "Bảo mật REST endpoint bằng xác thực JWT và RBAC qua @PreAuthorize cho 4 vai trò trên mỗi hệ thống, quy trình phê duyệt nhiều bước, và xác thực bằng QR cho kiểm kê tài sản và check-in sự kiện.",
-      "Viết 108 unit test và integration test (JUnit 5, Mockito, Testcontainers) đạt 53% độ phủ dòng lệnh, thiết lập pipeline CI/CD (Docker → GHCR → GitHub Actions tự động triển khai)."
+      "Viết 108 unit test và integration test (JUnit 5, Mockito, Testcontainers) đạt 53% line coverage, thiết lập pipeline CI/CD (Docker → GHCR → GitHub Actions tự động triển khai)."
     ],
     achievements: [
       "Hoàn thiện 2 hệ thống theo hướng production, từ thiết kế cơ sở dữ liệu đến triển khai, bao gồm 13 tài liệu kỹ thuật cho hệ thống quản lý tài sản CNTT.",
@@ -235,9 +232,10 @@ const viExperience = [
     ]
   },
   {
+    id: 2,
     period: "2023 → 2027",
     title: "Sinh viên Đại học Mở Hà Nội",
-    company: "Dự án học phần",
+    company: "Đồ án học phần",
     responsibilities: [
       "Làm trưởng nhóm ở nhiều đồ án môn học, từ phân tích yêu cầu đến thiết kế module.",
       "Xây dựng các hệ thống học thuật full-stack, gồm nền tảng tình nguyện từ thiện (ASP.NET/C#) và hệ thống quản lý nhân khẩu (C#/SQL Server).",

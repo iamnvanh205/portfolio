@@ -71,6 +71,7 @@
 .project-detail-card__description {
   color: var(--color-text-secondary);
   padding-left: 20px;
+  list-style: disc;
 }
 
 .project-detail-card__description li + li {

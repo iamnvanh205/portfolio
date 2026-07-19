@@ -1,13 +1,36 @@
-import { getProjects, t } from "./lang.js";
+import { projects as sourceProjects } from "../data/projects.js";
+import { getProjects, localizeTag, t } from "./lang.js";
 
-let showAllProjects = false;
+let activeProjectFilter = "all";
+const FILTER_TAGS = {
+  "Java/Spring Boot": ["Java", "Spring Boot"],
+  "React/TypeScript": ["React", "TypeScript"],
+  "University Projects": ["University Projects"]
+};
+const GROUP_BY_TAG = Object.fromEntries(
+  Object.entries(FILTER_TAGS).flatMap(([group, tags]) => tags.map((tag) => [tag, group]))
+);
+
+export function filterProjects(projects, tag) {
+  const tags = FILTER_TAGS[tag] || [tag];
+  return tag === "all"
+    ? projects
+    : projects.filter((project) => tags.some((candidate) => project.tags.includes(localizeTag(candidate))));
+}
+
+export function getProjectFilterTags(projects) {
+  return [...new Set(projects.flatMap((project) =>
+    project.tags.includes("University Projects")
+      ? ["University Projects"]
+      : project.tags.map((tag) => GROUP_BY_TAG[tag] || tag)
+  ))];
+}
 
 export function renderProjects(container) {
 
   const projects = getProjects();
-  const visibleProjects = showAllProjects
-    ? projects
-    : projects.filter((project) => project.featured);
+  const filterTags = getProjectFilterTags(sourceProjects);
+  const visibleProjects = filterProjects(projects, activeProjectFilter);
 
   container.innerHTML = `
 
@@ -21,6 +44,27 @@ export function renderProjects(container) {
 
       <div class="section__divider"></div>
 
+    </div>
+
+    <div class="projects-filters" role="group" aria-label="${t("projectsPage.filterLabel")}">
+      <button
+        type="button"
+        class="btn btn-card"
+        data-project-filter="all"
+        aria-pressed="${activeProjectFilter === "all"}">
+        ${t("projectsPage.all")}
+      </button>
+      ${filterTags
+        .map((tag) => `
+          <button
+            type="button"
+            class="btn btn-card"
+            data-project-filter="${tag}"
+            aria-pressed="${activeProjectFilter === tag}">
+            ${localizeTag(tag)}
+          </button>
+        `)
+        .join("")}
     </div>
 
     <div class="projects-grid">
@@ -106,26 +150,15 @@ export function renderProjects(container) {
 
     </div>
 
-    ${projects.length > visibleProjects.length || showAllProjects
-      ? `
-        <div class="projects-actions">
-          <button
-            type="button"
-            class="btn btn-ghost"
-            data-projects-toggle>
-            ${showAllProjects ? t("showFeaturedProjects") : t("viewAllProjects")}
-          </button>
-        </div>
-      `
-      : ""
-    }
-
   `;
 
   container
-    .querySelector("[data-projects-toggle]")
-    ?.addEventListener("click", () => {
-      showAllProjects = !showAllProjects;
+    .querySelector(".projects-filters")
+    .addEventListener("click", (event) => {
+      const button = event.target.closest("[data-project-filter]");
+      if (!button) return;
+
+      activeProjectFilter = button.dataset.projectFilter;
       renderProjects(container);
     });
 
