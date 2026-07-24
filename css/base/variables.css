@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 /* ==========================================
-   LIGHT THEME (default)
+   CATPPUCCIN LATTE (default)
 ========================================== */
 
 :root,
@@ -9,30 +9,33 @@
 
   /* COLORS */
 
-  --color-bg:               #F5F4F0;
-  --color-bg-elevated:      #EFEDE8;
-  --color-bg-section-alt:   #E8E6E0;
+  --color-bg:               #EFF1F5;
+  --color-bg-elevated:      #E6E9EF;
+  --color-bg-section-alt:   #DCE0E8;
 
-  --color-surface:          #FFFFFF;
+  --color-surface:          #E6E9EF;
 
-  --color-border:           #C8C4BB;
-  --color-border-subtle:    #D8D5CE;
+  --color-border:           #ACB0BE;
+  --color-border-subtle:    #CCD0DA;
 
-  --color-text-primary:     #0F0F0D;   
-  --color-text-secondary:   #3D3A33;   
-  --color-text-muted:       #6B6760;   
+  --color-text-primary:     #4C4F69;
+  --color-text-secondary:   #6C6F85;
+  --color-text-muted:       #6C6F85;
 
-  --color-accent:           #1E4D3B;   
-  --color-accent-hover:     #163829;
+  --color-accent:           #1E66F5;
+  --color-accent-hover:     #1E66F5;
+  --color-accent-blue:      #89B4FA;
+  --color-accent-mauve:     #CBA6F7;
+  --color-accent-green:     #A6E3A1;
 
-  --color-btn-primary-bg:   #0F0F0D;
-  --color-btn-primary-text: #F5F4F0;
+  --color-btn-primary-bg:   #1E66F5;
+  --color-btn-primary-text: #EFF1F5;
 
-  --color-btn-outline-border: #0F0F0D;
-  --color-btn-outline-text:   #0F0F0D;
+  --color-btn-outline-border: #1E66F5;
+  --color-btn-outline-text:   #1E66F5;
 
-  --color-btn-card-bg:      #F5F4F0;
-  --color-btn-card-border:  #B8B4AB;
+  --color-btn-card-bg:      #EFF1F5;
+  --color-btn-card-border:  #ACB0BE;
 
   /* SHADOWS */
 
@@ -100,35 +103,35 @@
 }
 
 /* ==========================================
-   DARK THEME
+   CATPPUCCIN MOCHA
 ========================================== */
 
 :root[data-theme="dark"] {
 
-  --color-bg:               #111110;
-  --color-bg-elevated:      #1A1918;
-  --color-bg-section-alt:   #222220;
+  --color-bg:               #1E1E2E;
+  --color-bg-elevated:      #313244;
+  --color-bg-section-alt:   #313244;
 
-  --color-surface:          #1E1D1B;
+  --color-surface:          #313244;
 
-  --color-border:           #3A382F;
-  --color-border-subtle:    #2C2A26;
+  --color-border:           #585B70;
+  --color-border-subtle:    #45475A;
 
-  --color-text-primary:     #F5F2EB;   
-  --color-text-secondary:   #C8C3BA;   
-  --color-text-muted:       #8A8680;  
+  --color-text-primary:     #CDD6F4;
+  --color-text-secondary:   #BAC2DE;
+  --color-text-muted:       #A6ADC8;
 
-  --color-accent:           #7DC4A6;   
-  --color-accent-hover:     #98D4BB;
+  --color-accent:           #89B4FA;
+  --color-accent-hover:     #89B4FA;
 
-  --color-btn-primary-bg:   #F5F2EB;
-  --color-btn-primary-text: #111110;
+  --color-btn-primary-bg:   #89B4FA;
+  --color-btn-primary-text: #1E1E2E;
 
-  --color-btn-outline-border: #F5F2EB;
-  --color-btn-outline-text:   #F5F2EB;
+  --color-btn-outline-border: #89B4FA;
+  --color-btn-outline-text:   #89B4FA;
 
   --color-btn-card-bg:      transparent;
-  --color-btn-card-border:  #3A382F;
+  --color-btn-card-border:  #585B70;
 
   --shadow-card:
     0 1px 3px rgba(0,0,0,.45),

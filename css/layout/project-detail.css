@@ -68,6 +68,21 @@
   color: var(--color-text-muted);
 }
 
+.project-detail-card__summary {
+  color: var(--color-text-secondary);
+}
+
+.project-detail-card__section + .project-detail-card__section {
+  margin-top: 24px;
+}
+
+.project-detail-card__section-title {
+  font-size: var(--fs-h4, 1.1rem);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
 .project-detail-card__description {
   color: var(--color-text-secondary);
   padding-left: 20px;
@@ -78,8 +93,11 @@
   margin-top: 10px;
 }
 
-.project-detail-card__description a {
+.project-detail-card__docs-link {
   color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .project-detail-card__tags {

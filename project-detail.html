@@ -143,12 +143,31 @@
     }
 
     function renderProject(project) {
-      const description = (project.description.match(/[^.!?]+[.!?]?/g) || [project.description])
-        .map((line) => `<li>${line.trim()}</li>`)
-        .join("");
-      const docs = project.docs
-        ? `<li>Technical documentation is available in the <a href="${project.docs}" target="_blank" rel="noopener noreferrer">GitHub docs</a>.</li>`
+      const summary = project.description
+        ? `<p class="project-detail-card__summary body-small">${project.description}</p>`
         : "";
+
+      const docsItem = project.docs
+        ? `<li>${t("projectsPage.docsPrefix")} <a class="project-detail-card__docs-link" href="${project.docs}" target="_blank" rel="noopener noreferrer">${t("projectsPage.docsLink")}</a>.</li>`
+        : "";
+
+      const body = (project.highlights && project.highlights.length)
+        ? project.highlights
+            .map((section) => `
+              <section class="project-detail-card__section">
+                <h2 class="project-detail-card__section-title">${section.heading}</h2>
+                <ul class="project-detail-card__description body-small">
+                  ${section.bullets.map((bullet) => `<li>${bullet}</li>`).join("")}
+                </ul>
+              </section>
+            `)
+            .join("") + (docsItem ? `<ul class="project-detail-card__description body-small">${docsItem}</ul>` : "")
+        : `<ul class="project-detail-card__description body-small">
+            ${(project.description.match(/[^.!?]+[.!?]?/g) || [project.description])
+              .map((line) => `<li>${line.trim()}</li>`)
+              .join("")}
+            ${docsItem}
+          </ul>`;
 
       return `
         <article class="project-detail-card" aria-label="${project.title}">
@@ -157,10 +176,9 @@
             ${project.duration ? `<p class="project-detail-card__duration body-small">${project.duration}</p>` : ""}
           </header>
 
-          <ul class="project-detail-card__description body-small">
-            ${description}
-            ${docs}
-          </ul>
+          ${summary}
+
+          ${body}
 
           <div class="project-detail-card__tags">
             ${project.tags.map((tag) => `<span class="tech-tag">${tag}</span>`).join("")}
