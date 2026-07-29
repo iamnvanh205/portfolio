@@ -49,6 +49,10 @@
   border: 2px solid var(--color-bg);
 }
 
+.timeline-item > *:not(.timeline-grid) {
+  max-width: 72ch;
+}
+
 /* ==========================================
    CONTENT
 ========================================== */
@@ -66,6 +70,17 @@
   gap: 24px;
 }
 
+.timeline-grid > div {
+  padding: 18px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-surface) 55%, transparent);
+}
+
+.timeline-grid > div:last-child {
+  border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border-subtle));
+}
+
 .timeline-label {
   font-size: 11px;
   text-transform: uppercase;
@@ -81,13 +96,30 @@
 }
 
 .timeline-list li {
+  position: relative;
+  padding-left: 16px;
   font-size: var(--fs-body-small);
   line-height: 1.6;
   color: var(--color-text-secondary);
 }
 
+.timeline-list li::before {
+  content: "";
+  position: absolute;
+  top: .65em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-border);
+}
+
+.timeline-grid > div:last-child .timeline-list li::before {
+  background: var(--color-accent);
+}
+
 /* Achievements: bold numbers/keywords in accent color */
 .timeline-achievement strong {
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
   font-weight: 700;
 }

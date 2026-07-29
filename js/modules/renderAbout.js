@@ -20,12 +20,18 @@ export function renderAbout(container) {
 
     <div class="about__content">
 
-      ${profile.about
-        .map(
-          (p) => `<p class="body-text">${p}</p>`
-        )
-        .join("")
-      }
+      <p class="body-text">${profile.about[0]}</p>
+
+      <details class="disclosure">
+        <summary>${t("careerDirection")}</summary>
+        <div class="disclosure__content">
+          ${profile.about
+            .slice(1)
+            .map((p) => `<p class="body-text">${p}</p>`)
+            .join("")
+          }
+        </div>
+      </details>
 
     </div>
 

@@ -63,12 +63,16 @@ export function initContactForm() {
       isValid = false;
     }
 
-    if (!isValid) return;
+    if (!isValid) {
+      form.querySelector(".input--error")?.focus();
+      return;
+    }
 
     // ── Submit state ─────────────────────────────────────────────────────────
 
     submitBtn.disabled    = true;
     submitBtn.textContent = t("contact.sending");
+    form.setAttribute("aria-busy", "true");
 
     // Template variables — must match {{placeholders}} in your EmailJS template
     const templateParams = {
@@ -93,6 +97,7 @@ export function initContactForm() {
 
       submitBtn.disabled = false;
       submitBtn.textContent = t("contact.send");
+      form.removeAttribute("aria-busy");
 
       showFormError(form);
 
@@ -111,11 +116,14 @@ function isValidEmail(value) {
 function showError(input, message) {
 
   input.classList.add("input--error");
+  input.setAttribute("aria-invalid", "true");
 
   const errorEl = document.createElement("span");
+  errorEl.id = `${input.id}-error`;
   errorEl.className = "form-error";
   errorEl.textContent = message;
   errorEl.setAttribute("role", "alert");
+  input.setAttribute("aria-describedby", errorEl.id);
 
   input.parentElement.appendChild(errorEl);
 
@@ -124,7 +132,11 @@ function showError(input, message) {
 function clearErrors(form) {
 
   form.querySelectorAll(".input--error").forEach(
-    el => el.classList.remove("input--error")
+    el => {
+      el.classList.remove("input--error");
+      el.removeAttribute("aria-invalid");
+      el.removeAttribute("aria-describedby");
+    }
   );
 
   form.querySelectorAll(".form-error").forEach(
@@ -142,6 +154,7 @@ function showFormSuccess(form, submitBtn) {
 
   submitBtn.disabled = false;
   submitBtn.textContent = t("contact.send");
+  form.removeAttribute("aria-busy");
 
   const banner = document.createElement("p");
   banner.className = "form-banner form-banner--success";

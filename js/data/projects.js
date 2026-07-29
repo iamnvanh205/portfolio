@@ -119,10 +119,7 @@ export const projects = [
     docs: "https://github.com/iamnvanh205/event-ticketing/tree/main/docs",
     demo: "https://event.vananh.io.vn",
     screenshots: [
-      "./assets/images/projects/event-dashboard.png",
-      "./assets/images/projects/event-assets.png",
-      "./assets/images/projects/event-employees.png",
-      "./assets/images/projects/event-maintenance_record.png"
+      "./assets/images/projects/event-ticketing.png"
     ],
     featured: true
   }),
@@ -151,10 +148,7 @@ export const projects = [
     tags: ["ASP.NET", "C#", "SQL Server", "JavaScript", "HTML", "CSS", "University Projects"],
     github: "https://github.com/VanAnhstudents/ThienNguyenViet",
     screenshots: [
-      "./assets/images/projects/thiennguyen-dashboard.png",
-      "./assets/images/projects/thiennguyen-assets.png",
-      "./assets/images/projects/thiennguyen-employees.png",
-      "./assets/images/projects/thiennguyen-maintenance_record.png"
+      "./assets/images/projects/thien-nguyen.png"
     ],
     featured: false
   }),
@@ -183,10 +177,7 @@ export const projects = [
     tags: ["C#", "SQL Server", "University Projects"],
     github: "https://github.com/VanAnhstudents/QuanLyNhanKhau",
     screenshots: [
-      "./assets/images/projects/nhan-khau-dashboard.png",
-      "./assets/images/projects/nhan-khau-assets.png",
-      "./assets/images/projects/nhan-khau-employees.png",
-      "./assets/images/projects/nhan-khau-maintenance_record.png"
+      "./assets/images/projects/nhan-khau.png"
     ],
     featured: false
   }),
@@ -216,10 +207,7 @@ export const projects = [
     github: "https://github.com/VanAnhstudents/QuanLyHomestay",
     docs: "https://github.com/VanAnhstudents/QuanLyHomestay/tree/main/app/src/main/docs",
     screenshots: [
-      "./assets/images/projects/homestay-dashboard.png",
-      "./assets/images/projects/homestay-assets.png",
-      "./assets/images/projects/homestay-employees.png",
-      "./assets/images/projects/homestay-maintenance_record.png"
+      "./assets/images/projects/homestay.png"
     ],
     featured: false
   })

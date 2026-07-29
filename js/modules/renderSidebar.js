@@ -2,7 +2,7 @@ import { t } from "./lang.js";
 
 export function renderSidebar(container) {
 
-  const menu = ["about", "skills", "experience", "projects", "contact"];
+  const menu = ["about", "projects", "experience", "skills", "contact"];
 
   container.innerHTML = `
 

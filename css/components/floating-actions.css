@@ -36,13 +36,29 @@
   box-shadow: var(--shadow-card);
 
   color: var(--color-text-secondary);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
 
-  transition: all var(--transition-fast);
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    visibility var(--transition-fast);
+}
+
+.floating-action.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .floating-action:hover {
   transform: translateY(-2px);
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
   box-shadow: var(--shadow-card-hover);
 }
 
@@ -51,7 +67,7 @@
 }
 
 .floating-action:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline-color: var(--color-accent-strong);
   outline-offset: 3px;
 }
 

@@ -24,7 +24,7 @@ export function renderExperience(container) {
         .map(
           (item) => `
 
-            <div class="timeline-item">
+            <article class="timeline-item">
 
               <div class="timeline-period text-muted">
                 ${item.period}
@@ -72,7 +72,7 @@ export function renderExperience(container) {
 
               </div>
 
-            </div>
+            </article>
 
           `
         )

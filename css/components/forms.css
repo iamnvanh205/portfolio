@@ -49,7 +49,7 @@
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: var(--color-accent);
+  border-color: var(--color-accent-strong);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 20%, transparent);
 }
 
@@ -63,17 +63,17 @@
 ========================================== */
 
 .input--error {
-  border-color: #c0392b;
+  border-color: var(--color-error);
 }
 
 .input--error:focus {
-  border-color: #c0392b;
-  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.18);
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error) 20%, transparent);
 }
 
 .form-error {
   font-size: var(--fs-body-small);
-  color: #c0392b;
+  color: var(--color-error);
   margin-top: 2px;
 }
 
@@ -93,14 +93,14 @@
 
 .form-banner--success {
   background: color-mix(in srgb, var(--color-accent) 12%, transparent);
-  color: var(--color-accent);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+  color: var(--color-accent-strong);
+  border: 1px solid color-mix(in srgb, var(--color-accent-strong) 30%, transparent);
 }
 
 .form-banner--error {
-  background: rgba(192, 57, 43, 0.1);
-  color: #c0392b;
-  border: 1px solid rgba(192, 57, 43, 0.3);
+  background: color-mix(in srgb, var(--color-error) 10%, transparent);
+  color: var(--color-error);
+  border: 1px solid color-mix(in srgb, var(--color-error) 35%, transparent);
 }
 
 /* ==========================================
@@ -109,4 +109,9 @@
 
 .contact-form__submit {
   margin-top: 20px;
+}
+
+.contact-form__submit:disabled {
+  cursor: wait;
+  opacity: .65;
 }

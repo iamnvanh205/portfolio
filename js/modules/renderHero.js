@@ -9,9 +9,11 @@ export function renderHero(container) {
     <div class="hero__avatar">
       <img
         src="${profile.avatar}"
-        alt="Photo of ${profile.name}"
+        alt="${t("photoOf")} ${profile.name}"
         width="140"
-        height="140">
+        height="140"
+        decoding="async"
+        fetchpriority="high">
     </div>
 
     <div class="hero__content">
@@ -27,6 +29,14 @@ export function renderHero(container) {
           <p class="hero-title">
             ${profile.title}
           </p>
+
+          <div class="hero__meta body-small">
+            <span class="hero__availability">
+              <span class="hero__status-dot" aria-hidden="true"></span>
+              ${t("availability")}
+            </span>
+            <span>${profile.contact.location}</span>
+          </div>
 
         </div>
 
@@ -90,6 +100,21 @@ export function renderHero(container) {
         }
 
       </div>
+
+      <ul class="hero__proof" aria-label="${t("proofLabel")}">
+        <li>
+          <strong>${t("proof.systemsValue")}</strong>
+          <span>${t("proof.systemsLabel")}</span>
+        </li>
+        <li>
+          <strong>${t("proof.testsValue")}</strong>
+          <span>${t("proof.testsLabel")}</span>
+        </li>
+        <li>
+          <strong>${t("proof.concurrencyValue")}</strong>
+          <span>${t("proof.concurrencyLabel")}</span>
+        </li>
+      </ul>
 
       <div class="hero__actions">
 

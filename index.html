@@ -25,10 +25,25 @@
     name="author"
     content="Nguyen Van Anh">
 
+  <meta name="theme-color" content="#EFF1F5">
+
   <!-- Open Graph -->
   <meta property="og:title" content="Nguyen Van Anh | Backend Engineer Intern">
   <meta property="og:description" content="Portfolio of Nguyen Van Anh - Backend Engineer Intern specializing in Java, Spring Boot, PostgreSQL, and scalable backend systems.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://iamnvanh205.github.io/portfolio/">
+  <meta property="og:image" content="https://iamnvanh205.github.io/portfolio/assets/images/avatar/avatar.jpg">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="canonical" href="https://iamnvanh205.github.io/portfolio/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap">
 
   <link
     rel="manifest"
@@ -36,6 +51,7 @@
 
   <link
     rel="icon"
+    sizes="512x512"
     href="./assets/images/favicon/favicon-32.png">
 
   <!-- Devicons — icon cho skill chips -->
@@ -51,6 +67,10 @@
 
 <body>
 
+  <a id="skip-link" class="skip-link" href="#main-content">
+    Skip to content
+  </a>
+
   <!-- FLOATING ACTIONS -->
 
   <aside
@@ -61,7 +81,9 @@
       id="scroll-top-btn"
       class="floating-action"
       title="Back to top"
-      aria-label="Scroll back to top">
+      aria-label="Scroll back to top"
+      aria-hidden="true"
+      tabindex="-1">
 
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +129,9 @@
   <!-- MAIN -->
 
   <main
+    id="main-content"
     class="main-layout page-container"
+    tabindex="-1"
     role="main">
 
     <!-- SIDEBAR -->
@@ -132,9 +156,9 @@
       </section>
 
       <section
-        id="skills"
+        id="projects"
         class="section"
-        aria-labelledby="skills-heading">
+        aria-labelledby="projects-heading">
 
       </section>
 
@@ -146,9 +170,9 @@
       </section>
 
       <section
-        id="projects"
+        id="skills"
         class="section"
-        aria-labelledby="projects-heading">
+        aria-labelledby="skills-heading">
 
       </section>
 
@@ -174,6 +198,7 @@
 
   <!-- EmailJS SDK -->
 <script
+  defer
   src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 </script>
 

@@ -4,9 +4,9 @@ export const STORAGE_KEYS = {
 
 export const SECTIONS = [
   "about",
-  "skills",
   "projects",
   "experience",
+  "skills",
   "contact"
 ];
 

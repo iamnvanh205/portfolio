@@ -63,6 +63,29 @@
   gap: 8px;
 }
 
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  color: var(--color-text-secondary);
+}
+
+.hero__availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.hero__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent-green);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent-green) 22%, transparent);
+}
+
 .hero__controls {
   display: flex;
   flex-wrap: wrap;
@@ -94,6 +117,40 @@
   content: "·";
   color: var(--color-accent);
   margin-right: 8px;
+}
+
+/* ==========================================
+   PROOF
+========================================== */
+
+.hero__proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 28px;
+  border-block: 1px solid var(--color-border-subtle);
+}
+
+.hero__proof li {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 16px 20px;
+}
+
+.hero__proof li + li {
+  border-left: 1px solid var(--color-border-subtle);
+}
+
+.hero__proof strong {
+  font-size: 20px;
+  line-height: var(--lh-tight);
+  color: var(--color-text-primary);
+}
+
+.hero__proof span {
+  font-size: var(--fs-body-small);
+  line-height: var(--lh-normal);
+  color: var(--color-text-secondary);
 }
 
 /* ==========================================

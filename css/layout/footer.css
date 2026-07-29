@@ -18,3 +18,11 @@
   color: var(--color-text-muted);
   font-size: var(--fs-footer);
 }
+
+@media (max-width: 767px) {
+
+  .footer {
+    padding-bottom: 88px;
+  }
+
+}

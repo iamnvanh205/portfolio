@@ -37,6 +37,7 @@
 
   padding: 0 24px;
   height: 48px;
+  scroll-padding-inline: 24px;
 
   /* Fade edges to hint scrollability */
   -webkit-mask-image: linear-gradient(
@@ -66,7 +67,10 @@
 .mobile-nav__link {
   flex-shrink: 0;
 
-  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 14px;
 
   border-radius: var(--radius-pill);
 
@@ -80,13 +84,18 @@
   transition: all var(--transition-fast);
 }
 
+.mobile-nav__link:focus-visible {
+  outline-color: var(--color-accent-strong);
+  outline-offset: -3px;
+}
+
 .mobile-nav__link:hover {
   color: var(--color-text-primary);
   background: var(--color-bg-section-alt);
 }
 
 .mobile-nav__link.active {
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
   font-weight: 600;
   background: var(--color-bg-section-alt);
 }

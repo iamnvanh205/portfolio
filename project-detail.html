@@ -12,17 +12,31 @@
     name="description"
     content="Project detail by Nguyen Van Anh - Backend Engineer specializing in Java, Spring Boot, and scalable systems.">
 
-  <link rel="icon" href="./assets/images/favicon/favicon-32.png">
+  <meta name="theme-color" content="#EFF1F5">
+  <meta property="og:title" content="Project Detail - Nguyen Van Anh">
+  <meta property="og:description" content="Engineering project detail by Nguyen Van Anh.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://iamnvanh205.github.io/portfolio/assets/images/avatar/avatar.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+    href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap">
+
+  <link rel="icon" sizes="512x512" href="./assets/images/favicon/favicon-32.png">
 
   <link rel="stylesheet" href="./css/main.css">
 
 </head>
 
 <body class="project-detail-page">
+
+  <a id="skip-link" class="skip-link" href="#project-detail-main">
+    Skip to content
+  </a>
 
   <div class="project-detail-topbar">
     <div class="project-detail-topbar__inner page-container">
@@ -40,7 +54,7 @@
           aria-hidden="true">
           <polyline points="15 18 9 12 15 6"/>
         </svg>
-        <span>Back to Portfolio</span>
+        <span id="project-detail-back-label">Back to Portfolio</span>
       </a>
 
       <div class="project-detail-controls">
@@ -82,7 +96,7 @@
     </div>
   </div>
 
-  <main class="project-detail-main" role="main">
+  <main id="project-detail-main" class="project-detail-main" tabindex="-1" role="main">
     <div id="project-detail" class="page-container"></div>
   </main>
 
@@ -122,6 +136,8 @@
     function renderPage() {
       const project = getProjects().find((item) => item.id === params.get("id"));
 
+      document.querySelector("#skip-link").textContent = t("skipToContent");
+      document.querySelector("#project-detail-back-label").textContent = t("projectsPage.back");
       document.querySelector("[data-theme-option='light']").textContent = t("light");
       document.querySelector("[data-theme-option='dark']").textContent = t("dark");
       document.querySelector("[data-theme-option='light']").parentElement.setAttribute("aria-label", t("themeLabel"));
@@ -129,14 +145,23 @@
       document.querySelector(".footer-text").lastChild.textContent = ` Nguyen Van Anh. ${t("footer")}`;
 
       if (!project) {
-        document.title = "Project not found - Nguyen Van Anh";
-        detail.innerHTML = `<p class="project-detail-empty">Project not found.</p>`;
+        document.title = `${t("projectsPage.notFound")} - Nguyen Van Anh`;
+        detail.innerHTML = `
+          <div class="project-detail-empty">
+            <h1 class="section-title">${t("projectsPage.notFound")}</h1>
+            <a href="./index.html#projects" class="btn btn-outline">${t("projectsPage.back")}</a>
+          </div>
+        `;
         updateThemeButtons();
         updateLangButtons();
         return;
       }
 
       document.title = `${project.title} - Nguyen Van Anh`;
+      document.querySelector('meta[property="og:title"]').content = document.title;
+      document.querySelector('meta[property="og:description"]').content = project.description;
+      document.querySelector('meta[property="og:image"]').content =
+        new URL(project.thumbnail, window.location.href).href;
       detail.innerHTML = renderProject(project);
       updateThemeButtons();
       updateLangButtons();
@@ -169,35 +194,51 @@
             ${docsItem}
           </ul>`;
 
+      const gallery = project.screenshots?.length
+        ? `
+          <div class="project-detail-gallery" aria-label="${t("projectsPage.galleryLabel")}">
+            ${project.screenshots
+              .slice(0, 4)
+              .map((src, i) => `
+                <img
+                  class="project-detail-gallery__item"
+                  src="${src}"
+                  alt="${project.title} — ${t("projectsPage.interfacePreview")} ${i + 1}"
+                  loading="lazy"
+                  decoding="async">
+              `)
+              .join("")}
+          </div>
+        `
+        : "";
+
       return `
         <article class="project-detail-card" aria-label="${project.title}">
           <header class="project-detail-card__header">
+            <div class="project-detail-card__meta body-small">
+              ${project.featured ? `<span class="project-detail-card__featured">${t("projectsPage.featured")}</span>` : ""}
+              ${project.duration ? `<span>${project.duration.replaceAll("[", "").replaceAll("]", "")}</span>` : ""}
+            </div>
             <h1 class="section-title">${project.title}</h1>
-            ${project.duration ? `<p class="project-detail-card__duration body-small">${project.duration}</p>` : ""}
           </header>
-
-          ${summary}
-
-          ${body}
 
           <div class="project-detail-card__tags">
             ${project.tags.map((tag) => `<span class="tech-tag">${tag}</span>`).join("")}
           </div>
 
           <div class="project-detail-card__actions">
-            ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Demo</a>` : ""}
-            ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub</a>` : ""}
+            ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">${t("projectsPage.demo")}</a>` : ""}
+            ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">${t("projectsPage.code")}</a>` : ""}
+            ${project.docs ? `<a href="${project.docs}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">${t("projectsPage.docs")}</a>` : ""}
           </div>
 
-          <div class="project-detail-gallery" aria-label="Project screenshots">
-            ${(project.screenshots || Array(4).fill(""))
-              .slice(0, 4)
-              .map((src, i) => src
-                ? `<img class="project-detail-gallery__item" src="${src}" alt="${project.title} screenshot ${i + 1}" loading="lazy">`
-                : `<div class="project-detail-gallery__item" aria-hidden="true"></div>`
-              )
-              .join("")}
+          ${summary}
+
+          <div class="project-detail-card__body">
+            ${body}
           </div>
+
+          ${gallery}
         </article>
       `;
     }

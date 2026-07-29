@@ -17,6 +17,7 @@
 .theme-toggle__option,
 .lang-toggle__option {
   min-width: 60px;
+  min-height: 36px;
   padding: 6px 12px;
   border-radius: 16px;
 
@@ -39,11 +40,11 @@
 
 .theme-toggle__option:not(.active):not([aria-pressed="true"]):hover,
 .lang-toggle__option:not(.active):not([aria-pressed="true"]):hover {
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
 }
 
 .theme-toggle__option:focus-visible,
 .lang-toggle__option:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline-color: var(--color-accent-strong);
   outline-offset: 2px;
 }

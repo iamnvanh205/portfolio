@@ -21,6 +21,7 @@ import { initContactForm } from "./modules/contact-form.js";
 ========================================== */
 
 function renderPage() {
+  document.querySelector("#skip-link").textContent = t("skipToContent");
   document.querySelector(".floating-actions")?.setAttribute("aria-label", t("quickActions"));
   document.querySelector("#scroll-top-btn")?.setAttribute("title", t("backToTop"));
   document.querySelector("#scroll-top-btn")?.setAttribute("aria-label", t("scrollBackToTop"));
@@ -40,6 +41,7 @@ function renderPage() {
   updateThemeButtons();
   updateLangButtons();
   initContactForm();
+  window.dispatchEvent(new Event("scroll"));
 }
 
 initLang();

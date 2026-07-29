@@ -25,12 +25,29 @@ export function renderContact(container) {
 
     <div class="contact-card">
 
+      <div class="contact-card__header">
+        <p class="body-text">${t("contact.intro")}</p>
+        <div class="contact-card__quick-actions">
+          <a href="mailto:${profile.contact.email}" class="btn btn-primary">
+            ${t("contact.emailMe")}
+          </a>
+          <a
+            href="${profile.contact.linkedin}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline">
+            ${t("contact.openLinkedIn")}
+          </a>
+        </div>
+      </div>
+
       <div class="contact-layout">
 
         <!-- FORM AREA -->
 
         <form
           id="contact-form"
+          aria-label="${t("contact.formLabel")}"
           novalidate>
 
           <div class="form-grid">
@@ -45,10 +62,12 @@ export function renderContact(container) {
 
               <input
                 id="contact-name"
+                name="name"
                 type="text"
                 class="input"
                 placeholder="${t("contact.namePlaceholder")}"
-                autocomplete="name">
+                autocomplete="name"
+                required>
 
             </div>
 
@@ -62,10 +81,12 @@ export function renderContact(container) {
 
               <input
                 id="contact-email"
+                name="email"
                 type="email"
                 class="input"
                 placeholder="your@email.com"
-                autocomplete="email">
+                autocomplete="email"
+                required>
 
             </div>
 
@@ -83,8 +104,11 @@ export function renderContact(container) {
 
             <textarea
               id="contact-message"
+              name="message"
               class="textarea"
-              placeholder="${t("contact.messagePlaceholder")}"></textarea>
+              placeholder="${t("contact.messagePlaceholder")}"
+              autocomplete="off"
+              required></textarea>
 
           </div>
 

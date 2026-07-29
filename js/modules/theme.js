@@ -11,6 +11,7 @@ export function initTheme() {
 
   root.setAttribute("data-theme", getSavedTheme() || "light");
 
+  updateBrowserTheme();
   updateButtons();
 
 }
@@ -20,6 +21,7 @@ export function toggleTheme(theme) {
   root.setAttribute("data-theme", theme);
   saveTheme(theme);
 
+  updateBrowserTheme();
   updateButtons();
 
 }
@@ -36,6 +38,12 @@ function saveTheme(theme) {
   try {
     sessionStorage.setItem(STORAGE_KEY, theme);
   } catch {}
+}
+
+function updateBrowserTheme() {
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute("content", root.dataset.theme === "dark" ? "#1E1E2E" : "#EFF1F5");
 }
 
 export function updateThemeButtons() {
