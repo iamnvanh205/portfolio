@@ -74,7 +74,7 @@ export function initContactForm() {
     submitBtn.textContent = t("contact.sending");
     form.setAttribute("aria-busy", "true");
 
-    // Template variables — must match {{placeholders}} in your EmailJS template
+    // Template variables - must match {{placeholders}} in your EmailJS template
     const templateParams = {
       from_name : nameInput.value.trim(),
       reply_to :  emailInput.value.trim(),

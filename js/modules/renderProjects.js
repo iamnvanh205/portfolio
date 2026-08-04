@@ -92,7 +92,7 @@ export function renderProjects(container) {
                   aria-label="${t("projectsPage.details")}: ${project.title}">
                   <img
                     src="${project.thumbnail}"
-                    alt="${project.title} — ${t("projectsPage.interfacePreview")}"
+                    alt="${project.title} - ${t("projectsPage.interfacePreview")}"
                     loading="lazy"
                     decoding="async">
                 </a>

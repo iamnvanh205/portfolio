@@ -1,6 +1,6 @@
 # Portfolio
 
-Personal portfolio website — Nguyen Van Anh · Backend Engineer.
+Personal portfolio website - Nguyen Van Anh · Backend Engineer.
 
 ## Tech Stack
 
@@ -35,7 +35,7 @@ Then open `http://localhost:5500`.
 ```
 ├── index.html
 ├── css/
-│   ├── main.css               # Entry — imports all partials
+│   ├── main.css               # Entry - imports all partials
 │   ├── base/
 │   │   ├── reset.css
 │   │   ├── variables.css      # Design tokens (light + dark)
@@ -58,7 +58,7 @@ Then open `http://localhost:5500`.
 │       ├── sections.css       # All section styles + breakpoints
 │       └── footer.css
 ├── js/
-│   ├── main.js                # App entry — wires all modules
+│   ├── main.js                # App entry - wires all modules
 │   ├── core/
 │   │   ├── constants.js
 │   │   ├── selectors.js

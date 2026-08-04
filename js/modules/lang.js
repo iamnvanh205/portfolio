@@ -243,12 +243,12 @@ const viProjects = {
   "itam-system": {
     title: "Hệ thống quản lý tài sản CNTT",
     description:
-      "Công cụ nội bộ quản lý toàn bộ vòng đời tài sản CNTT — từ mua sắm đến thanh lý — thay thế việc theo dõi thủ công bằng Excel, cho tổ chức 50-100 nhân sự / 300-380 tài sản.",
+      "Công cụ nội bộ quản lý toàn bộ vòng đời tài sản CNTT - từ mua sắm đến thanh lý - thay thế việc theo dõi thủ công bằng Excel, cho tổ chức 50-100 nhân sự / 300-380 tài sản.",
     highlights: [
       {
         heading: "Nghiệp vụ cốt lõi & Quy trình",
         bullets: [
-          "Số hóa toàn bộ vòng đời tài sản (mua sắm → bàn giao → bảo trì/bảo hành → kiểm kê → thanh lý) với kiến trúc đa chi nhánh thực sự — dữ liệu được cô lập theo từng chi nhánh qua branch_id, không phải thiết kế đơn tenant được cải tạo về sau.",
+          "Số hóa toàn bộ vòng đời tài sản (mua sắm → bàn giao → bảo trì/bảo hành → kiểm kê → thanh lý) với kiến trúc đa chi nhánh thực sự - dữ liệu được cô lập theo từng chi nhánh qua branch_id, không phải thiết kế đơn tenant được cải tạo về sau.",
           "Thiết kế quy trình phê duyệt bàn giao 3 bước (Nhân viên → Quản lý → Nhân sự IT), tự động phê duyệt tài sản giá trị thấp theo ngưỡng, vận hành bằng state machine đầy đủ (PENDING → APPROVED/REJECTED → FULFILLED/CANCELLED) với các tác động phụ trong transaction và rollback khi có lỗi.",
           "Mở rộng hệ thống với module Quản lý giấy phép phần mềm: danh mục sản phẩm, quyền sử dụng (Subscription/Perpetual), phân bổ seat theo Người dùng hoặc Thiết bị, dùng khóa cấp dòng để ngăn phân bổ vượt quá số lượng đã mua.",
           "Xây dựng quy trình kiểm kê tài sản bằng QR (camera điện thoại, không cần ứng dụng native), tự động phát hiện chênh lệch (thiếu / sai vị trí / phát hiện ngoài danh sách) so với dữ liệu tồn kho đã ghi nhận."
@@ -257,7 +257,7 @@ const viProjects = {
       {
         heading: "Bảo mật & Phân quyền",
         bullets: [
-          "Xây dựng hệ thống xác thực JWT tùy chỉnh: access token 30 phút lưu trong bộ nhớ + xoay vòng refresh token theo mô hình token family/generation có phát hiện tái sử dụng (phù hợp RFC 9700) — phía server chỉ lưu hash SHA-256, hỗ trợ phiên đăng nhập trên nhiều thiết bị và thu hồi tức thì.",
+          "Xây dựng hệ thống xác thực JWT tùy chỉnh: access token 30 phút lưu trong bộ nhớ + xoay vòng refresh token theo mô hình token family/generation có phát hiện tái sử dụng (phù hợp RFC 9700) - phía server chỉ lưu hash SHA-256, hỗ trợ phiên đăng nhập trên nhiều thiết bị và thu hồi tức thì.",
           "Triển khai RBAC cho 4 vai trò (Admin, IT Staff, Manager, Employee) qua Spring Security @PreAuthorize, giới hạn phạm vi theo chi nhánh và phòng ban."
         ]
       },
@@ -265,7 +265,7 @@ const viProjects = {
         heading: "Dữ liệu & Chất lượng",
         bullets: [
           "Mô hình hóa schema PostgreSQL gồm 18 bảng với migration được đánh phiên bản bằng Flyway.",
-          "Kiểm thử business logic bằng unit test JUnit 5/Mockito và integration test Testcontainers (PostgreSQL thật) — 130 test đều pass, độ phủ 61,6% dòng / 39,6% nhánh (JaCoCo gate); bổ sung kiểm thử E2E bằng Playwright cho frontend."
+          "Kiểm thử business logic bằng unit test JUnit 5/Mockito và integration test Testcontainers (PostgreSQL thật) - 130 test đều pass, độ phủ 61,6% dòng / 39,6% nhánh (JaCoCo gate); bổ sung kiểm thử E2E bằng Playwright cho frontend."
         ]
       },
       {
@@ -286,29 +286,29 @@ const viProjects = {
   "event-ticketing": {
     title: "Hệ thống bán vé sự kiện",
     description:
-      "Nền tảng bán vé sự kiện full-stack tập trung giải quyết tình trạng bán vượt số vé và check-in trùng lặp dưới tải đồng thời — ban tổ chức tạo sự kiện với các loại vé giới hạn số lượng, khách hàng đặt chỗ và nhận vé gắn mã QR, nhân viên cổng quét vé để check-in, còn dashboard thời gian thực theo dõi doanh số và lượt check-in. Hệ thống được thiết kế hỗ trợ tối đa 10 sự kiện đồng thời và 1.000 vé cho mỗi sự kiện; tính đúng đắn được kiểm chứng với 50 yêu cầu đặt vé đồng thời cùng tranh chấp chiếc vé cuối cùng.",
+      "Nền tảng bán vé sự kiện full-stack tập trung giải quyết tình trạng bán vượt số vé và check-in trùng lặp dưới tải đồng thời - ban tổ chức tạo sự kiện với các loại vé giới hạn số lượng, khách hàng đặt chỗ và nhận vé gắn mã QR, nhân viên cổng quét vé để check-in, còn dashboard thời gian thực theo dõi doanh số và lượt check-in. Hệ thống được thiết kế hỗ trợ tối đa 10 sự kiện đồng thời và 1.000 vé cho mỗi sự kiện; tính đúng đắn được kiểm chứng với 50 yêu cầu đặt vé đồng thời cùng tranh chấp chiếc vé cuối cùng.",
     highlights: [
       {
         heading: "Nghiệp vụ cốt lõi & Quy trình",
         bullets: [
-          "Xây dựng nền tảng bán vé sự kiện để giải quyết một bài toán concurrency khó và cụ thể: ngăn bán vượt số vé và check-in trùng lặp khi nhiều người dùng cùng tranh chấp số vé giới hạn — đây là trọng tâm kỹ thuật rõ ràng của dự án.",
+          "Xây dựng nền tảng bán vé sự kiện để giải quyết một bài toán concurrency khó và cụ thể: ngăn bán vượt số vé và check-in trùng lặp khi nhiều người dùng cùng tranh chấp số vé giới hạn - đây là trọng tâm kỹ thuật rõ ràng của dự án.",
           "Thiết kế luồng đặt vé hai giai đoạn reserve → confirm (giữ chỗ tạm thời với thời hạn có thể cấu hình, được giải phóng bằng cả kiểm tra lazy và scheduled cleanup job), sử dụng khóa pessimistic ở tầng cơ sở dữ liệu (SELECT ... FOR UPDATE qua JPA @Lock(PESSIMISTIC_WRITE)) để tuần tự hóa các yêu cầu mua đồng thời trên chiếc vé cuối cùng.",
           "Xây dựng dashboard thời gian thực cho ban tổ chức qua WebSocket/STOMP và luồng check-in bằng QR (server tạo mã QR bằng ZXing, frontend quét qua camera bằng html5-qrcode).",
-          "Tổ chức backend theo kiến trúc Modular Monolith (các module auth/event/ticket/checkin/gate/dashboard với quy tắc ranh giới service được thực thi) — lựa chọn có chủ đích để giữ khóa và transaction trong một PostgreSQL transaction duy nhất, thay vì bổ sung độ phức tạp của hệ thống phân tán."
+          "Tổ chức backend theo kiến trúc Modular Monolith (các module auth/event/ticket/checkin/gate/dashboard với quy tắc ranh giới service được thực thi) - lựa chọn có chủ đích để giữ khóa và transaction trong một PostgreSQL transaction duy nhất, thay vì bổ sung độ phức tạp của hệ thống phân tán."
         ]
       },
       {
         heading: "Bảo mật & Phân quyền",
         bullets: [
           "Triển khai xác thực JWT (access token 15 phút, refresh token 7 ngày trong cookie httpOnly) kết hợp Google OAuth2 cho khách hàng đăng nhập, cùng cơ chế xoay vòng refresh token có phát hiện tái sử dụng và thu hồi toàn bộ token của phiên nếu một token đã dùng bị phát lại.",
-          "Áp dụng RBAC cho 4 vai trò (Admin, Organizer, Checkin Staff, Customer) qua Spring Security @PreAuthorize, kết hợp kiểm tra quyền sở hữu rõ ràng ở tầng service — Organizer chỉ có thể quản lý sự kiện của mình; Checkin Staff chỉ có thể quét vé cho sự kiện được phân công."
+          "Áp dụng RBAC cho 4 vai trò (Admin, Organizer, Checkin Staff, Customer) qua Spring Security @PreAuthorize, kết hợp kiểm tra quyền sở hữu rõ ràng ở tầng service - Organizer chỉ có thể quản lý sự kiện của mình; Checkin Staff chỉ có thể quét vé cho sự kiện được phân công."
         ]
       },
       {
         heading: "Dữ liệu & Chất lượng",
         bullets: [
           "Mô hình hóa schema cốt lõi (events, ticket_types, tickets, gates, checkin_logs, refresh_tokens) bằng Flyway migration, gồm ràng buộc idempotency key duy nhất để bảo vệ endpoint đặt vé trước thao tác gửi lặp.",
-          "Kiểm chứng tính đúng đắn bằng các integration test concurrency chuyên biệt: 50 thread đồng thời tranh chấp chiếc vé cuối cùng (đúng 1 thành công, 49 bị từ chối vì hết vé) và 20 lượt quét đồng thời cùng một mã QR (đúng 1 lần check-in thành công, các lần còn lại bị từ chối do trùng lặp) — cùng unit test JUnit 5/Mockito, integration test Testcontainers trên PostgreSQL thật và kiểm thử E2E Playwright cho frontend."
+          "Kiểm chứng tính đúng đắn bằng các integration test concurrency chuyên biệt: 50 thread đồng thời tranh chấp chiếc vé cuối cùng (đúng 1 thành công, 49 bị từ chối vì hết vé) và 20 lượt quét đồng thời cùng một mã QR (đúng 1 lần check-in thành công, các lần còn lại bị từ chối do trùng lặp) - cùng unit test JUnit 5/Mockito, integration test Testcontainers trên PostgreSQL thật và kiểm thử E2E Playwright cho frontend."
         ]
       },
       {
@@ -329,7 +329,7 @@ const viProjects = {
   "thien-nguyen": {
     title: "Thiện Nguyện Việt - Nền tảng tình nguyện từ thiện",
     description:
-      "Đồ án nhóm 4 thành viên cho môn Lập trình Web — một website kết nối tình nguyện viên với các chiến dịch từ thiện thuộc nhiều lĩnh vực như cứu trợ thiên tai, học bổng giáo dục, y tế cộng đồng và môi trường. Xây dựng bằng ASP.NET Web Forms (.NET Framework) và SQL Server; tôi phụ trách toàn bộ module Admin.",
+      "Đồ án nhóm 4 thành viên cho môn Lập trình Web - một website kết nối tình nguyện viên với các chiến dịch từ thiện thuộc nhiều lĩnh vực như cứu trợ thiên tai, học bổng giáo dục, y tế cộng đồng và môi trường. Xây dựng bằng ASP.NET Web Forms (.NET Framework) và SQL Server; tôi phụ trách toàn bộ module Admin.",
     highlights: [
       {
         heading: "Tính năng cốt lõi & Module",
@@ -349,13 +349,13 @@ const viProjects = {
   "nhan-khau": {
     title: "Hệ thống quản lý nhân khẩu và hộ khẩu",
     description:
-      "Đồ án nhóm 3 thành viên cho môn Lập trình ứng dụng desktop — ứng dụng Windows Forms quản lý đăng ký hộ khẩu và hồ sơ cư dân ở cấp quận/huyện, mô hình hóa đúng hệ thống phân cấp hành chính thực tế (Quận/Huyện → Phường/Xã → Tổ dân phố → Hộ gia đình → Cá nhân). Xây dựng bằng C#/.NET Framework, SQL Server (điều khiển bằng stored procedure) và Crystal Reports; tôi trực tiếp triển khai các module khai tử, chuyển đi (tự xây dựng độc lập), chuyển đến, tách hộ và tìm kiếm/tra cứu.",
+      "Đồ án nhóm 3 thành viên cho môn Lập trình ứng dụng desktop - ứng dụng Windows Forms quản lý đăng ký hộ khẩu và hồ sơ cư dân ở cấp quận/huyện, mô hình hóa đúng hệ thống phân cấp hành chính thực tế (Quận/Huyện → Phường/Xã → Tổ dân phố → Hộ gia đình → Cá nhân). Xây dựng bằng C#/.NET Framework, SQL Server (điều khiển bằng stored procedure) và Crystal Reports; tôi trực tiếp triển khai các module khai tử, chuyển đi (tự xây dựng độc lập), chuyển đến, tách hộ và tìm kiếm/tra cứu.",
     highlights: [
       {
         heading: "Tính năng cốt lõi & Module",
         bullets: [
           "Triển khai end-to-end 5 module nghiệp vụ hộ khẩu của ứng dụng: khai tử, chuyển đi (xây dựng độc lập, không pair), chuyển đến, tách một hộ thành nhiều hộ và tìm kiếm/tra cứu theo tên, địa chỉ, phường/xã hoặc tổ dân phố.",
-          "Xây dựng trên kiến trúc Windows Forms MDI — một form MDI container duy nhất với menu điều hướng đến từng form chức năng."
+          "Xây dựng trên kiến trúc Windows Forms MDI - một form MDI container duy nhất với menu điều hướng đến từng form chức năng."
         ]
       },
       {
@@ -369,7 +369,7 @@ const viProjects = {
   homestay: {
     title: "Hệ thống quản lý Homestay",
     description:
-      "Đồ án nhóm cho môn Lập trình Android — ứng dụng Android quản lý danh sách homestay, đặt phòng, khách hàng, nhân viên và hóa đơn, tích hợp sẵn chức năng thống kê và báo cáo. Xây dựng bằng Java, các Android native component (Navigation Component, RecyclerView) và SQLite để lưu trữ dữ liệu trên thiết bị.",
+      "Đồ án nhóm cho môn Lập trình Android - ứng dụng Android quản lý danh sách homestay, đặt phòng, khách hàng, nhân viên và hóa đơn, tích hợp sẵn chức năng thống kê và báo cáo. Xây dựng bằng Java, các Android native component (Navigation Component, RecyclerView) và SQLite để lưu trữ dữ liệu trên thiết bị.",
     highlights: [
       {
         heading: "Tính năng cốt lõi & Module",
@@ -381,7 +381,7 @@ const viProjects = {
       {
         heading: "Dữ liệu & Kiến trúc",
         bullets: [
-          "Tổ chức codebase theo hướng phân tách rõ trách nhiệm — các package ui, repository, dao và model chuyên biệt — đồng thời tập trung truy cập SQLite qua SQLiteOpenHelper thay vì rải raw query trong code UI."
+          "Tổ chức codebase theo hướng phân tách rõ trách nhiệm - các package ui, repository, dao và model chuyên biệt - đồng thời tập trung truy cập SQLite qua SQLiteOpenHelper thay vì rải raw query trong code UI."
         ]
       }
     ]

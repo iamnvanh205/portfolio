@@ -9,7 +9,7 @@ export function initScrollSpy() {
   const sections = document.querySelectorAll("section[id]");
   let previous = "";
 
-  const OFFSET = 120; // px — accounts for sticky headers
+  const OFFSET = 120; // px - accounts for sticky headers
 
   function onScroll() {
 
