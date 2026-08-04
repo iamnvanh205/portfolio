@@ -83,13 +83,12 @@
 
 .project-detail-card__summary {
   color: var(--color-text-secondary);
-  max-width: 76ch;
   font-size: var(--fs-body);
   line-height: var(--lh-body);
 }
 
 .project-detail-card__body {
-  max-width: 82ch;
+  max-width: 960px;
 }
 
 .project-detail-card__section + .project-detail-card__section {

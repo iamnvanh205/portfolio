@@ -18,8 +18,8 @@
 
 .hero__container {
   display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 32px;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  gap: 40px;
   align-items: center;
 }
 
@@ -28,8 +28,8 @@
 ========================================== */
 
 .hero__avatar {
-  width: 140px;
-  height: 140px;
+  width: 100%;
+  aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--color-border);
