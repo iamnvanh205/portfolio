@@ -132,55 +132,6 @@ export function renderProjects(container) {
                   }
                 </div>
 
-                <div class="project-card__actions">
-
-                  <a
-                    href="./project-detail.html?id=${project.id}"
-                    class="btn btn-card">
-                    ${t("projectsPage.details")}
-                  </a>
-
-                  ${project.demo
-                    ? `
-                      <a
-                        href="${project.demo}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-card">
-                        ${t("projectsPage.demo")}
-                      </a>
-                    `
-                    : ""
-                  }
-
-                  ${project.github
-                    ? `
-                      <a
-                        href="${project.github}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-card">
-                        ${t("projectsPage.code")}
-                      </a>
-                    `
-                    : ""
-                  }
-
-                  ${project.docs
-                    ? `
-                      <a
-                        href="${project.docs}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-card">
-                        ${t("projectsPage.docs")}
-                      </a>
-                    `
-                    : ""
-                  }
-
-                </div>
-
               </div>
 
             </article>

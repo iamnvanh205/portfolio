@@ -240,30 +240,8 @@
 
 @media (max-width: 768px) {
 
-  .hero__container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .hero__avatar {
-    margin-inline: auto;
-  }
-
-  .hero__header {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .hero__taglines {
-    grid-template-columns: 1fr;
-  }
-
-  .hero__actions {
-    justify-content: center;
-  }
-
-  .hero__meta {
-    justify-content: center;
+    max-width: 100%;
   }
 
   .contact-layout {
@@ -318,10 +296,6 @@
 ========================================== */
 
 @media (max-width: 480px) {
-
-  .hero {
-    padding-top: 40px;
-  }
 
   .hero-name {
     font-size: 28px;

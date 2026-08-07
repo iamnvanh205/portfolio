@@ -4,11 +4,12 @@ export const DOM = {
   sidebar:   document.querySelector("#sidebar"),
   mobileNav: document.querySelector("#mobile-nav"),
 
-  about:      document.querySelector("#about"),
-  skills:     document.querySelector("#skills"),
-  projects:   document.querySelector("#projects"),
-  experience: document.querySelector("#experience"),
-  contact:    document.querySelector("#contact"),
+  about:        document.querySelector("#about"),
+  skills:       document.querySelector("#skills"),
+  projects:     document.querySelector("#projects"),
+  experience:   document.querySelector("#experience"),
+  certificates: document.querySelector("#certificates"),
+  contact:      document.querySelector("#contact"),
 
   footer: document.querySelector("#footer")
 

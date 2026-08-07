@@ -1,0 +1,307 @@
+/* ==========================================
+   GRADIENT TRANSITION
+   Visual bridge between Hero and Main
+========================================== */
+
+.gradient-transition {
+  position: relative;
+  width: 100%;
+
+  /* Smooth gradient from Hero background to Main background */
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg-elevated) 0%,
+    var(--color-bg) 100%
+  );
+
+  /* Dynamic height - calculated by viewport.js */
+  min-height: 320px;
+
+  /* Smooth on theme change */
+  transition: background-color var(--transition-medium);
+
+  overflow: hidden;
+
+  /* Flexbox to anchor scroll hint at bottom */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gradient-transition__container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gradient-transition__canvas {
+  width: 100%;
+  height: auto;
+  max-width: 1200px;
+  display: block;
+  /* Motion entrance opacity controlled by JS */
+}
+
+/* ==========================================
+   SERVICE MESH HEARTBEAT
+   CSS custom properties for SVG theming
+   Values updated for light/dark via data-theme
+========================================== */
+
+/* ── Light theme (default) ── */
+:root,
+:root[data-theme="light"] {
+  --sm-accent:   #1E66F5;
+  --sm-mauve:    #8839EF;
+  --sm-green:    #40A02B;
+  --sm-node-bg:  rgba(230, 233, 239, 0.85);
+}
+
+/* ── Dark theme ── */
+:root[data-theme="dark"] {
+  --sm-accent:   #89B4FA;
+  --sm-mauve:    #CBA6F7;
+  --sm-green:    #A6E3A1;
+  --sm-node-bg:  rgba(49, 50, 68, 0.85);
+}
+
+/* ==========================================
+   CONNECTION PATHS
+========================================== */
+
+.sm-path {
+  fill: none;
+  stroke-linecap: round;
+  /* Initial opacity 0 — Motion JS animates in */
+  opacity: 0;
+}
+
+/* ==========================================
+   AURA RINGS (CSS breathing pulse)
+========================================== */
+
+.sm-aura {
+  opacity: 0;
+  /* Motion JS sets initial opacity, CSS pulse handles repeat */
+}
+
+.sm-aura--gateway { animation: sm-pulse-gateway 3.2s ease-in-out infinite; }
+.sm-aura--auth    { animation: sm-pulse-node    3.8s ease-in-out infinite 0.3s; }
+.sm-aura--db      { animation: sm-pulse-node    4.1s ease-in-out infinite 0.8s; }
+.sm-aura--cache   { animation: sm-pulse-node    3.6s ease-in-out infinite 1.1s; }
+.sm-aura--queue   { animation: sm-pulse-node    4.4s ease-in-out infinite 0.5s; }
+.sm-aura--monitor { animation: sm-pulse-node    3.9s ease-in-out infinite 1.6s; }
+
+@keyframes sm-pulse-gateway {
+  0%, 100% { opacity: 0.6;  transform: scale(1); }
+  50%       { opacity: 1.0; transform: scale(1.08); }
+}
+
+@keyframes sm-pulse-node {
+  0%, 100% { opacity: 0.5;  transform: scale(1); }
+  50%       { opacity: 0.85; transform: scale(1.10); }
+}
+
+/* ==========================================
+   SERVICE NODES
+   CSS handles breathing; Motion JS handles
+   entrance + continuous float offset
+========================================== */
+
+.sm-node {
+  /* Entrance opacity via Motion JS, then CSS pulse */
+  opacity: 0;
+}
+
+.sm-node--gateway { animation: sm-node-breathe-strong 3.2s ease-in-out infinite; }
+.sm-node--auth    { animation: sm-node-breathe 3.8s ease-in-out infinite 0.3s; }
+.sm-node--db      { animation: sm-node-breathe 4.1s ease-in-out infinite 0.8s; }
+.sm-node--cache   { animation: sm-node-breathe 3.6s ease-in-out infinite 1.1s; }
+.sm-node--queue   { animation: sm-node-breathe 4.4s ease-in-out infinite 0.5s; }
+.sm-node--monitor { animation: sm-node-breathe 3.9s ease-in-out infinite 1.6s; }
+
+@keyframes sm-node-breathe-strong {
+  0%, 100% { opacity: 0.90; }
+  50%       { opacity: 1.00; }
+}
+
+@keyframes sm-node-breathe {
+  0%, 100% { opacity: 0.75; }
+  50%       { opacity: 0.95; }
+}
+
+/* ==========================================
+   NODE LABELS
+========================================== */
+
+.sm-label {
+  font-family: ui-monospace, "JetBrains Mono", "Fira Mono", monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ==========================================
+   DATA PACKETS
+   animateMotion is inline SVG;
+   JS enables/disables visibility
+========================================== */
+
+.sm-packets {
+  /* opacity toggled by Motion JS; 0 = reduced-motion */
+}
+
+.sm-packet {
+  filter: url(#sm-glow);
+}
+
+.sm-packet--accent { fill: var(--sm-accent); }
+.sm-packet--mauve  { fill: var(--sm-mauve);  }
+.sm-packet--green  { fill: var(--sm-green);  }
+
+/* ==========================================
+   SCROLL CUE
+   Three stacked chevron arrows that cascade
+   downward sequentially, drawing the eye
+   toward the content below.
+   Sits cleanly below the SVG animation with
+   sufficient whitespace on all sides.
+========================================== */
+
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 32px;
+  opacity: 0; /* Faded in by Motion JS on load */
+}
+
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.scroll-cue__arrow {
+  display: block;
+  color: var(--color-text-muted);
+  opacity: 0.25; /* base resting opacity — subtle by design */
+  transition: opacity var(--transition-fast);
+}
+
+/* Cascade animation — each arrow runs the same keyframe
+   but with a staggered delay so they fire in sequence */
+.scroll-cue__arrow--1 {
+  animation: scroll-cue-cascade 1.8s ease-in-out infinite 0.0s;
+}
+.scroll-cue__arrow--2 {
+  animation: scroll-cue-cascade 1.8s ease-in-out infinite 0.2s;
+}
+.scroll-cue__arrow--3 {
+  animation: scroll-cue-cascade 1.8s ease-in-out infinite 0.4s;
+}
+
+/*
+  Keyframe: arrow moves down 10px while fading out,
+  then snaps back to origin (opacity 0 at reset prevents flash).
+  The active peak opacity (0.65) is intentionally soft — never
+  competing with the primary animation.
+*/
+@keyframes scroll-cue-cascade {
+  0%   { transform: translateY(0);    opacity: 0.20; }
+  30%  { transform: translateY(5px);  opacity: 0.65; }
+  60%  { transform: translateY(10px); opacity: 0.15; }
+  61%  { transform: translateY(0);    opacity: 0;    } /* invisible snap-back */
+  100% { transform: translateY(0);    opacity: 0.20; }
+}
+
+/* Hover: lift all arrows slightly for subtle interactivity */
+.scroll-hint:hover .scroll-cue__arrow {
+  opacity: 0.45;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .gradient-transition { min-height: 260px; }
+  .gradient-transition__canvas { opacity: 0.8; }
+  .scroll-hint { padding-bottom: 28px; padding-top: 14px; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .gradient-transition { min-height: 220px; }
+  .gradient-transition__canvas { opacity: 0.65; }
+  .scroll-hint { padding-bottom: 22px; padding-top: 12px; }
+
+  /* Slightly smaller arrows on mobile */
+  .scroll-cue__arrow {
+    width: 15px;
+    height: 9px;
+  }
+
+  /* Reduce label clutter on small screens */
+  .sm-label { font-size: 7.5px; }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .gradient-transition { min-height: 180px; }
+  .gradient-transition__canvas { opacity: 0.55; }
+  .scroll-hint { padding-bottom: 18px; padding-top: 10px; }
+
+  .scroll-cue__arrow {
+    width: 14px;
+    height: 8px;
+  }
+
+  /* Hide minor spine paths on very small screens to reduce clutter */
+  .sm-path--minor { display: none; }
+
+  /* Hide node labels on very small screens */
+  .sm-label { display: none; }
+}
+
+/* ==========================================
+   ACCESSIBILITY — REDUCED MOTION
+   All Motion JS animations are skipped when
+   this preference is detected (see viewport.js).
+   CSS animations below are also disabled.
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  /* Disable all CSS keyframe animations */
+  .sm-aura,
+  .sm-node,
+  .scroll-cue__arrow {
+    animation: none !important;
+  }
+
+  /* Show mesh elements statically */
+  .sm-aura    { opacity: 0.45 !important; }
+  .sm-node    { opacity: 0.80 !important; }
+  .sm-path    { opacity: 0.30 !important; }
+  .sm-packets { opacity: 0    !important; }
+
+  /* Show scroll hint immediately, static arrows at resting opacity */
+  .scroll-hint {
+    opacity: 1 !important;
+  }
+
+  .scroll-cue__arrow {
+    opacity: 0.35 !important;
+    transform: none !important;
+  }
+}

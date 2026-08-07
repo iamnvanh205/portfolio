@@ -13,12 +13,14 @@
 
 @import url("./components/buttons.css");
 @import url("./components/cards.css");
+@import url("./components/certificates.css");
 @import url("./components/chips.css");
 @import url("./components/forms.css");
 @import url("./components/timeline.css");
 @import url("./components/floating-actions.css");
 @import url("./components/theme-toggle.css");
 @import url("./components/mobile-nav.css");
+@import url("./components/transition.css");
 
 /* ==========================================
    LAYOUT

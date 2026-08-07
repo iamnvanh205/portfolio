@@ -58,39 +58,64 @@
       </a>
 
       <div class="project-detail-controls">
-        <div
-          class="theme-toggle"
-          role="group"
-          aria-label="Color theme">
-          <button
-            class="theme-toggle__option btn-text"
-            data-theme-option="light">
-            Light
-          </button>
-          <button
-            class="theme-toggle__option btn-text"
-            data-theme-option="dark">
-            Dark
-          </button>
-        </div>
+        <!-- Theme toggle button (hero__utility-btn style) -->
+        <button
+          class="hero__utility-btn hero__utility-btn--theme"
+          data-theme-toggle
+          type="button"
+          aria-label="Toggle theme"
+          title="Toggle theme">
+          <!-- Sun icon (shown in light mode) -->
+          <svg
+            class="hero__utility-icon hero__utility-icon--sun"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2"/>
+            <path d="M12 20v2"/>
+            <path d="m4.93 4.93 1.41 1.41"/>
+            <path d="m17.66 17.66 1.41 1.41"/>
+            <path d="M2 12h2"/>
+            <path d="M20 12h2"/>
+            <path d="m6.34 17.66-1.41 1.41"/>
+            <path d="m19.07 4.93-1.41 1.41"/>
+          </svg>
+          <!-- Moon icon (shown in dark mode) -->
+          <svg
+            class="hero__utility-icon hero__utility-icon--moon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+        </button>
 
-        <div
-          class="lang-toggle"
-          role="group"
-          aria-label="Language">
-          <button
-            class="lang-toggle__option btn-text active"
-            data-lang-option="en"
-            aria-pressed="true">
-            EN
-          </button>
-          <button
-            class="lang-toggle__option btn-text"
-            data-lang-option="vi"
-            aria-pressed="false">
-            VI
-          </button>
-        </div>
+        <!-- Language toggle button (hero__utility-btn style) -->
+        <button
+          class="hero__utility-btn hero__utility-btn--lang"
+          data-lang-toggle
+          type="button"
+          aria-label="Change language"
+          title="Change language">
+          <span class="hero__utility-text" data-lang-label aria-hidden="true"></span>
+        </button>
       </div>
 
     </div>
@@ -110,7 +135,7 @@
 
   <script type="module">
     import { initTheme, toggleTheme, updateThemeButtons } from "./js/modules/theme.js";
-    import { getProjects, initLang, setLang, t, updateLangButtons } from "./js/modules/lang.js";
+    import { getProjects, initLang, setLang, t, updateLangButtons, updateLangLabel } from "./js/modules/lang.js";
 
     const detail = document.getElementById("project-detail");
     const params = new URLSearchParams(window.location.search);
@@ -121,15 +146,15 @@
     document.getElementById("footer-year").textContent = new Date().getFullYear();
 
     document.addEventListener("click", (event) => {
-      const btn = event.target.closest("[data-theme-option]");
-      if (btn) toggleTheme(btn.dataset.themeOption);
+      const btn = event.target.closest("[data-theme-toggle]");
+      if (btn) toggleTheme();
     });
 
     document.addEventListener("click", (event) => {
-      const btn = event.target.closest("[data-lang-option]");
+      const btn = event.target.closest("[data-lang-toggle]");
       if (!btn) return;
 
-      setLang(btn.dataset.langOption);
+      setLang();
       renderPage();
     });
 
@@ -138,10 +163,10 @@
 
       document.querySelector("#skip-link").textContent = t("skipToContent");
       document.querySelector("#project-detail-back-label").textContent = t("projectsPage.back");
-      document.querySelector("[data-theme-option='light']").textContent = t("light");
-      document.querySelector("[data-theme-option='dark']").textContent = t("dark");
-      document.querySelector("[data-theme-option='light']").parentElement.setAttribute("aria-label", t("themeLabel"));
-      document.querySelector("[data-lang-option='en']").parentElement.setAttribute("aria-label", t("languageLabel"));
+      document.querySelector("[data-theme-toggle]").setAttribute("aria-label", t("themeLabel"));
+      document.querySelector("[data-theme-toggle]").setAttribute("title", t("themeLabel"));
+      document.querySelector("[data-lang-toggle]").setAttribute("aria-label", t("languageLabel"));
+      document.querySelector("[data-lang-toggle]").setAttribute("title", t("languageLabel"));
       document.querySelector(".footer-text").lastChild.textContent = ` Nguyen Van Anh. ${t("footer")}`;
 
       if (!project) {
@@ -154,6 +179,7 @@
         `;
         updateThemeButtons();
         updateLangButtons();
+        updateLangLabel();
         return;
       }
 
@@ -165,6 +191,7 @@
       detail.innerHTML = renderProject(project);
       updateThemeButtons();
       updateLangButtons();
+      updateLangLabel();
     }
 
     function renderProject(project) {
@@ -228,8 +255,7 @@
 
           <div class="project-detail-card__actions">
             ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">${t("projectsPage.demo")}</a>` : ""}
-            ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">${t("projectsPage.code")}</a>` : ""}
-            ${project.docs ? `<a href="${project.docs}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">${t("projectsPage.docs")}</a>` : ""}
+            ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">${t("projectsPage.github")}</a>` : ""}
           </div>
 
           ${summary}

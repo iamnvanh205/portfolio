@@ -60,6 +60,9 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
 
+  <!-- Motion (Framer Motion for vanilla JS) -->
+  <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+
   <link
     rel="stylesheet"
     href="./css/main.css">
@@ -118,6 +121,346 @@
 
   </header>
 
+  <!-- GRADIENT TRANSITION -->
+
+  <div class="gradient-transition" aria-hidden="true">
+    <div class="gradient-transition__container page-container">
+
+      <!--
+        SERVICE MESH HEARTBEAT
+        A distributed backend architecture visualisation.
+        Central API Gateway node + 5 microservice nodes (Auth, DB, Cache, Queue, Monitor).
+        Bezier connection paths + flowing data packets animate with Motion (Framer Motion).
+        All Motion JS animations are injected via viewport.js (initServiceMeshAnimation).
+      -->
+      <svg
+        id="service-mesh-svg"
+        class="gradient-transition__canvas"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 320"
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-label="Animated service mesh diagram showing microservice architecture">
+
+        <defs>
+
+          <!-- ─── Glow filter (accent blue) ─── -->
+          <filter id="sm-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+          </filter>
+
+          <!-- ─── Glow filter (strong, for gateway) ─── -->
+          <filter id="sm-glow-strong" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+          </filter>
+
+          <!-- ─── Gradient: connection path (fades toward edges) ─── -->
+          <linearGradient id="sm-path-grad-0" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="var(--sm-accent)"   stop-opacity="0.08"/>
+            <stop offset="30%"  stop-color="var(--sm-accent)"   stop-opacity="0.30"/>
+            <stop offset="70%"  stop-color="var(--sm-accent)"   stop-opacity="0.30"/>
+            <stop offset="100%" stop-color="var(--sm-accent)"   stop-opacity="0.08"/>
+          </linearGradient>
+          <linearGradient id="sm-path-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="var(--sm-mauve)"    stop-opacity="0.08"/>
+            <stop offset="40%"  stop-color="var(--sm-mauve)"    stop-opacity="0.28"/>
+            <stop offset="100%" stop-color="var(--sm-mauve)"    stop-opacity="0.08"/>
+          </linearGradient>
+          <linearGradient id="sm-path-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="var(--sm-green)"    stop-opacity="0.08"/>
+            <stop offset="40%"  stop-color="var(--sm-green)"    stop-opacity="0.28"/>
+            <stop offset="100%" stop-color="var(--sm-green)"    stop-opacity="0.08"/>
+          </linearGradient>
+
+          <!-- ─── Radial gradient: node ring aura ─── -->
+          <radialGradient id="sm-aura-gateway" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="var(--sm-accent)" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="var(--sm-accent)" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="sm-aura-auth" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="var(--sm-mauve)"  stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="var(--sm-mauve)"  stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="sm-aura-db" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="var(--sm-accent)" stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="var(--sm-accent)" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="sm-aura-cache" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="var(--sm-green)"  stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="var(--sm-green)"  stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="sm-aura-queue" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="var(--sm-mauve)"  stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="var(--sm-mauve)"  stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="sm-aura-monitor" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="var(--sm-accent)" stop-opacity="0.14"/>
+            <stop offset="100%" stop-color="var(--sm-accent)" stop-opacity="0"/>
+          </radialGradient>
+
+        </defs>
+
+        <!--
+          ══════════════════════════════════════════════════════
+          NODE LAYOUT (viewBox 1200 × 280)
+          Gateway  : cx=600, cy=140  (center)
+          Auth     : cx=200, cy=80   (top-left)
+          DB       : cx=200, cy=200  (bottom-left)
+          Cache    : cx=1000, cy=80  (top-right)
+          Queue    : cx=1000, cy=200 (bottom-right)
+          Monitor  : cx=600, cy=258  (bottom-center)
+          ══════════════════════════════════════════════════════
+        -->
+
+        <!-- ─── CONNECTION PATHS (behind nodes) ─── -->
+        <g class="sm-paths" fill="none" stroke-linecap="round">
+
+          <!-- Gateway ↔ Auth -->
+          <path
+            id="sm-path-gw-auth"
+            d="M 580,130 C 480,100 320,90 220,85"
+            stroke="url(#sm-path-grad-1)"
+            stroke-width="1.5"
+            class="sm-path"/>
+
+          <!-- Gateway ↔ DB -->
+          <path
+            id="sm-path-gw-db"
+            d="M 580,152 C 460,170 320,195 220,198"
+            stroke="url(#sm-path-grad-0)"
+            stroke-width="1.5"
+            class="sm-path"/>
+
+          <!-- Gateway ↔ Cache -->
+          <path
+            id="sm-path-gw-cache"
+            d="M 620,130 C 720,100 880,90 980,85"
+            stroke="url(#sm-path-grad-2)"
+            stroke-width="1.5"
+            class="sm-path"/>
+
+          <!-- Gateway ↔ Queue -->
+          <path
+            id="sm-path-gw-queue"
+            d="M 620,152 C 740,170 880,195 980,198"
+            stroke="url(#sm-path-grad-1)"
+            stroke-width="1.5"
+            class="sm-path"/>
+
+          <!-- Gateway ↔ Monitor -->
+          <path
+            id="sm-path-gw-monitor"
+            d="M 600,162 C 600,200 600,228 600,250"
+            stroke="url(#sm-path-grad-0)"
+            stroke-width="1.5"
+            class="sm-path"/>
+
+          <!-- Auth ↔ DB (left spine) -->
+          <path
+            id="sm-path-auth-db"
+            d="M 200,98 C 190,130 190,168 200,182"
+            stroke="url(#sm-path-grad-1)"
+            stroke-width="1"
+            class="sm-path sm-path--minor"
+            opacity="0.5"/>
+
+          <!-- Cache ↔ Queue (right spine) -->
+          <path
+            id="sm-path-cache-queue"
+            d="M 1000,98 C 1010,130 1010,168 1000,182"
+            stroke="url(#sm-path-grad-2)"
+            stroke-width="1"
+            class="sm-path sm-path--minor"
+            opacity="0.5"/>
+
+        </g>
+
+        <!-- ─── DATA PACKETS (animated via Motion JS) ─── -->
+        <g class="sm-packets" opacity="0">
+
+          <!-- Packet: Gateway → Auth -->
+          <circle id="sm-pkt-gw-auth"   r="3.5" class="sm-packet sm-packet--mauve">
+            <animateMotion dur="4.2s" repeatCount="indefinite" begin="0s"   rotate="auto">
+              <mpath href="#sm-path-gw-auth"/>
+            </animateMotion>
+          </circle>
+
+          <!-- Packet: Auth → Gateway (reverse) -->
+          <circle id="sm-pkt-auth-gw"   r="3"   class="sm-packet sm-packet--accent">
+            <animateMotion dur="5.0s" repeatCount="indefinite" begin="1.4s"  rotate="auto" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+              <mpath href="#sm-path-gw-auth"/>
+            </animateMotion>
+          </circle>
+
+          <!-- Packet: Gateway → DB -->
+          <circle id="sm-pkt-gw-db"     r="3.5" class="sm-packet sm-packet--accent">
+            <animateMotion dur="4.8s" repeatCount="indefinite" begin="0.6s"  rotate="auto">
+              <mpath href="#sm-path-gw-db"/>
+            </animateMotion>
+          </circle>
+
+          <!-- Packet: DB → Gateway (reverse) -->
+          <circle id="sm-pkt-db-gw"     r="3"   class="sm-packet sm-packet--accent">
+            <animateMotion dur="5.5s" repeatCount="indefinite" begin="2.2s"  rotate="auto" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+              <mpath href="#sm-path-gw-db"/>
+            </animateMotion>
+          </circle>
+
+          <!-- Packet: Gateway → Cache -->
+          <circle id="sm-pkt-gw-cache"  r="3.5" class="sm-packet sm-packet--green">
+            <animateMotion dur="4.5s" repeatCount="indefinite" begin="1.0s"  rotate="auto">
+              <mpath href="#sm-path-gw-cache"/>
+            </animateMotion>
+          </circle>
+
+          <!-- Packet: Cache → Gateway (reverse) -->
+          <circle id="sm-pkt-cache-gw"  r="3"   class="sm-packet sm-packet--green">
+            <animateMotion dur="5.2s" repeatCount="indefinite" begin="3.0s"  rotate="auto" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+              <mpath href="#sm-path-gw-cache"/>
+            </animateMotion>
+          </circle>
+
+          <!-- Packet: Gateway → Queue -->
+          <circle id="sm-pkt-gw-queue"  r="3.5" class="sm-packet sm-packet--mauve">
+            <animateMotion dur="5.6s" repeatCount="indefinite" begin="2.0s"  rotate="auto">
+              <mpath href="#sm-path-gw-queue"/>
+            </animateMotion>
+          </circle>
+
+          <!-- Packet: Queue → Gateway (reverse) -->
+          <circle id="sm-pkt-queue-gw"  r="3"   class="sm-packet sm-packet--mauve">
+            <animateMotion dur="4.9s" repeatCount="indefinite" begin="0.8s"  rotate="auto" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+              <mpath href="#sm-path-gw-queue"/>
+            </animateMotion>
+          </circle>
+
+          <!-- Packet: Gateway ↔ Monitor -->
+          <circle id="sm-pkt-gw-monitor" r="3.5" class="sm-packet sm-packet--accent">
+            <animateMotion dur="3.8s" repeatCount="indefinite" begin="0.3s"  rotate="auto">
+              <mpath href="#sm-path-gw-monitor"/>
+            </animateMotion>
+          </circle>
+          <circle id="sm-pkt-monitor-gw" r="3"  class="sm-packet sm-packet--accent">
+            <animateMotion dur="4.0s" repeatCount="indefinite" begin="1.9s"  rotate="auto" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+              <mpath href="#sm-path-gw-monitor"/>
+            </animateMotion>
+          </circle>
+
+        </g>
+
+        <!-- ─── NODE AURAS (soft pulse rings, animated via CSS) ─── -->
+        <g class="sm-auras">
+          <circle cx="600" cy="140" r="44"  fill="url(#sm-aura-gateway)" class="sm-aura sm-aura--gateway"/>
+          <circle cx="200" cy="80"  r="32"  fill="url(#sm-aura-auth)"    class="sm-aura sm-aura--auth"/>
+          <circle cx="200" cy="200" r="32"  fill="url(#sm-aura-db)"      class="sm-aura sm-aura--db"/>
+          <circle cx="1000" cy="80" r="32"  fill="url(#sm-aura-cache)"   class="sm-aura sm-aura--cache"/>
+          <circle cx="1000" cy="200" r="32" fill="url(#sm-aura-queue)"   class="sm-aura sm-aura--queue"/>
+          <circle cx="600" cy="258" r="28"  fill="url(#sm-aura-monitor)" class="sm-aura sm-aura--monitor"/>
+        </g>
+
+        <!-- ─── SERVICE NODES ─── -->
+        <g class="sm-nodes">
+
+          <!-- ── GATEWAY (center) ── -->
+          <g id="sm-node-gateway" class="sm-node sm-node--gateway" transform="translate(600,140)">
+            <!-- Outer ring -->
+            <circle r="22" fill="none" stroke="var(--sm-accent)" stroke-width="1.5" opacity="0.5"/>
+            <!-- Inner circle -->
+            <circle r="16" fill="var(--sm-node-bg)" stroke="var(--sm-accent)" stroke-width="2" filter="url(#sm-glow-strong)"/>
+            <!-- Icon: API Gateway — double arrow horizontal -->
+            <g fill="none" stroke="var(--sm-accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <!-- left arrow -->
+              <line x1="-7" y1="-2" x2="1" y2="-2"/>
+              <polyline points="-2,-5 1,-2 -2,1"/>
+              <!-- right arrow -->
+              <line x1="7" y1="2" x2="-1" y2="2"/>
+              <polyline points="2,5 -1,2 2,-1"/>
+            </g>
+            <!-- Label -->
+            <text y="32" text-anchor="middle" class="sm-label" fill="var(--sm-accent)">API</text>
+          </g>
+
+          <!-- ── AUTH SERVICE (top-left) ── -->
+          <g id="sm-node-auth" class="sm-node sm-node--auth" transform="translate(200,80)">
+            <circle r="18" fill="var(--sm-node-bg)" stroke="var(--sm-mauve)" stroke-width="1.5" filter="url(#sm-glow)"/>
+            <!-- Icon: lock -->
+            <g fill="none" stroke="var(--sm-mauve)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="-6" y="-3" width="12" height="9" rx="1.5"/>
+              <path d="M -3,-3 C -3,-7.5 3,-7.5 3,-3"/>
+              <circle cx="0" cy="2" r="1.5" fill="var(--sm-mauve)"/>
+            </g>
+            <text y="28" text-anchor="middle" class="sm-label" fill="var(--sm-mauve)">Auth</text>
+          </g>
+
+          <!-- ── DB SERVICE (bottom-left) ── -->
+          <g id="sm-node-db" class="sm-node sm-node--db" transform="translate(200,200)">
+            <circle r="18" fill="var(--sm-node-bg)" stroke="var(--sm-accent)" stroke-width="1.5" filter="url(#sm-glow)"/>
+            <!-- Icon: cylinder (PostgreSQL) -->
+            <g fill="none" stroke="var(--sm-accent)" stroke-width="1.7" stroke-linecap="round">
+              <ellipse cx="0" cy="-5" rx="7" ry="2.5"/>
+              <line x1="-7" y1="-5" x2="-7" y2="4"/>
+              <line x1="7"  y1="-5" x2="7"  y2="4"/>
+              <ellipse cx="0" cy="4"  rx="7" ry="2.5"/>
+            </g>
+            <text y="28" text-anchor="middle" class="sm-label" fill="var(--sm-accent)">DB</text>
+          </g>
+
+          <!-- ── CACHE SERVICE (top-right) ── -->
+          <g id="sm-node-cache" class="sm-node sm-node--cache" transform="translate(1000,80)">
+            <circle r="18" fill="var(--sm-node-bg)" stroke="var(--sm-green)" stroke-width="1.5" filter="url(#sm-glow)"/>
+            <!-- Icon: lightning bolt (fast cache) -->
+            <g fill="var(--sm-green)" stroke="none">
+              <polygon points="2,-8 -4,1 0,1 -2,8 4,-1 0,-1"/>
+            </g>
+            <text y="28" text-anchor="middle" class="sm-label" fill="var(--sm-green)">Cache</text>
+          </g>
+
+          <!-- ── QUEUE SERVICE (bottom-right) ── -->
+          <g id="sm-node-queue" class="sm-node sm-node--queue" transform="translate(1000,200)">
+            <circle r="18" fill="var(--sm-node-bg)" stroke="var(--sm-mauve)" stroke-width="1.5" filter="url(#sm-glow)"/>
+            <!-- Icon: three stacked lines (message queue) -->
+            <g fill="none" stroke="var(--sm-mauve)" stroke-width="1.8" stroke-linecap="round">
+              <line x1="-7" y1="-5" x2="7" y2="-5"/>
+              <line x1="-7" y1="0"  x2="7" y2="0"/>
+              <line x1="-7" y1="5"  x2="4" y2="5"/>
+              <polyline points="5,3 8,5 5,7" stroke-linejoin="round"/>
+            </g>
+            <text y="28" text-anchor="middle" class="sm-label" fill="var(--sm-mauve)">Queue</text>
+          </g>
+
+          <!-- ── MONITOR SERVICE (bottom-center) ── -->
+          <g id="sm-node-monitor" class="sm-node sm-node--monitor" transform="translate(600,258)">
+            <circle r="16" fill="var(--sm-node-bg)" stroke="var(--sm-accent)" stroke-width="1.5" filter="url(#sm-glow)"/>
+            <!-- Icon: heartbeat / metrics line -->
+            <g fill="none" stroke="var(--sm-accent)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="-9,0 -5,0 -2,-6 1,6 4,-3 7,0 9,0"/>
+            </g>
+            <text y="26" text-anchor="middle" class="sm-label" fill="var(--sm-accent)">Metrics</text>
+          </g>
+
+        </g>
+
+      </svg>
+
+      <!-- Scroll cue — three stacked down-arrows, sequential animation -->
+      <div class="scroll-hint" aria-hidden="true">
+        <div class="scroll-cue">
+          <svg class="scroll-cue__arrow scroll-cue__arrow--1" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L9 9L17 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg class="scroll-cue__arrow scroll-cue__arrow--2" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L9 9L17 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg class="scroll-cue__arrow scroll-cue__arrow--3" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L9 9L17 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- MOBILE NAV (visible < 900px) -->
 
   <nav
@@ -167,6 +510,13 @@
         id="experience"
         class="section"
         aria-labelledby="experience-heading">
+
+      </section>
+
+      <section
+        id="certificates"
+        class="section"
+        aria-labelledby="certificates-heading">
 
       </section>
 

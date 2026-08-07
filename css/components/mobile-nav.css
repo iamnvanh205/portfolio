@@ -99,3 +99,15 @@
   font-weight: 600;
   background: var(--color-bg-section-alt);
 }
+
+/* ==========================================
+   DIVIDER
+========================================== */
+
+.mobile-nav__divider {
+  width: 1px;
+  height: 24px;
+  background: var(--color-border-subtle);
+  margin: 0 8px;
+  flex-shrink: 0;
+}

@@ -3,9 +3,10 @@
 ========================================== */
 
 .hero {
+  position: relative;
   background: var(--color-bg-elevated);
-  padding: var(--space-2xl) 0 48px;
-  border-bottom: 1px solid var(--color-border-subtle);
+  /* Dynamic height will be set via JavaScript to ensure Hero + Transition = 100vh */
+  min-height: 400px; /* Fallback */
 
   transition:
     background-color var(--transition-medium),
@@ -17,29 +18,10 @@
 ========================================== */
 
 .hero__container {
-  display: grid;
-  grid-template-columns: var(--sidebar-width) 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-/* ==========================================
-   AVATAR
-========================================== */
-
-.hero__avatar {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--color-border);
-  flex-shrink: 0;
-}
-
-.hero__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding: var(--space-2xl) 0 48px;
+  /* Ensures content has proper spacing inside the hero */
 }
 
 /* ==========================================
@@ -47,26 +29,21 @@
 ========================================== */
 
 .hero__content {
-  min-width: 0;
-}
-
-.hero__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
+  text-align: center;
 }
 
 .hero__title-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-items: center;
 }
 
 .hero__meta {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 16px;
+  justify-content: center;
   color: var(--color-text-secondary);
 }
 
@@ -86,13 +63,6 @@
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent-green) 22%, transparent);
 }
 
-.hero__controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-}
-
 /* ==========================================
    TAGLINES
 ========================================== */
@@ -101,7 +71,9 @@
   margin-top: 24px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 6px 32px;
+  gap: 12px 24px;
+  max-width: 1240px;
+  margin-inline: auto;
 }
 
 .hero__tagline {
@@ -110,6 +82,7 @@
   line-height: 1.6;
   letter-spacing: 0.01em;
   color: var(--color-text-secondary);
+  text-align: left;
 }
 
 /* Middot accent bullet */
@@ -119,13 +92,26 @@
   margin-right: 8px;
 }
 
+/* Mobile: single column */
+@media (max-width: 768px) {
+  .hero__taglines {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    max-width: 100%;
+  }
+  
+  .hero__tagline {
+    text-align: center;
+  }
+}
+
 /* ==========================================
    PROOF
 ========================================== */
 
 .hero__proof {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 28px;
   border-block: 1px solid var(--color-border-subtle);
 }
@@ -153,13 +139,171 @@
   color: var(--color-text-secondary);
 }
 
+/* Mobile: 2x2 grid */
+@media (max-width: 768px) {
+  .hero__proof {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hero__proof li:nth-child(2n+1) {
+    border-left: none;
+  }
+}
+
 /* ==========================================
-   CTA BUTTONS
+   ACTIONS TOOLBAR
 ========================================== */
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
   margin-top: 28px;
+}
+
+/* Primary CTA group */
+.hero__primary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Vertical divider between primary and utility groups */
+.hero__utilities-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--color-border-subtle);
+  margin: 0 20px;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* Utilities group */
+.hero__utilities {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Utility button — compact pill */
+.hero__utility-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  min-width: 44px;
+  min-height: 38px;
+  padding: 8px 12px;
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+
+  color: var(--color-text-secondary);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Theme button: icon-only, slightly narrower */
+.hero__utility-btn--theme {
+  padding: 8px 10px;
+}
+
+.hero__utility-btn:hover {
+  background: var(--color-bg);
+  border-color: var(--color-accent);
+  color: var(--color-accent-strong);
+}
+
+.hero__utility-btn:focus-visible {
+  outline: 2px solid var(--color-accent-strong);
+  outline-offset: 2px;
+}
+
+.hero__utility-btn:active {
+  transform: scale(0.96);
+}
+
+/* Utility icons */
+.hero__utility-icon {
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* Theme icons: display based on current theme */
+[data-theme="light"] .hero__utility-icon--sun,
+[data-theme="dark"] .hero__utility-icon--moon {
+  display: block;
+}
+
+[data-theme="light"] .hero__utility-icon--moon,
+[data-theme="dark"] .hero__utility-icon--sun {
+  display: none;
+}
+
+/* Language text label */
+.hero__utility-text {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ==========================================
+   RESPONSIVE — TABLET (≤ 768px)
+========================================== */
+
+@media (max-width: 768px) {
+  .hero__actions {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero__utilities-divider {
+    display: none;
+  }
+
+  .hero__primary-actions {
+    width: 100%;
+  }
+
+  .hero__primary-actions .btn {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .hero__utilities {
+    padding-top: 4px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE — MOBILE (≤ 480px)
+========================================== */
+
+@media (max-width: 480px) {
+  .hero__primary-actions {
+    flex-direction: column;
+  }
+
+  .hero__primary-actions .btn {
+    width: 100%;
+  }
 }

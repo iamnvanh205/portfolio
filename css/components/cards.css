@@ -112,13 +112,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 12px;
-}
-
-.project-card__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
   margin-top: auto;
-  padding-top: 18px;
+  padding-top: 6px;
 }

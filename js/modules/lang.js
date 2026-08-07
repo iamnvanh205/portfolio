@@ -15,6 +15,8 @@ const labels = {
     scrollBackToTop: "Scroll back to top",
     light: "Light",
     dark: "Dark",
+    actionsLabel: "Actions",
+    utilityLabel: "Utilities",
     viewProjects: "View Projects",
     downloadCv: "Download CV",
     photoOf: "Photo of",
@@ -25,8 +27,10 @@ const labels = {
       systemsLabel: "production-style systems",
       testsValue: "108",
       testsLabel: "automated tests",
-      concurrencyValue: "50",
-      concurrencyLabel: "concurrent requests validated"
+      concurrencyValue: "4",
+      concurrencyLabel: "roles secured with JWT + RBAC",
+      docsValue: "CI/CD",
+      docsLabel: "deployed via Docker & GitHub Actions"
     },
     careerDirection: "Career direction",
     nav: {
@@ -34,6 +38,7 @@ const labels = {
       skills: "Skills",
       projects: "Projects",
       experience: "Experience",
+      certificates: "Certificates",
       contact: "Contact"
     },
     skills: {
@@ -78,7 +83,7 @@ const labels = {
       featured: "Featured",
       details: "Details",
       demo: "Live demo",
-      code: "Code",
+      github: "GitHub",
       docs: "Docs",
       empty: "No projects match this filter.",
       notFound: "Project not found",
@@ -88,6 +93,15 @@ const labels = {
       projects: "projects",
       docsPrefix: "Technical documentation is available in the",
       docsLink: "GitHub docs"
+    },
+    certificates: {
+      heading: "Certificates",
+      issuer: "Issuer",
+      issued: "Issued",
+      credentialId: "Credential ID",
+      verifyCredential: "Verify Credential",
+      emptyState: "Certificates will be added soon.",
+      certificateOf: "Certificate image"
     },
     footer: "All rights reserved."
   },
@@ -101,6 +115,8 @@ const labels = {
     scrollBackToTop: "Cuộn lên đầu trang",
     light: "Sáng",
     dark: "Tối",
+    actionsLabel: "Hành động",
+    utilityLabel: "Tiện ích",
     viewProjects: "Xem dự án",
     downloadCv: "Tải CV",
     photoOf: "Ảnh của",
@@ -111,8 +127,10 @@ const labels = {
       systemsLabel: "hệ thống hướng production",
       testsValue: "108",
       testsLabel: "kiểm thử tự động",
-      concurrencyValue: "50",
-      concurrencyLabel: "request đồng thời đã kiểm chứng"
+      concurrencyValue: "4",
+      concurrencyLabel: "role bảo mật với JWT + RBAC",
+      docsValue: "CI/CD",
+      docsLabel: "triển khai qua Docker & GitHub Actions"
     },
     careerDirection: "Định hướng nghề nghiệp",
     nav: {
@@ -120,6 +138,7 @@ const labels = {
       skills: "Kỹ năng",
       projects: "Dự án",
       experience: "Kinh nghiệm",
+      certificates: "Chứng chỉ",
       contact: "Liên hệ"
     },
     skills: {
@@ -164,7 +183,7 @@ const labels = {
       featured: "Nổi bật",
       details: "Chi tiết",
       demo: "Demo",
-      code: "Mã nguồn",
+      github: "GitHub",
       docs: "Tài liệu",
       empty: "Không có dự án nào phù hợp với bộ lọc này.",
       notFound: "Không tìm thấy dự án",
@@ -174,6 +193,15 @@ const labels = {
       projects: "dự án",
       docsPrefix: "Tài liệu kỹ thuật có tại",
       docsLink: "GitHub docs"
+    },
+    certificates: {
+      heading: "Chứng chỉ",
+      issuer: "Tổ chức cấp",
+      issued: "Ngày cấp",
+      credentialId: "Mã chứng chỉ",
+      verifyCredential: "Xác thực chứng chỉ",
+      emptyState: "Chứng chỉ sẽ được cập nhật sớm.",
+      certificateOf: "Hình ảnh chứng chỉ"
     },
     footer: "Đã bảo lưu mọi quyền."
   }
@@ -439,7 +467,7 @@ export function getLang() {
 }
 
 export function setLang(lang, persist = true) {
-  const next = lang === "vi" ? "vi" : "en";
+  const next = lang || (getLang() === "en" ? "vi" : "en");
   root.lang = next;
   root.dataset.lang = next;
   if (persist) saveLang(next);
@@ -494,13 +522,27 @@ export function getExperience() {
 }
 
 function updateButtons() {
+  const currentLang = current();
+
+  // Update segmented controls (legacy, for mobile nav)
   document
     .querySelectorAll("[data-lang-option]")
     .forEach((btn) => {
-      const active = btn.dataset.langOption === current();
+      const active = btn.dataset.langOption === currentLang;
 
       btn.classList.toggle("active", active);
       btn.setAttribute("aria-pressed", String(active));
+    });
+}
+
+export function updateLangLabel() {
+  const currentLang = current();
+  const langLabel = currentLang === "en" ? "EN" : "VI";
+
+  document
+    .querySelectorAll("[data-lang-label]")
+    .forEach((label) => {
+      label.textContent = langLabel;
     });
 }
 

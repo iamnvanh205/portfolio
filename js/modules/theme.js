@@ -1,7 +1,7 @@
 /**
  * Theme module
  * Applies light/dark theme via data-theme on <html>.
- * Syncs toggle button active state on every change.
+ * Updates toggle button label to show current theme.
  */
 
 const root = document.documentElement;
@@ -16,8 +16,10 @@ export function initTheme() {
 
 }
 
-export function toggleTheme(theme) {
+export function toggleTheme(newTheme) {
 
+  const theme = newTheme || (root.getAttribute("data-theme") === "light" ? "dark" : "light");
+  
   root.setAttribute("data-theme", theme);
   saveTheme(theme);
 
@@ -54,6 +56,7 @@ function updateButtons() {
 
   const currentTheme = root.getAttribute("data-theme") || "light";
 
+  // Update segmented controls (legacy, for mobile nav)
   document
     .querySelectorAll("[data-theme-option]")
     .forEach((btn) => {
@@ -66,3 +69,5 @@ function updateButtons() {
     });
 
 }
+
+

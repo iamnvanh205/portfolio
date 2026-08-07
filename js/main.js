@@ -7,14 +7,16 @@ import { renderAbout } from "./modules/renderAbout.js";
 import { renderSkills } from "./modules/renderSkills.js";
 import { renderProjects } from "./modules/renderProjects.js";
 import { renderExperience } from "./modules/renderExperience.js";
+import { renderCertificates } from "./modules/renderCertificates.js";
 import { renderContact } from "./modules/renderContact.js";
 import { renderFooter } from "./modules/renderFooter.js";
 
 import { initTheme, toggleTheme, updateThemeButtons } from "./modules/theme.js";
-import { initLang, setLang, t, updateLangButtons } from "./modules/lang.js";
+import { initLang, setLang, t, updateLangButtons, updateLangLabel } from "./modules/lang.js";
 import { initScrollSpy } from "./modules/scrollspy.js";
 import { initFloatingActions } from "./modules/floating-actions.js";
 import { initContactForm } from "./modules/contact-form.js";
+import { initViewport } from "./modules/viewport.js";
 
 /* ==========================================
    RENDER - populate all sections
@@ -34,12 +36,14 @@ function renderPage() {
   renderSkills(DOM.skills);
   renderExperience(DOM.experience);
   renderProjects(DOM.projects);
+  renderCertificates(DOM.certificates);
   renderContact(DOM.contact);
 
   renderFooter(DOM.footer);
 
   updateThemeButtons();
   updateLangButtons();
+  updateLangLabel();
   initContactForm();
   window.dispatchEvent(new Event("scroll"));
 }
@@ -54,6 +58,7 @@ renderPage();
 initTheme();
 initScrollSpy();
 initFloatingActions();
+initViewport();
 
 /* ==========================================
    THEME TOGGLE - delegated listener
@@ -61,21 +66,38 @@ initFloatingActions();
 
 document.addEventListener("click", (event) => {
 
-  const btn = event.target.closest("[data-theme-option]");
+  // Handle segmented controls (mobile nav)
+  const segmentedBtn = event.target.closest("[data-theme-option]");
+  if (segmentedBtn) {
+    toggleTheme(segmentedBtn.dataset.themeOption);
+    return;
+  }
 
-  if (!btn) return;
-
-  toggleTheme(btn.dataset.themeOption);
+  // Handle toggle button (hero utility)
+  const toggleBtn = event.target.closest("[data-theme-toggle]");
+  if (toggleBtn) {
+    toggleTheme(); // No argument = auto-toggle
+    return;
+  }
 
 });
 
 document.addEventListener("click", (event) => {
 
-  const btn = event.target.closest("[data-lang-option]");
+  // Handle segmented controls (mobile nav)
+  const segmentedBtn = event.target.closest("[data-lang-option]");
+  if (segmentedBtn) {
+    setLang(segmentedBtn.dataset.langOption);
+    renderPage();
+    return;
+  }
 
-  if (!btn) return;
-
-  setLang(btn.dataset.langOption);
-  renderPage();
+  // Handle toggle button (hero utility)
+  const toggleBtn = event.target.closest("[data-lang-toggle]");
+  if (toggleBtn) {
+    setLang(); // No argument = auto-toggle
+    renderPage();
+    return;
+  }
 
 });
