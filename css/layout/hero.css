@@ -56,11 +56,46 @@
 }
 
 .hero__status-dot {
+  position: relative;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--color-accent-green);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent-green) 22%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent-green) 25%, transparent);
+  flex-shrink: 0;
+}
+
+/* Ripple ring animation */
+.hero__status-dot::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent-green) 35%, transparent);
+  animation: status-pulse 2.4s ease-out infinite;
+}
+
+@keyframes status-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero__status-dot::before {
+    animation: none;
+    display: none;
+  }
 }
 
 /* ==========================================

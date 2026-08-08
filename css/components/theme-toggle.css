@@ -1,50 +1,113 @@
 /* ==========================================
-   THEME TOGGLE
+   THEME TOGGLE  &  LANG TOGGLE
+   Visual style mirrors .hero__utility-btn:
+   — surface background, 1px border, radius 6px
+   — fs-label, fw-600, ls 0.06em, min-height 38px
+   — hover: accent border + accent-strong text
+   — active/pressed: accent border + accent-strong text
+   — click feedback: scale(0.96)
+   Both are single toggle buttons (no segmented group).
 ========================================== */
 
-.theme-toggle,
-.lang-toggle {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px;
-  border-radius: 20px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-
-  flex-shrink: 0;
-}
-
+/* Standalone toggle buttons share base option styles */
 .theme-toggle__option,
 .lang-toggle__option {
-  min-width: 60px;
-  min-height: 36px;
-  padding: 6px 12px;
-  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-  font-size: var(--fs-btn);
-  font-weight: 500;
-  letter-spacing: .03em;
+  min-width: 44px;
+  min-height: 38px;
+  padding: 8px 12px;
+
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
 
   color: var(--color-text-secondary);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
 
-  transition: all var(--transition-fast);
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+
+  -webkit-tap-highlight-color: transparent;
 }
 
-.theme-toggle__option.active,
-.theme-toggle__option[aria-pressed="true"],
-.lang-toggle__option.active,
-.lang-toggle__option[aria-pressed="true"] {
-  background: var(--color-text-primary);
-  color: var(--color-bg);
+/* Icon-only variant — same explicit size as lang button */
+.theme-toggle__option--icon {
+  min-width: 44px;
+  width: 44px;
+  padding: 8px 10px;
 }
 
-.theme-toggle__option:not(.active):not([aria-pressed="true"]):hover,
-.lang-toggle__option:not(.active):not([aria-pressed="true"]):hover {
+/* ==========================================
+   THEME ICON VISIBILITY
+   Mirrors [data-theme] rules in hero.css
+========================================== */
+
+.theme-toggle__icon {
+  flex-shrink: 0;
+  color: currentColor;
+  display: none; /* hidden by default; shown by data-theme rules below */
+}
+
+[data-theme="light"] .theme-toggle__icon--sun,
+[data-theme="dark"]  .theme-toggle__icon--moon {
+  display: block;
+}
+
+[data-theme="light"] .theme-toggle__icon--moon,
+[data-theme="dark"]  .theme-toggle__icon--sun {
+  display: none;
+}
+
+/* ==========================================
+   LANG LABEL SPAN
+========================================== */
+
+.lang-toggle__label {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ==========================================
+   HOVER  (single button — always interactive)
+========================================== */
+
+.theme-toggle__option:hover,
+.lang-toggle__option:hover {
+  background: var(--color-bg);
+  border-color: var(--color-accent);
   color: var(--color-accent-strong);
 }
 
+/* ==========================================
+   CLICK FEEDBACK
+========================================== */
+
+.theme-toggle__option:active,
+.lang-toggle__option:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================
+   FOCUS RING
+========================================== */
+
 .theme-toggle__option:focus-visible,
 .lang-toggle__option:focus-visible {
-  outline-color: var(--color-accent-strong);
+  outline: 2px solid var(--color-accent-strong);
   outline-offset: 2px;
 }

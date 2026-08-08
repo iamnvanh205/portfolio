@@ -218,7 +218,7 @@ const viProfile = {
     "Xây dựng đầu cuối từ cấu trúc dữ liệu đến triển khai."
   ],
   about: [
-    `Tôi là sinh viên năm cuối ngành Kỹ thuật phần mềm, đam mê phát
+    `Tôi là sinh viên năm cuối ngành Công nghệ phần mềm, đam mê phát
     triển backend - thiết kế API, cơ sở dữ liệu và kiến trúc hệ
     thống. Tôi đã tự thiết kế và triển khai hai hệ thống backend
     hoàn chỉnh từ đầu đến cuối - từ thiết kế cơ sở dữ liệu, CI/CD
