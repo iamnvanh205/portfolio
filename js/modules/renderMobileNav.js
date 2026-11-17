@@ -9,7 +9,8 @@ import { t } from "./lang.js";
 
 export function renderMobileNav(container) {
 
-  const menu = ["about", "projects", "experience", "certificates", "skills", "contact"];
+  // "certificates" hidden for now (no real certificates yet) — restore it to re-enable.
+  const menu = ["about", "projects", "experience", "skills", "contact"];
 
   container.innerHTML = `
 

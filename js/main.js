@@ -36,7 +36,10 @@ function renderPage() {
   renderSkills(DOM.skills);
   renderExperience(DOM.experience);
   renderProjects(DOM.projects);
-  renderCertificates(DOM.certificates);
+  // Certificates section temporarily hidden (no real certificates yet).
+  // To re-enable, also restore the <section id="certificates"> in index.html
+  // and "certificates" in the sidebar/mobile-nav menus.
+  // renderCertificates(DOM.certificates);
   renderContact(DOM.contact);
 
   renderFooter(DOM.footer);

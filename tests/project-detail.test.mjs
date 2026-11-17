@@ -8,7 +8,8 @@ globalThis.document = {
 
 const { getProjects, setLang, t } = await import("../js/modules/lang.js");
 globalThis.t = t;
-const html = await readFile(new URL("../project-detail.html", import.meta.url), "utf8");
+const html = (await readFile(new URL("../project-detail.html", import.meta.url), "utf8"))
+  .replace(/\r\n/g, "\n");
 const start = html.indexOf("function renderProject(project) {");
 const end = html.indexOf("\n\n    renderPage();", start);
 const renderProject = Function(`return (${html.slice(start, end)})`)();

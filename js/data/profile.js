@@ -28,10 +28,7 @@ export const profile = {
     system monitoring - while gaining hands-on experience in a real
     production environment alongside experienced engineers.`,
 
-    `In the long term, I aim to become a Tech Lead: someone who is
-    not only technically strong but also capable of shaping system
-    architecture, leading a team of engineers, and ensuring technical
-    quality throughout the product development process.`
+    `In the long term, I’m following a Software Development → Product & Project Management → IT Leadership path: starting from a solid technical foundation, moving into product and project coordination to understand the full picture from user needs to team operations, and ultimately growing into IT leadership roles such as Engineering Manager or IT Manager - where I can mentor people and build an effective environment for the whole team.`
   ],
 
   contact: {

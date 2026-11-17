@@ -78,8 +78,10 @@ const labels = {
       title: "All Projects",
       back: "Back to Portfolio",
       subtitle: "Backend systems, APIs, and tools I've designed and built - from enterprise platforms to side experiments.",
-      filterLabel: "Filter by tag",
+      filterLabel: "Filter by category",
       all: "All",
+      categoryPersonal: "Personal Projects",
+      categoryAcademic: "Academic Projects",
       featured: "Featured",
       details: "Details",
       demo: "Live demo",
@@ -89,6 +91,9 @@ const labels = {
       notFound: "Project not found",
       galleryLabel: "Project interface previews",
       interfacePreview: "interface preview",
+      zoomImage: "Zoom image",
+      lightboxLabel: "Image preview",
+      closeLightbox: "Close image preview",
       project: "project",
       projects: "projects",
       docsPrefix: "Technical documentation is available in the",
@@ -178,8 +183,10 @@ const labels = {
       title: "Tất cả dự án",
       back: "Quay lại Portfolio",
       subtitle: "Các hệ thống backend, API và công cụ tôi đã thiết kế, xây dựng - từ nền tảng doanh nghiệp đến các dự án cá nhân.",
-      filterLabel: "Lọc theo thẻ",
+      filterLabel: "Lọc theo loại",
       all: "Tất cả",
+      categoryPersonal: "Dự án cá nhân",
+      categoryAcademic: "Đồ án môn học",
       featured: "Nổi bật",
       details: "Chi tiết",
       demo: "Demo",
@@ -189,6 +196,9 @@ const labels = {
       notFound: "Không tìm thấy dự án",
       galleryLabel: "Hình ảnh giao diện dự án",
       interfacePreview: "ảnh giao diện",
+      zoomImage: "Phóng to ảnh",
+      lightboxLabel: "Xem ảnh",
+      closeLightbox: "Đóng xem ảnh",
       project: "dự án",
       projects: "dự án",
       docsPrefix: "Tài liệu kỹ thuật có tại",
@@ -234,10 +244,13 @@ const viProfile = {
     hệ thống - đồng thời tích lũy kinh nghiệm thực chiến trong môi
     trường sản phẩm thực tế cùng đội ngũ kỹ sư chuyên nghiệp.`,
 
-    `Về dài hạn, tôi hướng đến vai trò Tech Lead: người vừa vững về
-    kỹ thuật, vừa có khả năng định hình kiến trúc hệ thống, dẫn dắt
-    đội ngũ kỹ sư và đảm bảo chất lượng kỹ thuật xuyên suốt quá
-    trình phát triển sản phẩm.`
+    `Về dài hạn, tôi định hướng phát triển theo lộ trình Software Development 
+    → Product & Project Management → IT Leadership: bắt đầu từ nền tảng kỹ 
+    thuật vững chắc, dần chuyển sang điều phối sản phẩm và dự án để hiểu 
+    toàn cảnh từ nhu cầu người dùng đến vận hành đội ngũ, và hướng tới các vị 
+    trí lãnh đạo công nghệ như Engineering Manager hay IT Manager - nơi tôi có 
+    thể dẫn dắt, phát triển con người và xây dựng môi trường làm việc hiệu quả 
+    cho cả đội.`
   ],
   contact: {
     ...profile.contact,

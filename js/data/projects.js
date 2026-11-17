@@ -7,6 +7,7 @@ const defineProject = (project) => ({
   demo: "",
   screenshots: [],
   featured: false,
+  category: "personal",
   ...project
 });
 
@@ -148,6 +149,7 @@ export const projects = [
         ]
       }
     ],
+    category: "academic",
     tags: ["ASP.NET", "C#", "SQL Server", "JavaScript", "HTML", "CSS", "University Projects"],
     github: "https://github.com/VanAnhstudents/ThienNguyenViet",
     screenshots: [
@@ -177,6 +179,7 @@ export const projects = [
         ]
       }
     ],
+    category: "academic",
     tags: ["C#", "SQL Server", "University Projects"],
     github: "https://github.com/VanAnhstudents/QuanLyNhanKhau",
     screenshots: [
@@ -206,6 +209,7 @@ export const projects = [
         ]
       }
     ],
+    category: "academic",
     tags: ["Android", "SQLite", "University Projects"],
     github: "https://github.com/VanAnhstudents/QuanLyHomestay",
     docs: "https://github.com/VanAnhstudents/QuanLyHomestay/tree/main/app/src/main/docs",

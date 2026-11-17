@@ -125,6 +125,22 @@
     <div id="project-detail" class="page-container"></div>
   </main>
 
+  <!-- Image lightbox (gallery zoom) -->
+  <div
+    id="project-lightbox"
+    class="project-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Image preview"
+    hidden>
+    <button
+      type="button"
+      class="project-lightbox__close"
+      data-lightbox-close
+      aria-label="Close">&times;</button>
+    <img id="project-lightbox-img" class="project-lightbox__img" alt="">
+  </div>
+
   <footer class="footer" role="contentinfo">
     <div class="footer__container page-container">
       <p class="footer__text footer-text">
@@ -167,6 +183,8 @@
       document.querySelector("[data-theme-toggle]").setAttribute("title", t("themeLabel"));
       document.querySelector("[data-lang-toggle]").setAttribute("aria-label", t("languageLabel"));
       document.querySelector("[data-lang-toggle]").setAttribute("title", t("languageLabel"));
+      document.querySelector("#project-lightbox").setAttribute("aria-label", t("projectsPage.lightboxLabel"));
+      document.querySelector("[data-lightbox-close]").setAttribute("aria-label", t("projectsPage.closeLightbox"));
       document.querySelector(".footer-text").lastChild.textContent = ` Nguyen Van Anh. ${t("footer")}`;
 
       if (!project) {
@@ -227,12 +245,26 @@
             ${project.screenshots
               .slice(0, 4)
               .map((src, i) => `
-                <img
-                  class="project-detail-gallery__item"
-                  src="${src}"
-                  alt="${project.title} - ${t("projectsPage.interfacePreview")} ${i + 1}"
-                  loading="lazy"
-                  decoding="async">
+                <figure class="project-detail-gallery__figure">
+                  <img
+                    class="project-detail-gallery__item"
+                    src="${src}"
+                    alt="${project.title} - ${t("projectsPage.interfacePreview")} ${i + 1}"
+                    loading="lazy"
+                    decoding="async">
+                  <button
+                    type="button"
+                    class="project-detail-gallery__zoom"
+                    data-zoom="${src}"
+                    aria-label="${t("projectsPage.zoomImage")} ${i + 1}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="11" cy="11" r="7"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      <line x1="11" y1="8" x2="11" y2="14"></line>
+                      <line x1="8" y1="11" x2="14" y2="11"></line>
+                    </svg>
+                  </button>
+                </figure>
               `)
               .join("")}
           </div>
@@ -254,7 +286,9 @@
           </div>
 
           <div class="project-detail-card__actions">
-            ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">${t("projectsPage.demo")}</a>` : ""}
+            <!-- Demo button temporarily hidden: no public demo available yet.
+                 To re-enable, change "project.demo && false" back to "project.demo". -->
+            ${project.demo && false ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">${t("projectsPage.demo")}</a>` : ""}
             ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">${t("projectsPage.github")}</a>` : ""}
           </div>
 
@@ -270,6 +304,50 @@
     }
 
     renderPage();
+
+    // ----- Gallery image lightbox (zoom) -----
+    const lightbox = document.getElementById("project-lightbox");
+    const lightboxImg = document.getElementById("project-lightbox-img");
+    let lightboxLastFocused = null;
+
+    function openLightbox(src, alt) {
+      lightboxLastFocused = document.activeElement;
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || "";
+      lightbox.hidden = false;
+      document.body.style.overflow = "hidden";
+      lightbox.querySelector("[data-lightbox-close]").focus();
+    }
+
+    function closeLightbox() {
+      if (lightbox.hidden) return;
+      lightbox.hidden = true;
+      lightboxImg.src = "";
+      lightboxImg.alt = "";
+      document.body.style.overflow = "";
+      if (lightboxLastFocused && typeof lightboxLastFocused.focus === "function") {
+        lightboxLastFocused.focus();
+      }
+    }
+
+    document.addEventListener("click", (event) => {
+      if (lightbox.hidden) {
+        const zoomBtn = event.target.closest("[data-zoom]");
+        if (zoomBtn) {
+          const figure = zoomBtn.closest(".project-detail-gallery__figure");
+          const img = figure ? figure.querySelector("img") : null;
+          openLightbox(zoomBtn.getAttribute("data-zoom"), img ? img.getAttribute("alt") : "");
+        }
+        return;
+      }
+      if (event.target.closest("[data-lightbox-close]") || event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !lightbox.hidden) closeLightbox();
+    });
   </script>
 
 </body>

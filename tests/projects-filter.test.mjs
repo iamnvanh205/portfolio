@@ -2,26 +2,43 @@ import assert from "node:assert/strict";
 
 globalThis.document = { documentElement: { dataset: {} } };
 
-const { filterProjects, getProjectFilterTags } = await import("../js/modules/renderProjects.js");
+const { filterProjects, getProjectFilters } = await import("../js/modules/renderProjects.js");
 const { projects: portfolioProjects } = await import("../js/data/projects.js");
-const projects = [
-  { tags: ["Java"] },
-  { tags: ["University Projects"] }
-];
 
-assert.deepEqual(getProjectFilterTags([
-  { tags: ["Java", "Spring Boot", "React", "TypeScript", "PostgreSQL"] },
-  { tags: ["C#", "SQL Server", "University Projects"] },
-  { tags: ["Android", "University Projects"] }
-]), ["Java/Spring Boot", "React/TypeScript", "PostgreSQL", "University Projects"]);
-assert.deepEqual(
-  getProjectFilterTags(portfolioProjects),
-  ["Java/Spring Boot", "React/TypeScript", "PostgreSQL", "University Projects"]
+// Every portfolio project carries a `category` of either "personal" or "academic".
+assert.ok(
+  portfolioProjects.every((p) => p.category === "personal" || p.category === "academic")
 );
 
-assert.equal(filterProjects(projects, "all").length, 2);
-assert.deepEqual(filterProjects(projects, "Java/Spring Boot"), [projects[0]]);
+// getProjectFilters returns "all" first, then each category that has >= 1 project.
+assert.deepEqual(
+  getProjectFilters([
+    { category: "personal" },
+    { category: "academic" },
+    { category: "personal" }
+  ]),
+  ["all", "personal", "academic"]
+);
 
-document.documentElement.dataset = { lang: "vi" };
-projects[1].tags = ["Đồ án môn học"];
-assert.deepEqual(filterProjects(projects, "University Projects"), [projects[1]]);
+assert.deepEqual(getProjectFilters(portfolioProjects), ["all", "personal", "academic"]);
+
+// "all" returns the same array reference (no copy, no filtering).
+const sample = [{ category: "personal" }, { category: "academic" }];
+assert.equal(filterProjects(sample, "all"), sample);
+
+// Real data: 2 personal (ITAM, Event Ticketing) + 3 academic.
+assert.equal(filterProjects(portfolioProjects, "all").length, portfolioProjects.length);
+assert.deepEqual(
+  filterProjects(portfolioProjects, "personal").map((p) => p.id),
+  ["itam-system", "event-ticketing"]
+);
+assert.deepEqual(
+  filterProjects(portfolioProjects, "academic").map((p) => p.id),
+  ["thien-nguyen", "nhan-khau", "homestay"]
+);
+
+// Sample-level filtering.
+assert.deepEqual(filterProjects(sample, "personal"), [sample[0]]);
+assert.deepEqual(filterProjects(sample, "academic"), [sample[1]]);
+// An unknown filter matches nothing.
+assert.deepEqual(filterProjects(sample, "nonexistent"), []);

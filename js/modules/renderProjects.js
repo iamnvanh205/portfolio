@@ -1,34 +1,36 @@
 import { projects as sourceProjects } from "../data/projects.js";
-import { getProjects, localizeTag, t } from "./lang.js";
+import { getProjects, t } from "./lang.js";
 
 let activeProjectFilter = "all";
-const FILTER_TAGS = {
-  "Java/Spring Boot": ["Java", "Spring Boot"],
-  "React/TypeScript": ["React", "TypeScript"],
-  "PostgreSQL": ["PostgreSQL"],
-  "University Projects": ["University Projects"]
-};
 
-export function filterProjects(projects, tag) {
-  const tags = FILTER_TAGS[tag] || [tag];
-  return tag === "all"
+// Project categories used to filter the Projects section.
+// "all" shows every project; the rest map 1:1 to a project's `category` field.
+const CATEGORIES = ["personal", "academic"];
+
+export function filterProjects(projects, filter) {
+  return filter === "all"
     ? projects
-    : projects.filter((project) => tags.some((candidate) => project.tags.includes(localizeTag(candidate))));
+    : projects.filter((project) => project.category === filter);
 }
 
-export function getProjectFilterTags(projects) {
-  return Object
-    .entries(FILTER_TAGS)
-    .filter(([, tags]) =>
-      projects.some((project) => tags.some((tag) => project.tags.includes(tag)))
-    )
-    .map(([label]) => label);
+export function getProjectFilters(projects) {
+  const present = new Set(
+    projects.map((project) => project.category).filter(Boolean)
+  );
+  return ["all", ...CATEGORIES.filter((category) => present.has(category))];
+}
+
+function filterLabel(filter) {
+  if (filter === "all") return t("projectsPage.all");
+  if (filter === "personal") return t("projectsPage.categoryPersonal");
+  if (filter === "academic") return t("projectsPage.categoryAcademic");
+  return filter;
 }
 
 export function renderProjects(container) {
 
   const projects = getProjects();
-  const filterTags = getProjectFilterTags(sourceProjects);
+  const filters = getProjectFilters(sourceProjects);
   const visibleProjects = filterProjects(projects, activeProjectFilter);
   const resultLabel = `${visibleProjects.length} ${
     t(visibleProjects.length === 1 ? "projectsPage.project" : "projectsPage.projects")
@@ -50,23 +52,15 @@ export function renderProjects(container) {
 
     <div class="projects-toolbar">
       <div class="projects-filters" role="group" aria-label="${t("projectsPage.filterLabel")}">
-        <button
-          type="button"
-          class="btn btn-card"
-          data-project-filter="all"
-          aria-controls="projects-grid"
-          aria-pressed="${activeProjectFilter === "all"}">
-          ${t("projectsPage.all")}
-        </button>
-        ${filterTags
-          .map((tag) => `
+        ${filters
+          .map((filter) => `
             <button
               type="button"
               class="btn btn-card"
-              data-project-filter="${tag}"
+              data-project-filter="${filter}"
               aria-controls="projects-grid"
-              aria-pressed="${activeProjectFilter === tag}">
-              ${localizeTag(tag)}
+              aria-pressed="${activeProjectFilter === filter}">
+              ${filterLabel(filter)}
             </button>
           `)
           .join("")}
@@ -84,6 +78,7 @@ export function renderProjects(container) {
 
             <article
               class="project-card${project.featured ? " project-card--featured" : ""}"
+              data-category="${project.category || ""}"
               aria-label="${project.title}">
 
               <div class="project-card__thumbnail">
